@@ -34,6 +34,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning
+        style={{ overscrollBehaviorX: "auto" }}
         className={`${karla.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
       >
         {children}
