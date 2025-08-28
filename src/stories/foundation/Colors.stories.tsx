@@ -12,6 +12,7 @@ type Story = StoryObj
 const cssVars = [
   '--background',
   '--foreground',
+  '--background-gradient',
   '--primary',
   '--primary-foreground',
   '--secondary',

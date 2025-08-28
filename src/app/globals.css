@@ -9,6 +9,7 @@
   --font-sans: var(--font-karla);
   --font-headings: var(--font-poppins);
   --font-mono: var(--font-geist-mono);
+  --color-background-gradient: var(--background-gradient);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -109,6 +110,15 @@
   --vibrant-pink: #FB43DA;
   --vibrant-purple: #D684FF;
   --vibrant-cyan: #17E2EA;
+
+  /* Semantic background gradient using vibrant primitives */
+  --background-gradient: linear-gradient(
+    99deg,
+    var(--vibrant-yellow-500) 0%,
+    var(--vibrant-pink-500) 53.72%,
+    var(--vibrant-purple-500) 70.33%,
+    var(--vibrant-cyan-500) 101.59%
+  );
 
   /* Vibrant scales */
   /* yellow base #FFC32B */
