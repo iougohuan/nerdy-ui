@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins, Karla, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import "./globals.css";
 
 const geistMono = Geist_Mono({
@@ -32,13 +33,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         suppressHydrationWarning
         style={{ overscrollBehaviorX: "auto" }}
-        className={`${karla.variable} ${poppins.variable} ${geistMono.variable} antialiased`}
+        className={`${karla.variable} ${poppins.variable} ${geistMono.variable} antialiased bg-sidebar text-sidebar-foreground`}
       >
-        {children}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

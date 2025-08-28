@@ -13,6 +13,7 @@ import data from "./data.json"
 export default function Page() {
   return (
     <SidebarProvider
+      className="bg-sidebar text-sidebar-foreground"
       style={
         {
           "--sidebar-width": "calc(var(--spacing) * 72)",
