@@ -82,6 +82,13 @@
   /* Semantic tokens */
   --menu-accent: var(--vibrant-cyan-500);
   --menu-interactive-bg: oklch(1 0 0 / 0.04);
+  --background-ellipse-gradient: linear-gradient(
+    90deg,
+    var(--vibrant-yellow-500) 17.4%,
+    var(--vibrant-pink-500) 41.57%,
+    var(--vibrant-purple-500) 49.25%,
+    var(--vibrant-cyan-500) 68.58%
+  );
 
   /* Custom brand scale based on #202344 */
   --brand-500: #202344;
@@ -214,6 +221,13 @@
   /* Semantic tokens */
   --menu-accent: var(--vibrant-cyan-500);
   --menu-interactive-bg: oklch(1 0 0 / 0.04);
+  --background-ellipse-gradient: linear-gradient(
+    90deg,
+    var(--vibrant-yellow-500) 17.4%,
+    var(--vibrant-pink-500) 41.57%,
+    var(--vibrant-purple-500) 49.25%,
+    var(--vibrant-cyan-500) 68.58%
+  );
 
   /* Keep custom scales consistent in dark mode */
   --brand-500: #202344;
