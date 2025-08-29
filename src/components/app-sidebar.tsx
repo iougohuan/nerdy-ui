@@ -23,6 +23,7 @@ import { NavDocuments } from "@/components/nav-documents"
 import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
+import { VtLogo } from "@/components/vt-logo"
 import {
   Sidebar,
   SidebarContent,
@@ -32,6 +33,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { SidebarMenuAction, SidebarTrigger } from "@/components/ui/sidebar"
 
 const data = {
   user: {
@@ -152,19 +154,21 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
+    <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Acme Inc.</span>
+            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
+              <a href="#" aria-label="Acme Inc.">
+                <span className="group-data-[collapsible=icon]:hidden">
+                  <VtLogo variant="white" width={150} height={25} />
+                </span>
+                <span className="hidden group-data-[collapsible=icon]:inline-block">
+                  <VtLogo variant="icon" width={25} height={25} />
+                </span>
               </a>
             </SidebarMenuButton>
+            <SidebarTrigger className="size-6" />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>

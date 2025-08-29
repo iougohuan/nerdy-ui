@@ -2,7 +2,7 @@ import React from "react";
 import { cn } from "@/lib/utils";
 
 export type VtLogoProps = {
-  variant?: "color" | "white" | "black";
+  variant?: "color" | "white" | "black" | "icon" | "iconlogo";
   className?: string;
   width?: number;
   height?: number;
@@ -26,6 +26,8 @@ export function VtLogo({
     color: "/vt-logo-color.svg",
     white: "/vt-logo-white.svg",
     black: "/vt-logo-black.svg",
+    icon: "/vt-iconlogo.svg",
+    iconlogo: "/vt-iconlogo.svg",
   };
 
   const src = srcMap[variant];
