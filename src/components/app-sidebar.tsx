@@ -8,6 +8,7 @@ import {
   IconReport,
   IconFileAi,
   IconDatabase,
+  IconSparkles,
   IconCamera,
   IconFileDescription,
   IconFileWord,
@@ -40,28 +41,28 @@ const data = {
   navMain: [
     {
       title: "Home",
-      url: "#",
+      url: "/",
       icon: IconHome,
     },
     {
       title: "Students",
-      url: "#",
+      url: "/students",
       icon: IconUsers,
     },
     {
       title: "Tutoring Schedule",
-      url: "#",
+      url: "/schedule",
       icon: IconCalendar,
     },
     {
       title: "Reports",
-      url: "#",
+      url: "/reports",
       icon: IconReport,
     },
     {
       title: "AI Tools",
-      url: "#",
-      icon: IconFileAi,
+      url: "/ai-tools",
+      icon: IconSparkles,
     },
   ],
   navClouds: [

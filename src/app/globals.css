@@ -79,6 +79,10 @@
   --sidebar-border: oklch(0.928 0.006 264.531);
   --sidebar-ring: oklch(0.707 0.022 261.325);
 
+  /* Semantic tokens */
+  --menu-accent: var(--vibrant-cyan-500);
+  --menu-interactive-bg: oklch(1 0 0 / 0.04);
+
   /* Custom brand scale based on #202344 */
   --brand-500: #202344;
   --brand-50: color-mix(in oklch, var(--brand-500) 5%, white);
@@ -206,6 +210,10 @@
   --sidebar-accent-foreground: oklch(0.985 0.002 247.839);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+
+  /* Semantic tokens */
+  --menu-accent: var(--vibrant-cyan-500);
+  --menu-interactive-bg: oklch(1 0 0 / 0.04);
 
   /* Keep custom scales consistent in dark mode */
   --brand-500: #202344;
