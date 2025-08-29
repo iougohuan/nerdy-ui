@@ -2,24 +2,20 @@
 
 import * as React from "react"
 import {
-  IconCamera,
-  IconChartBar,
-  IconDashboard,
-  IconDatabase,
+  IconHome,
+  IconCalendar,
+  IconUsers,
+  IconReport,
   IconFileAi,
+  IconDatabase,
+  IconCamera,
   IconFileDescription,
   IconFileWord,
-  IconFolder,
-  IconHelp,
-  IconInnerShadowTop,
-  IconListDetails,
-  IconReport,
-  IconSearch,
   IconSettings,
-  IconUsers,
+  IconHelp,
+  IconSearch,
 } from "@tabler/icons-react"
 
-import { NavDocuments } from "@/components/nav-documents"
 import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
@@ -33,7 +29,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { SidebarMenuAction, SidebarTrigger } from "@/components/ui/sidebar"
+ 
 
 const data = {
   user: {
@@ -43,29 +39,29 @@ const data = {
   },
   navMain: [
     {
-      title: "Dashboard",
+      title: "Home",
       url: "#",
-      icon: IconDashboard,
+      icon: IconHome,
     },
     {
-      title: "Lifecycle",
-      url: "#",
-      icon: IconListDetails,
-    },
-    {
-      title: "Analytics",
-      url: "#",
-      icon: IconChartBar,
-    },
-    {
-      title: "Projects",
-      url: "#",
-      icon: IconFolder,
-    },
-    {
-      title: "Team",
+      title: "Students",
       url: "#",
       icon: IconUsers,
+    },
+    {
+      title: "Tutoring Schedule",
+      url: "#",
+      icon: IconCalendar,
+    },
+    {
+      title: "Reports",
+      url: "#",
+      icon: IconReport,
+    },
+    {
+      title: "AI Tools",
+      url: "#",
+      icon: IconFileAi,
     },
   ],
   navClouds: [
@@ -133,23 +129,6 @@ const data = {
       icon: IconSearch,
     },
   ],
-  documents: [
-    {
-      name: "Data Library",
-      url: "#",
-      icon: IconDatabase,
-    },
-    {
-      name: "Reports",
-      url: "#",
-      icon: IconReport,
-    },
-    {
-      name: "Word Assistant",
-      url: "#",
-      icon: IconFileWord,
-    },
-  ],
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -158,23 +137,32 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!p-1.5">
-              <a href="#" aria-label="Acme Inc.">
-                <span className="group-data-[collapsible=icon]:hidden">
+            <SidebarMenuButton
+              asChild
+              className="data-[slot=sidebar-menu-button]:!p-0 !h-[25px] !w-[150px] group-data-[collapsible=icon]:!w-[25px] group-data-[collapsible=icon]:!h-[25px] group-data-[collapsible=icon]:!p-0 hover:bg-transparent active:bg-transparent hover:text-inherit active:text-inherit focus-visible:ring-0"
+            >
+              <a
+                href="#"
+                aria-label="Acme Inc."
+                className="block relative h-[25px] w-full transition-all duration-200 ease-linear"
+              >
+                <span
+                  className="absolute inset-0 flex items-center transition-all duration-200 ease-linear opacity-100 scale-100 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:scale-95"
+                >
                   <VtLogo variant="white" width={150} height={25} />
                 </span>
-                <span className="hidden group-data-[collapsible=icon]:inline-block">
+                <span
+                  className="absolute inset-0 flex items-center transition-all duration-200 ease-linear opacity-0 scale-95 group-data-[collapsible=icon]:opacity-100 group-data-[collapsible=icon]:scale-100"
+                >
                   <VtLogo variant="icon" width={25} height={25} />
                 </span>
               </a>
             </SidebarMenuButton>
-            <SidebarTrigger className="size-6" />
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavDocuments items={data.documents} />
         <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
