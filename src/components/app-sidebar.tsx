@@ -15,12 +15,23 @@ import {
   IconSettings,
   IconHelp,
   IconSearch,
+  IconChevronUp,
+  IconChevronDown,
 } from "@tabler/icons-react"
 
 import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
 import { NavUser } from "@/components/nav-user"
 import { VtLogo } from "@/components/vt-logo"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Separator } from "@/components/ui/separator"
 import {
   Sidebar,
   SidebarContent,
@@ -37,6 +48,10 @@ const data = {
     name: "shadcn",
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
+  },
+  school: {
+    name: "School name",
+    district: "District name",
   },
   navMain: [
     {
@@ -140,25 +155,47 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-0 !h-[25px] !w-[150px] group-data-[collapsible=icon]:!w-[25px] group-data-[collapsible=icon]:!h-[25px] group-data-[collapsible=icon]:!p-0 hover:bg-transparent active:bg-transparent hover:text-inherit active:text-inherit focus-visible:ring-0"
+              className="data-[slot=sidebar-menu-button]:!p-0 !h-[25px] !w-[25px] group-data-[collapsible=icon]:!w-[25px] group-data-[collapsible=icon]:!h-[25px] group-data-[collapsible=icon]:!p-0 hover:bg-transparent active:bg-transparent hover:text-inherit active:text-inherit focus-visible:ring-0"
             >
               <a
                 href="#"
                 aria-label="Acme Inc."
-                className="block relative h-[25px] w-full transition-all duration-200 ease-linear"
+                className="block relative h-[25px] w-full"
               >
-                <span
-                  className="absolute inset-0 flex items-center transition-all duration-200 ease-linear opacity-100 scale-100 group-data-[collapsible=icon]:opacity-0 group-data-[collapsible=icon]:scale-95"
-                >
-                  <VtLogo variant="white" width={150} height={25} />
-                </span>
-                <span
-                  className="absolute inset-0 flex items-center transition-all duration-200 ease-linear opacity-0 scale-95 group-data-[collapsible=icon]:opacity-100 group-data-[collapsible=icon]:scale-100"
-                >
+                <span className="absolute inset-0 grid place-items-center">
                   <VtLogo variant="icon" width={25} height={25} />
                 </span>
               </a>
             </SidebarMenuButton>
+          </SidebarMenuItem>
+          <Separator className="my-2 opacity-20 group-data-[collapsible=icon]:hidden" />
+          <SidebarMenuItem className="group-data-[collapsible=icon]:hidden">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!py-3 data-[slot=sidebar-menu-button]:!px-2 hover:bg-[color:var(--menu-interactive-bg)]">
+                  <div className="flex w-full items-center gap-3">
+                    <div className="size-8 shrink-0 rounded-xl bg-[color:var(--menu-accent)] grid place-items-center">
+                      <VtLogo variant="icon" width={18} height={18} />
+                    </div>
+                    <div className="flex min-w-0 flex-1 flex-col leading-tight">
+                      <span className="truncate text-sm font-medium">{data.school.name}</span>
+                      <span className="truncate text-xs text-muted-foreground">{data.school.district}</span>
+                    </div>
+                    <div className="flex flex-col items-center leading-none text-muted-foreground">
+                      <IconChevronUp className="size-4" />
+                      <IconChevronDown className="size-4 -mt-1" />
+                    </div>
+                  </div>
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-64">
+                <DropdownMenuLabel>Schools in {data.school.district}</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>Lincoln High School</DropdownMenuItem>
+                <DropdownMenuItem>Roosevelt Middle School</DropdownMenuItem>
+                <DropdownMenuItem>Jefferson Elementary</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
