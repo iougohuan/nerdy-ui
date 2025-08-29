@@ -29,6 +29,8 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Separator } from "@/components/ui/separator"
@@ -148,6 +150,21 @@ const data = {
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+  const [selectedSchool, setSelectedSchool] = React.useState<string>(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("selected_school") || "Lincoln High School"
+    }
+    return "Lincoln High School"
+  })
+  React.useEffect(() => {
+    try {
+      localStorage.setItem("selected_school", selectedSchool)
+    } catch (_) {
+      // ignore persistence errors
+    }
+  }, [selectedSchool])
+  const district = data.school.district
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -166,8 +183,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <VtLogo variant="icon" width={18} height={18} />
                     </div>
                     <div className="flex min-w-0 flex-1 flex-col leading-tight">
-                      <span className="truncate text-sm font-medium">{data.school.name}</span>
-                      <span className="truncate text-xs text-muted-foreground">{data.school.district}</span>
+                      <span className="truncate text-sm font-medium">{selectedSchool}</span>
+                      <span className="truncate text-xs text-muted-foreground">{district}</span>
                     </div>
                     <div className="flex flex-col items-center leading-none text-muted-foreground">
                       <IconChevronUp className="size-4" />
@@ -177,11 +194,13 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-64">
-                <DropdownMenuLabel>Schools in {data.school.district}</DropdownMenuLabel>
+                <DropdownMenuLabel>Schools in {district}</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Lincoln High School</DropdownMenuItem>
-                <DropdownMenuItem>Roosevelt Middle School</DropdownMenuItem>
-                <DropdownMenuItem>Jefferson Elementary</DropdownMenuItem>
+                <DropdownMenuRadioGroup value={selectedSchool} onValueChange={setSelectedSchool}>
+                  <DropdownMenuRadioItem value="Lincoln High School">Lincoln High School</DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="Roosevelt Middle School">Roosevelt Middle School</DropdownMenuRadioItem>
+                  <DropdownMenuRadioItem value="Jefferson Elementary">Jefferson Elementary</DropdownMenuRadioItem>
+                </DropdownMenuRadioGroup>
               </DropdownMenuContent>
             </DropdownMenu>
           </SidebarMenuItem>
