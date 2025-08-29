@@ -152,27 +152,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-0 !h-[25px] !w-[25px] group-data-[collapsible=icon]:!w-[25px] group-data-[collapsible=icon]:!h-[25px] group-data-[collapsible=icon]:!p-0 hover:bg-transparent active:bg-transparent hover:text-inherit active:text-inherit focus-visible:ring-0"
-            >
-              <a
-                href="#"
-                aria-label="Acme Inc."
-                className="block relative h-[25px] w-full"
-              >
-                <span className="absolute inset-0 grid place-items-center">
-                  <VtLogo variant="icon" width={25} height={25} />
-                </span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <Separator className="my-2 opacity-20 group-data-[collapsible=icon]:hidden" />
+          
           <SidebarMenuItem className="group-data-[collapsible=icon]:hidden">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuButton asChild className="data-[slot=sidebar-menu-button]:!py-3 data-[slot=sidebar-menu-button]:!px-2 hover:bg-[color:var(--menu-interactive-bg)]">
+                <SidebarMenuButton
+                  asChild
+                  size="lg"
+                  className="data-[slot=sidebar-menu-button]:!px-2 hover:bg-[color:var(--menu-interactive-bg)]"
+                >
                   <div className="flex w-full items-center gap-3">
                     <div className="size-8 shrink-0 rounded-xl bg-[color:var(--menu-accent)] grid place-items-center">
                       <VtLogo variant="icon" width={18} height={18} />
