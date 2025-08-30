@@ -23,18 +23,8 @@ export default function Page() {
     >
       <AppSidebar variant="inset" />
       <SidebarInset>
-        {/* Ellipse gradient background */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-0 right-0 top-[-180px] z-0 h-[460px]"
-          style={{
-            opacity: 0.2,
-            filter: "blur(90px)",
-            background: "var(--background-ellipse-gradient)",
-          }}
-        />
         <SiteHeader />
-        <div className="flex flex-1 flex-col relative z-[1]">
+        <div className="flex flex-1 flex-col relative">
           <div className="@container/main flex flex-1 flex-col gap-2">
             <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
               <SectionCards />

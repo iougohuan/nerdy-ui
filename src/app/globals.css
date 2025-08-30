@@ -266,6 +266,20 @@
   }
   body {
     @apply bg-background text-foreground font-sans;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    top: -180px;
+    left: 0;
+    right: 0;
+    height: 460px;
+    background: var(--background-ellipse-gradient);
+    opacity: 0.2;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: -1;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-headings);
