@@ -1,5 +1,5 @@
-import { addons } from '@storybook/manager-api'
-import { themes } from '@storybook/theming'
+import { addons } from 'storybook/manager-api'
+import { themes } from 'storybook/theming'
 
 addons.setConfig({
   theme: {
@@ -7,6 +7,7 @@ addons.setConfig({
     brandTitle: 'Luminax DS',
   },
 })
+
 
 
 
