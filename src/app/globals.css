@@ -50,6 +50,7 @@
 
 :root {
   --radius: 0.625rem;
+  --label-weight: 600;
   --background: oklch(1 0 0);
   --foreground: oklch(0.13 0.028 261.692);
   --card: oklch(1 0 0);
@@ -85,6 +86,14 @@
   /* Semantic tokens */
   --menu-accent: var(--vibrant-cyan-500);
   --menu-interactive-bg: oklch(1 0 0 / 0.04);
+  /* New card surface token */
+  --surface-card: oklch(1 0 0 / 0.04);
+  --radius-card: 20px;
+  /* Input surface tokens */
+  --surface-input-bg: #161730;
+  --surface-input-border: #161730;
+  /* Chip surface token */
+  --surface-chip: oklch(1 0 0 / 0.08);
   --background-ellipse-gradient: linear-gradient(
     90deg,
     var(--vibrant-yellow-500) 17.4%,
@@ -190,6 +199,7 @@
 
 .dark {
   --background: var(--brand-500);
+  --label-weight: 600;
   --foreground: oklch(0.985 0.002 247.839);
   --card: oklch(0.21 0.034 264.665);
   --card-foreground: oklch(0.985 0.002 247.839);
@@ -224,6 +234,14 @@
   /* Semantic tokens */
   --menu-accent: var(--vibrant-cyan-500);
   --menu-interactive-bg: oklch(1 0 0 / 0.04);
+  /* New card surface token (same value in dark) */
+  --surface-card: oklch(1 0 0 / 0.04);
+  --radius-card: 20px;
+  /* Input surface tokens (dark) */
+  --surface-input-bg: #161730;
+  --surface-input-border: #161730;
+  /* Chip surface token (dark) */
+  --surface-chip: oklch(1 0 0 / 0.08);
   --background-ellipse-gradient: linear-gradient(
     90deg,
     var(--vibrant-yellow-500) 17.4%,
@@ -286,5 +304,24 @@
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-headings);
+  }
+  .font-label { font-weight: var(--label-weight); }
+  /* Reusable surface style for translucent cards */
+  .surface-card {
+    background: var(--surface-card);
+    border: none;
+    border-radius: var(--radius-card);
+  }
+  /* Reusable input surface */
+  .surface-input {
+    background: var(--surface-input-bg);
+    border: 1px solid var(--surface-input-border);
+    border-radius: 12px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.10);
+  }
+  /* Reusable chip surface */
+  .surface-chip {
+    background: var(--surface-chip);
+    border: none;
   }
 }
