@@ -71,7 +71,7 @@ export function MultiSelect({
           <button
             type="button"
             className={cn(
-              "surface-input w-full rounded-xl px-4 py-3 text-left flex items-center justify-between gap-3",
+              "surface-input w-full rounded-xl px-4 py-3 text-left flex items-center justify-between gap-3 cursor-pointer",
               "focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
             )}
             ref={triggerRef}
@@ -114,7 +114,7 @@ export function MultiSelect({
                 type="button"
                 aria-label="Remove"
                 onClick={() => toggle(val)}
-                className="grid place-items-center size-6 rounded-full bg-white/20"
+                className="grid place-items-center size-6 rounded-full bg-white/20 cursor-pointer pointer-events-auto hover:bg-white/30 transition-colors"
               >
                 <X className="size-3.5" />
               </button>
