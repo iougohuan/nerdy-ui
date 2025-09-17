@@ -28,11 +28,13 @@ function SelectTrigger({
   className,
   size = "default",
   tone,
+  invalid,
   children,
   ...props
 }: React.ComponentProps<typeof SelectPrimitive.Trigger> & {
   size?: "sm" | "default"
   tone?: "surface" | "default"
+  invalid?: boolean
 }) {
   return (
     <SelectPrimitive.Trigger
@@ -44,6 +46,7 @@ function SelectTrigger({
         tone === "surface"
           ? "w-full rounded-xl surface-input px-4 py-3 data-[size=default]:h-12 data-[size=sm]:h-10"
           : "w-fit rounded-md border border-input bg-transparent px-3 py-2 dark:bg-input/30 dark:hover:bg-input/50 data-[size=default]:h-9 data-[size=sm]:h-8",
+        invalid && "ring-[3px] ring-destructive/20 border-destructive",
         className
       )}
       {...props}

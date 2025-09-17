@@ -23,6 +23,7 @@ type MultiSelectProps = {
   placeholder?: string
   summaryFormatter?: (count: number) => string
   className?: string
+  invalid?: boolean
 }
 
 export function MultiSelect({
@@ -32,6 +33,7 @@ export function MultiSelect({
   placeholder = "Select",
   summaryFormatter,
   className,
+  invalid = false,
 }: MultiSelectProps) {
   const selectedCount = value.length
   const optionsMap = React.useMemo(() => {
@@ -72,7 +74,8 @@ export function MultiSelect({
             type="button"
             className={cn(
               "surface-input w-full rounded-xl px-4 py-3 text-left flex items-center justify-between gap-3 cursor-pointer",
-              "focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none"
+              "focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none",
+              invalid && "ring-[3px] ring-destructive/20 border-destructive"
             )}
             ref={triggerRef}
           >
@@ -99,7 +102,7 @@ export function MultiSelect({
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {selectedCount > 0 && (
+      {selectedCount > 1 && (
         <div className="mt-3 flex flex-wrap gap-3">
           {value.map((val) => (
             <span

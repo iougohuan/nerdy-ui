@@ -50,6 +50,7 @@
 
 :root {
   --radius: 0.625rem;
+  --radius-button: 12px;
   --label-weight: 600;
   --background: oklch(1 0 0);
   --foreground: oklch(0.13 0.028 261.692);
@@ -94,6 +95,10 @@
   --surface-input-border: #161730;
   /* Chip surface token */
   --surface-chip: oklch(1 0 0 / 0.08);
+  /* Stepper tokens */
+  --stepper-active-bg: var(--brand-soft-500);
+  --stepper-active-fg: #161730;
+  --stepper-inactive-bg: rgba(255, 255, 255, 0.10);
   --background-ellipse-gradient: linear-gradient(
     90deg,
     var(--vibrant-yellow-500) 17.4%,
@@ -199,6 +204,7 @@
 
 .dark {
   --background: var(--brand-500);
+  --radius-button: 12px;
   --label-weight: 600;
   --foreground: oklch(0.985 0.002 247.839);
   --card: oklch(0.21 0.034 264.665);
@@ -242,6 +248,10 @@
   --surface-input-border: #161730;
   /* Chip surface token (dark) */
   --surface-chip: oklch(1 0 0 / 0.08);
+  /* Stepper tokens (dark equal) */
+  --stepper-active-bg: var(--brand-soft-500);
+  --stepper-active-fg: #161730;
+  --stepper-inactive-bg: rgba(255, 255, 255, 0.10);
   --background-ellipse-gradient: linear-gradient(
     90deg,
     var(--vibrant-yellow-500) 17.4%,
