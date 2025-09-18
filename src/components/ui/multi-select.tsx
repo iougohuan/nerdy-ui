@@ -87,7 +87,7 @@ export function MultiSelect({
           align="start"
           sideOffset={6}
           style={triggerWidth ? { width: triggerWidth } : undefined}
-          className="min-w-[14rem]"
+          className="min-w-[14rem] surface-input bg-[var(--surface-input-bg)] text-foreground"
         >
           {options.map((opt) => (
             <DropdownMenuCheckboxItem

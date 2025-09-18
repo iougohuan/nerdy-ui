@@ -11,7 +11,7 @@ import { MultiSelect } from "@/components/ui/multi-select";
 import { Stepper, StepperIndicator, StepperItem, StepperNav, StepperSeparator, StepperTitle, StepperTrigger } from "@/components/ui/stepper";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles } from "lucide-react";
+import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles, ListChecks, Handshake, BadgeInfo } from "lucide-react";
 
 export default function AIToolsPage() {
   const [studentPerformance, setStudentPerformance] = useState("");
@@ -23,6 +23,9 @@ export default function AIToolsPage() {
   const [priorityGoalAreas, setPriorityGoalAreas] = useState<string[]>([]);
   const [evaluationSchedule, setEvaluationSchedule] = useState("quarterly");
   const [language, setLanguage] = useState("english");
+  const [iepComponents, setIepComponents] = useState<string[]>([]);
+  const [existingServices, setExistingServices] = useState<string[]>([]);
+  const [accommodations, setAccommodations] = useState<string[]>([]);
 
   const handleGenerate = () => {
     // Handle form submission
@@ -76,7 +79,7 @@ export default function AIToolsPage() {
                     indicators={{ completed: <Check className="size-4" /> }}
                   >
                     <StepperNav className="justify-center w-full">
-                      {["Student context", "Goals"].map((title, index, arr) => (
+                      {["Student context", "IEP Setting"].map((title, index, arr) => (
                         <StepperItem key={index} step={index + 1} className="relative">
                           <StepperTrigger className="flex justify-start gap-2">
                             <StepperIndicator>{index + 1}</StepperIndicator>
@@ -138,9 +141,9 @@ export default function AIToolsPage() {
                     <div className="space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label inline-flex items-center gap-2">
+                          <label className="text-sm font-label inline-flex items-start gap-2">
                             <GraduationCap className="size-4" />
-                            Grade Level <span className="text-destructive">*</span>
+                            <span>Grade Level <span className="text-destructive">*</span></span>
                           </label>
                             <Select value={gradeLevel} onValueChange={setGradeLevel}>
                               <SelectTrigger tone="surface" invalid={showErrors && !gradeLevel}>
@@ -161,9 +164,9 @@ export default function AIToolsPage() {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label inline-flex items-center gap-2">
+                          <label className="text-sm font-label inline-flex items-start gap-2">
                             <BookUser className="size-4" />
-                            Disability categories <span className="text-destructive">*</span>
+                            <span>Disability categories <span className="text-destructive">*</span></span>
                           </label>
                             <MultiSelect
                             options={[
@@ -186,9 +189,9 @@ export default function AIToolsPage() {
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label inline-flex items-center gap-2">
+                          <label className="text-sm font-label inline-flex items-start gap-2">
                             <OctagonAlert className="size-4" />
-                            Areas of concern <span className="text-destructive">*</span>
+                            <span>Areas of concern <span className="text-destructive">*</span></span>
                           </label>
                           <MultiSelect
                             options={[
@@ -210,9 +213,9 @@ export default function AIToolsPage() {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label inline-flex items-center gap-2">
+                          <label className="text-sm font-label inline-flex items-start gap-2">
                             <Goal className="size-4" />
-                            Priority Goal Areas <span className="text-destructive">*</span>
+                            <span>Priority Goal Areas <span className="text-destructive">*</span></span>
                           </label>
                           <MultiSelect
                             options={[
@@ -260,12 +263,34 @@ export default function AIToolsPage() {
 
                     {step === 2 && (
                     <div className="space-y-4">
+                      <div className="flex flex-col gap-2">
+                        <label className="text-sm font-label inline-flex items-center gap-2">
+                          <ListChecks className="size-4" />
+                          IEP Components sections <span className="text-destructive">*</span>
+                        </label>
+                        <MultiSelect
+                          options={[
+                            { value: "student-info", label: "Student Information" },
+                            { value: "plaafp", label: "Present Levels of Academic Achievement and Functional Performance (PLAAFP)" },
+                            { value: "goals", label: "Goals and Objectives" },
+                            { value: "progress", label: "Progress Monitoring" },
+                            { value: "accommodations-mods", label: "Accommodations and Modifications" },
+                            { value: "services", label: "Services and Supports" },
+                            { value: "gen-ed", label: "Participation in General Education Curriculum" },
+                            { value: "team", label: "Team Members" },
+                          ]}
+                          value={iepComponents}
+                          onChange={setIepComponents}
+                          placeholder="Select sections"
+                          summaryFormatter={(n) => `${n} types selected`}
+                        />
+                      </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label inline-flex items-center gap-2">
+                          <label className="text-sm font-label inline-flex items-start gap-2">
                             <CalendarClock className="size-4" />
-                            Evaluation Schedule <span className="text-destructive">*</span>
+                            <span>Evaluation Schedule <span className="text-destructive">*</span></span>
                           </label>
                           <Select value={evaluationSchedule} onValueChange={setEvaluationSchedule}>
                             <SelectTrigger tone="surface">
@@ -281,9 +306,9 @@ export default function AIToolsPage() {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label inline-flex items-center gap-2">
+                          <label className="text-sm font-label inline-flex items-start gap-2">
                             <Languages className="size-4" />
-                            Language <span className="text-destructive">*</span>
+                            <span>Language <span className="text-destructive">*</span></span>
                           </label>
                           <Select value={language} onValueChange={setLanguage}>
                             <SelectTrigger tone="surface">
@@ -296,6 +321,47 @@ export default function AIToolsPage() {
                               <SelectItem value="german">German</SelectItem>
                             </SelectContent>
                           </Select>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-2">
+                          <label className="text-sm font-label inline-flex items-start gap-2">
+                            <Handshake className="size-4" />
+                            <span>What services are already in place or anticipated for the student? <span className="text-destructive">*</span></span>
+                          </label>
+                          <MultiSelect
+                            options={[
+                              { value: "speech", label: "Speech Therapy" },
+                              { value: "counseling", label: "Counseling" },
+                              { value: "occupational", label: "Occupational Therapy" },
+                              { value: "physical", label: "Physical Therapy" },
+                              { value: "behavioral", label: "Behavioral Intervention" },
+                            ]}
+                            value={existingServices}
+                            onChange={setExistingServices}
+                            placeholder="Select services"
+                            summaryFormatter={(n) => `${n} types selected`}
+                          />
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                          <label className="text-sm font-label inline-flex items-start gap-2">
+                            <BadgeInfo className="size-4" />
+                            <span>Does the student require accommodations or modifications? <span className="text-destructive">*</span></span>
+                          </label>
+                          <MultiSelect
+                            options={[
+                              { value: "extended-time", label: "Extended time" },
+                              { value: "preferential-seating", label: "Preferential seating" },
+                              { value: "reduced-distractions", label: "Reduced distractions" },
+                              { value: "small-group", label: "Small group setting" },
+                            ]}
+                            value={accommodations}
+                            onChange={setAccommodations}
+                            placeholder="Select types"
+                            summaryFormatter={(n) => `${n} types selected`}
+                          />
                         </div>
                       </div>
 
