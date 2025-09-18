@@ -108,7 +108,7 @@ export function MultiSelect({
             <span
               key={val}
               className={cn(
-                "rounded-full px-3 py-2 text-sm flex items-center gap-2",
+                "rounded-full px-2 py-1 text-sm flex items-center gap-1.5",
                 "surface-chip"
               )}
             >
@@ -117,9 +117,9 @@ export function MultiSelect({
                 type="button"
                 aria-label="Remove"
                 onClick={() => toggle(val)}
-                className="grid place-items-center size-6 rounded-full bg-white/20 cursor-pointer pointer-events-auto hover:bg-white/30 transition-colors"
+                className="grid place-items-center size-5 rounded-full bg-white/20 cursor-pointer pointer-events-auto hover:bg-white/30 transition-colors"
               >
-                <X className="size-3.5" />
+                <X className="size-3" />
               </button>
             </span>
           ))}

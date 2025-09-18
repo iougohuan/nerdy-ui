@@ -11,7 +11,7 @@ import { MultiSelect } from "@/components/ui/multi-select";
 import { Stepper, StepperIndicator, StepperItem, StepperNav, StepperSeparator, StepperTitle, StepperTrigger } from "@/components/ui/stepper";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Mic, FilePlus, Check } from "lucide-react";
+import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages } from "lucide-react";
 
 export default function AIToolsPage() {
   const [studentPerformance, setStudentPerformance] = useState("");
@@ -138,7 +138,8 @@ export default function AIToolsPage() {
                     <div className="space-y-4">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label">
+                          <label className="text-sm font-label inline-flex items-center gap-2">
+                            <GraduationCap className="size-4" />
                             Grade Level <span className="text-destructive">*</span>
                           </label>
                             <Select value={gradeLevel} onValueChange={setGradeLevel}>
@@ -160,7 +161,8 @@ export default function AIToolsPage() {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label">
+                          <label className="text-sm font-label inline-flex items-center gap-2">
+                            <BookUser className="size-4" />
                             Disability categories <span className="text-destructive">*</span>
                           </label>
                             <MultiSelect
@@ -183,11 +185,12 @@ export default function AIToolsPage() {
                       </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="flex flex-col gap-2 md:col-span-2">
-                          <label className="text-sm font-label">
+                        <div className="flex flex-col gap-2">
+                          <label className="text-sm font-label inline-flex items-center gap-2">
+                            <OctagonAlert className="size-4" />
                             Areas of concern <span className="text-destructive">*</span>
                           </label>
-                            <MultiSelect
+                          <MultiSelect
                             options={[
                               { value: "reading", label: "Reading" },
                               { value: "math", label: "Mathematics" },
@@ -199,11 +202,34 @@ export default function AIToolsPage() {
                             onChange={setAreasOfConcern}
                             placeholder="Select a category"
                             summaryFormatter={(n) => `${n} categories selected`}
-                              invalid={showErrors && areasOfConcern.length === 0}
+                            invalid={showErrors && areasOfConcern.length === 0}
                           />
-                            {showErrors && areasOfConcern.length === 0 && (
-                              <p className="mt-1 text-xs text-destructive">Required field</p>
-                            )}
+                          {showErrors && areasOfConcern.length === 0 && (
+                            <p className="mt-1 text-xs text-destructive">Required field</p>
+                          )}
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                          <label className="text-sm font-label inline-flex items-center gap-2">
+                            <Goal className="size-4" />
+                            Priority Goal Areas <span className="text-destructive">*</span>
+                          </label>
+                          <MultiSelect
+                            options={[
+                              { value: "academic", label: "Academic Skills" },
+                              { value: "functional", label: "Functional Skills" },
+                              { value: "communication", label: "Communication" },
+                              { value: "social-emotional", label: "Social-Emotional" },
+                            ]}
+                            value={priorityGoalAreas}
+                            onChange={setPriorityGoalAreas}
+                            placeholder="Select a category"
+                            summaryFormatter={(n) => `${n} categories selected`}
+                            invalid={showErrors && priorityGoalAreas.length === 0}
+                          />
+                          {showErrors && priorityGoalAreas.length === 0 && (
+                            <p className="mt-1 text-xs text-destructive">Required field</p>
+                          )}
                         </div>
                       </div>
 
@@ -215,6 +241,7 @@ export default function AIToolsPage() {
                               if (!gradeLevel) missing.push("Grade Level");
                               if (disabilityCategories.length === 0) missing.push("Disability categories");
                               if (areasOfConcern.length === 0) missing.push("Areas of concern");
+                              if (priorityGoalAreas.length === 0) missing.push("Priority Goal Areas");
                               if (missing.length > 0) {
                                 setShowErrors(true);
                                 toast.error(`Please fill: ${missing.join(", ")}`);
@@ -233,29 +260,11 @@ export default function AIToolsPage() {
 
                     {step === 2 && (
                     <div className="space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label">
-                            Priority Goal Areas <span className="text-destructive">*</span>
-                          </label>
-                          <MultiSelect
-                            options={[
-                              { value: "academic", label: "Academic Skills" },
-                              { value: "functional", label: "Functional Skills" },
-                              { value: "communication", label: "Communication" },
-                              { value: "social-emotional", label: "Social-Emotional" },
-                            ]}
-                            value={priorityGoalAreas}
-                            onChange={setPriorityGoalAreas}
-                            placeholder="Select a category"
-                            summaryFormatter={(n) => `${n} categories selected`}
-                          />
-                        </div>
-                      </div>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label">
+                          <label className="text-sm font-label inline-flex items-center gap-2">
+                            <CalendarClock className="size-4" />
                             Evaluation Schedule <span className="text-destructive">*</span>
                           </label>
                           <Select value={evaluationSchedule} onValueChange={setEvaluationSchedule}>
@@ -272,7 +281,8 @@ export default function AIToolsPage() {
                         </div>
 
                         <div className="flex flex-col gap-2">
-                          <label className="text-sm font-label">
+                          <label className="text-sm font-label inline-flex items-center gap-2">
+                            <Languages className="size-4" />
                             Language <span className="text-destructive">*</span>
                           </label>
                           <Select value={language} onValueChange={setLanguage}>
