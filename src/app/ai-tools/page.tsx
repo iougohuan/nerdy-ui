@@ -113,7 +113,7 @@ export default function AIToolsPage() {
                             />
                             {!studentPerformance && (
                             <div className="absolute top-4 left-4 text-base leading-6 pointer-events-none">
-                                <span className="text-muted-foreground">Describe student's current academic and functional performance </span>
+                                <span className="text-muted-foreground">Describe student&apos;s current academic and functional performance </span>
                                 <span className="text-destructive">*</span>
                               </div>
                             )}

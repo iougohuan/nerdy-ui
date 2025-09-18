@@ -174,16 +174,16 @@ export function ToolsExploreSection() {
                   <div className="w-[176px] h-8 text-black text-[7px] leading-normal absolute left-3 top-2 font-sans">
                     <span className="font-normal">I solved this quadratic equation:</span>
                     <span className="font-bold"> x^2 - 5x + 6 = 0. I got x = 2 and x = 3</span>
-                    <span className="font-normal">, but I don't fully understand why factoring works. Can you walk me through step by step how factoring actually gives the solutions?</span>
+                    <span className="font-normal">, but I don&apos;t fully understand why factoring works. Can you walk me through step by step how factoring actually gives the solutions?</span>
                   </div>
                 </div>
 
                 {/* AI response bubble */}
                 <div className="absolute left-0 top-[58px] w-[229px] h-[81px] inline-flex justify-center items-center p-2 rounded-[14px] border border-white/[0.08] bg-gradient-to-r from-[rgba(9,5,20,0.18)] to-[rgba(77,46,172,0.03)] bg-[rgba(18,16,29,0.70)] backdrop-blur-[44px]">
                   <div className="w-[209px] h-16 text-white text-[7px] leading-normal absolute left-3 top-2 font-sans">
-                    Great question, Sally! Let's explore why factoring helps us solve a quadratic equation like x^2 - 5x + 6 = 0.
+                  Great question, Sally! Let&apos;s explore why factoring helps us solve a quadratic equation like x^2 - 5x + 6 = 0.
                     <br /><br />
-                    First, why do we set the equation equal to zero? What happens to a product when it equals zero? Now, let's look at factoring: If you write the quadratic as (x - a)(x - b) = 0, what does that tell you about x? Can you tell me what must be true for the product (x - a)(x - b) to equal zero?
+                    First, why do we set the equation equal to zero? What happens to a product when it equals zero? Now, let&apos;s look at factoring: If you write the quadratic as (x - a)(x - b) = 0, what does that tell you about x? Can you tell me what must be true for the product (x - a)(x - b) to equal zero?
                   </div>
                 </div>
               </div>

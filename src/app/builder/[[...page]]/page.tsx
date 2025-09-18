@@ -1,4 +1,5 @@
-import { RenderContent, fetchOneEntry } from "@builder.io/sdk-react";
+import { fetchOneEntry } from "@builder.io/sdk-react";
+import { BuilderRenderContent } from "@/components/builder-render-content";
 
 export const revalidate = 0;
 
@@ -10,7 +11,7 @@ export default async function BuilderCatchAllPage({ params }: PageProps) {
   const pathSegments = params?.page ?? [];
   const urlPath = "/" + pathSegments.join("/");
 
-  // Conteúdos do Builder devem ser publicados com URLs começando por "/builder"
+  // Builder contents should be published with URLs starting with "/builder"
   const builderUrlPath = "/builder" + urlPath;
 
   const content = await fetchOneEntry({
@@ -20,20 +21,10 @@ export default async function BuilderCatchAllPage({ params }: PageProps) {
   });
 
   if (!content) {
-    return (
-      <div style={{ padding: 24 }}>
-        Nenhum conteúdo do Builder encontrado para {builderUrlPath}
-      </div>
-    );
+    return <div style={{ padding: 24 }}>No Builder content found for {builderUrlPath}</div>;
   }
 
-  return (
-    <RenderContent
-      model="page"
-      apiKey={process.env.NEXT_PUBLIC_BUILDER_API_KEY!}
-      content={content}
-    />
-  );
+  return <BuilderRenderContent model="page" apiKey={process.env.NEXT_PUBLIC_BUILDER_API_KEY!} content={content} />;
 }
 
 
