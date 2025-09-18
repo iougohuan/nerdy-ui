@@ -11,7 +11,7 @@ import { MultiSelect } from "@/components/ui/multi-select";
 import { Stepper, StepperIndicator, StepperItem, StepperNav, StepperSeparator, StepperTitle, StepperTrigger } from "@/components/ui/stepper";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles, ListChecks, Handshake, BadgeInfo } from "lucide-react";
+import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles, ListChecks } from "lucide-react";
 
 export default function AIToolsPage() {
   const [studentPerformance, setStudentPerformance] = useState("");
@@ -327,7 +327,6 @@ export default function AIToolsPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="flex flex-col gap-2">
                           <label className="text-sm font-label inline-flex items-start gap-2">
-                            <Handshake className="size-4" />
                             <span>What services are already in place or anticipated for the student? <span className="text-destructive">*</span></span>
                           </label>
                           <MultiSelect
@@ -347,7 +346,6 @@ export default function AIToolsPage() {
 
                         <div className="flex flex-col gap-2">
                           <label className="text-sm font-label inline-flex items-start gap-2">
-                            <BadgeInfo className="size-4" />
                             <span>Does the student require accommodations or modifications? <span className="text-destructive">*</span></span>
                           </label>
                           <MultiSelect

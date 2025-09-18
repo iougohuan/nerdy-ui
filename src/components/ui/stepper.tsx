@@ -314,7 +314,7 @@ function StepperSeparator({ className }: React.ComponentProps<'div'>) {
       data-slot="stepper-separator"
       data-state={state}
       className={cn(
-        'm-0.5 rounded-full bg-[var(--stepper-inactive-bg)] group-data-[orientation=vertical]/stepper-nav:h-12 group-data-[orientation=vertical]/stepper-nav:w-0.5 group-data-[orientation=horizontal]/stepper-nav:h-0.5 group-data-[orientation=horizontal]/stepper-nav:w-12',
+        'm-0.5 rounded-full bg-[var(--stepper-inactive-bg)] group-data-[orientation=vertical]/stepper-nav:h-12 group-data-[orientation=vertical]/stepper-nav:w-0.5 group-data-[orientation=horizontal]/stepper-nav:h-0.5 group-data-[orientation=horizontal]/stepper-nav:w-16',
         className,
       )}
     />
