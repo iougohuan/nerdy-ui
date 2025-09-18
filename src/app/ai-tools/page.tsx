@@ -11,7 +11,7 @@ import { MultiSelect } from "@/components/ui/multi-select";
 import { Stepper, StepperIndicator, StepperItem, StepperNav, StepperSeparator, StepperTitle, StepperTrigger } from "@/components/ui/stepper";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages } from "lucide-react";
+import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles } from "lucide-react";
 
 export default function AIToolsPage() {
   const [studentPerformance, setStudentPerformance] = useState("");
@@ -301,7 +301,10 @@ export default function AIToolsPage() {
 
                       <div className="flex items-center justify-between">
                         <Button variant="outline" onClick={() => setStep(1)} className="h-10">Previous</Button>
-                        <Button onClick={handleGenerate} className="h-10">Generate</Button>
+                        <Button onClick={handleGenerate} className="h-10">
+                          <WandSparkles className="size-4" />
+                          Generate
+                        </Button>
                       </div>
                     </div>
                     )}

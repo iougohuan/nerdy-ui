@@ -80,7 +80,7 @@ export function MultiSelect({
             ref={triggerRef}
           >
             <span className={cn(selectedCount === 0 && "text-muted-foreground")}>{summaryText}</span>
-            <ChevronDown className="size-4 opacity-50" />
+            <ChevronDown className="size-4 text-foreground/70" />
           </button>
         </DropdownMenuTrigger>
         <DropdownMenuContent
