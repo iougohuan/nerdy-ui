@@ -258,7 +258,9 @@ function StepperTrigger({ asChild = false, className, children, tabIndex, ...pro
       data-state={state}
       data-loading={isLoading}
       className={cn(
-        'cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 inline-flex items-center gap-3 rounded-full outline-none focus-visible:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-60',
+        'cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 inline-flex items-center gap-2 rounded-[var(--radius-button)] outline-none focus-visible:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-60',
+        // Estilo do passo atual (ativo)
+        'data-[state=active]:bg-[var(--surface-chip)] data-[state=active]:px-2 data-[state=active]:py-1',
         className,
       )}
       onClick={() => setActiveStep(step)}
