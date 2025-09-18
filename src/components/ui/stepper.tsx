@@ -169,7 +169,7 @@ function StepperItem({
       <div
         data-slot="stepper-item"
         className={cn(
-          'group/step flex items-center justify-center group-data-[orientation=horizontal]/stepper-nav:flex-row group-data-[orientation=vertical]/stepper-nav:flex-col not-last:flex-1',
+          'group/step flex items-center justify-start group-data-[orientation=horizontal]/stepper-nav:flex-row group-data-[orientation=vertical]/stepper-nav:flex-col',
           className,
         )}
         data-state={state}
@@ -258,9 +258,9 @@ function StepperTrigger({ asChild = false, className, children, tabIndex, ...pro
       data-state={state}
       data-loading={isLoading}
       className={cn(
-        'cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 inline-flex items-center gap-2 rounded-[var(--radius-button)] outline-none focus-visible:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-60',
+        'cursor-pointer focus-visible:border-ring focus-visible:ring-ring/50 inline-flex items-center gap-2 rounded-full outline-none focus-visible:z-10 focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-60',
         // Estilo do passo atual (ativo)
-        'data-[state=active]:bg-[var(--surface-chip)] data-[state=active]:px-2 data-[state=active]:py-1',
+        'data-[state=active]:bg-[var(--surface-chip)] data-[state=active]:px-3 data-[state=active]:py-2 data-[state=active]:items-center data-[state=active]:gap-2',
         className,
       )}
       onClick={() => setActiveStep(step)}
@@ -314,7 +314,7 @@ function StepperSeparator({ className }: React.ComponentProps<'div'>) {
       data-slot="stepper-separator"
       data-state={state}
       className={cn(
-        'm-0.5 rounded-full bg-[var(--stepper-inactive-bg)] group-data-[orientation=vertical]/stepper-nav:h-12 group-data-[orientation=vertical]/stepper-nav:w-0.5 group-data-[orientation=horizontal]/stepper-nav:h-0.5 group-data-[orientation=horizontal]/stepper-nav:flex-1',
+        'm-0.5 rounded-full bg-[var(--stepper-inactive-bg)] group-data-[orientation=vertical]/stepper-nav:h-12 group-data-[orientation=vertical]/stepper-nav:w-0.5 group-data-[orientation=horizontal]/stepper-nav:h-0.5 group-data-[orientation=horizontal]/stepper-nav:w-12',
         className,
       )}
     />

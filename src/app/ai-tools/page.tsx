@@ -75,7 +75,7 @@ export default function AIToolsPage() {
                     className="space-y-8 w-[400px] sm:w-[400px]"
                     indicators={{ completed: <Check className="size-4" /> }}
                   >
-                    <StepperNav className="justify-between w-full">
+                    <StepperNav className="justify-center w-full">
                       {["Student context", "Goals"].map((title, index, arr) => (
                         <StepperItem key={index} step={index + 1} className="relative">
                           <StepperTrigger className="flex justify-start gap-2">
@@ -83,7 +83,7 @@ export default function AIToolsPage() {
                             <StepperTitle className="text-center">{title}</StepperTitle>
                           </StepperTrigger>
                           {arr.length > index + 1 && (
-                            <StepperSeparator className="md:mx-2.5 group-data-[state=completed]/step:bg-primary" />
+                            <StepperSeparator className="mx-2 group-data-[state=completed]/step:bg-primary" />
                           )}
                         </StepperItem>
                       ))}
