@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
@@ -26,11 +27,227 @@ export default function AIToolsPage() {
   const [iepComponents, setIepComponents] = useState<string[]>([]);
   const [existingServices, setExistingServices] = useState<string[]>([]);
   const [accommodations, setAccommodations] = useState<string[]>([]);
+  const [attachments, setAttachments] = useState<File[]>([]);
+  const [isRecording, setIsRecording] = useState(false);
+  const [recordingSeconds, setRecordingSeconds] = useState(0);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const recognitionRef = useRef<any>(null);
+  const recordingTimerRef = useRef<number | null>(null);
+  const speechBaseTextRef = useRef<string>("");
+  const speechFinalTextRef = useRef<string>("");
+
+  const ACCEPTED_TYPES = [
+    "image/jpeg",
+    "image/png",
+    "application/pdf",
+    "video/mp4",
+    "text/plain",
+    "text/markdown",
+    "text/csv",
+    "application/json",
+  ];
+  const MAX_FILE_BYTES = 50 * 1024 * 1024; // 50MB
 
   const handleGenerate = () => {
     // Handle form submission
     console.log("Generating IEP...");
   };
+
+  const handleAddFileClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFilesSelected = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFiles = Array.from(e.target.files ?? []);
+    if (selectedFiles.length === 0) return;
+
+    const validFiles: File[] = [];
+    const rejected: { file: File; reason: string }[] = [];
+
+    for (const file of selectedFiles) {
+      if (!ACCEPTED_TYPES.includes(file.type)) {
+        rejected.push({ file, reason: "formato não suportado" });
+        continue;
+      }
+      if (file.size > MAX_FILE_BYTES) {
+        rejected.push({ file, reason: "tamanho acima de 50MB" });
+        continue;
+      }
+      validFiles.push(file);
+    }
+
+    if (validFiles.length > 0) {
+      setAttachments((prev) => [...prev, ...validFiles]);
+      toast.success(
+        validFiles.length === 1
+          ? `Arquivo anexado: ${validFiles[0].name}`
+          : `${validFiles.length} arquivos anexados`
+      );
+    }
+
+    // Se houver arquivo de texto, ler o primeiro e preencher o textarea
+    const textLike = selectedFiles.find((f) =>
+      ["text/plain", "text/markdown", "text/csv", "application/json"].includes(f.type) ||
+      (/\.txt$/i.test(f.name) || /\.md$/i.test(f.name) || /\.csv$/i.test(f.name) || /\.json$/i.test(f.name))
+    );
+    if (textLike) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const content = typeof reader.result === "string" ? reader.result : "";
+        setStudentPerformance(content);
+        toast.success("Texto do arquivo carregado no campo");
+      };
+      reader.onerror = () => toast.error("Falha ao ler o arquivo de texto");
+      reader.readAsText(textLike);
+    }
+
+    if (rejected.length > 0) {
+      const msg = rejected
+        .map((r) => `${r.file.name} (${r.reason})`)
+        .join(", ");
+      toast.error(`Arquivos rejeitados: ${msg}`);
+    }
+
+    // Permitir selecionar o mesmo arquivo novamente
+    e.currentTarget.value = "";
+  };
+
+  const getSpeechLang = (value: string) => {
+    switch (value) {
+      case "spanish":
+        return "es-ES";
+      case "french":
+        return "fr-FR";
+      case "german":
+        return "de-DE";
+      case "english":
+      default:
+        return "en-US";
+    }
+  };
+
+  const startRecording = async () => {
+    try {
+      // Solicitar permissão do microfone primeiro (evita falhas silenciosas em alguns navegadores)
+      try {
+        await (navigator.mediaDevices as any)?.getUserMedia?.({ audio: true });
+      } catch (err) {
+        toast.error("Permissão do microfone negada.");
+        return;
+      }
+
+      const SpeechRecognitionClass =
+        (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+      if (!SpeechRecognitionClass) {
+        toast.error("Reconhecimento de voz não suportado neste navegador.");
+        return;
+      }
+
+      const recognition = new SpeechRecognitionClass();
+      recognition.lang = getSpeechLang(language);
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      recognition.onstart = () => {
+        setIsRecording(true);
+        toast.message("Gravação iniciada. Fale agora.");
+        // start timer
+        setRecordingSeconds(0);
+        if (recordingTimerRef.current) window.clearInterval(recordingTimerRef.current);
+        recordingTimerRef.current = window.setInterval(() => {
+          setRecordingSeconds((s) => s + 1);
+        }, 1000);
+        // Memoriza o texto existente para fazer merge
+        speechBaseTextRef.current = studentPerformance;
+        speechFinalTextRef.current = "";
+      };
+
+      recognition.onerror = (event: any) => {
+        let msg = "Erro no reconhecimento de voz.";
+        if (event?.error === "no-speech") msg = "Nenhuma fala detectada.";
+        else if (event?.error === "audio-capture") msg = "Sem microfone disponível.";
+        else if (event?.error === "not-allowed") msg = "Permissão de microfone negada.";
+        toast.error(msg);
+      };
+
+      recognition.onend = () => {
+        setIsRecording(false);
+        if (recordingTimerRef.current) {
+          window.clearInterval(recordingTimerRef.current);
+          recordingTimerRef.current = null;
+        }
+      };
+
+      recognition.onresult = (event: any) => {
+        let interim = "";
+        let newlyFinal = "";
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          const res = event.results[i];
+          const transcript: string = res[0]?.transcript ?? "";
+          if (res.isFinal) newlyFinal += transcript + " ";
+          else interim += transcript;
+        }
+        if (newlyFinal) speechFinalTextRef.current += newlyFinal;
+
+        const pieces = [
+          speechBaseTextRef.current?.trim?.(),
+          speechFinalTextRef.current.trim(),
+          interim.trim(),
+        ].filter(Boolean);
+        setStudentPerformance(pieces.join(" "));
+      };
+
+      recognitionRef.current = recognition;
+      recognition.start();
+    } catch (e) {
+      toast.error("Não foi possível iniciar a gravação");
+    }
+  };
+
+  const stopRecording = () => {
+    try {
+      recognitionRef.current?.stop?.();
+    } catch {}
+    setIsRecording(false);
+    if (recordingTimerRef.current) {
+      window.clearInterval(recordingTimerRef.current);
+      recordingTimerRef.current = null;
+    }
+  };
+
+  const toggleRecording = () => {
+    if (isRecording) stopRecording();
+    else startRecording();
+  };
+
+  useEffect(() => {
+    return () => {
+      try {
+        recognitionRef.current?.stop?.();
+      } catch {}
+      if (recordingTimerRef.current) window.clearInterval(recordingTimerRef.current);
+    };
+  }, []);
+
+  const formatSeconds = (s: number) => {
+    const mm = Math.floor(s / 60)
+      .toString()
+      .padStart(2, "0");
+    const ss = (s % 60).toString().padStart(2, "0");
+    return `${mm}:${ss}`;
+  };
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key.toLowerCase() === "m") {
+        e.preventDefault();
+        toggleRecording();
+      }
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [isRecording, language]);
 
   return (
     <SidebarProvider
@@ -122,13 +339,46 @@ export default function AIToolsPage() {
                             )}
                           </div>
                           <div className="absolute bottom-3 right-3 flex items-center gap-3">
-                            <Button variant="outline">
+                            <input
+                              ref={fileInputRef}
+                              type="file"
+                              className="hidden"
+                              accept="image/jpeg,image/png,application/pdf,video/mp4,text/plain,text/markdown,text/csv,application/json,.txt,.md,.csv,.json"
+                              multiple
+                              onChange={handleFilesSelected}
+                            />
+                            <Button variant="outline" onClick={handleAddFileClick}>
                               <FilePlus className=" h-[20px]" />
                               Add file
                             </Button>
-                            <Button variant="outline" size="icon">
-                              <Mic className="w-[20px] h-[20px]" />
-                            </Button>
+                            {isRecording && (
+                              <span className="text-xs text-destructive font-medium tabular-nums inline-flex items-center gap-1">
+                                <span className="inline-block size-2 rounded-full bg-destructive animate-pulse" />
+                                {formatSeconds(recordingSeconds)}
+                              </span>
+                            )}
+                            <TooltipProvider>
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <Button
+                                    variant="outline"
+                                    size="icon"
+                                    onClick={toggleRecording}
+                                    aria-pressed={isRecording}
+                                    className={isRecording ? "ring-2 ring-primary text-primary" : undefined}
+                                  >
+                                    <Mic className="w-[20px] h-[20px]" />
+                                  </Button>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p>
+                                    {isRecording
+                                      ? "Recording… Clique para parar (⌘/Ctrl+Shift+M)"
+                                      : "Start recording (⌘/Ctrl+Shift+M)"}
+                                  </p>
+                                </TooltipContent>
+                              </Tooltip>
+                            </TooltipProvider>
                           </div>
                         </div>
                         {showErrors && !studentPerformance.trim() && (
