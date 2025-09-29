@@ -13,7 +13,7 @@ import { Stepper, StepperIndicator, StepperItem, StepperNav, StepperSeparator, S
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles, ListChecks, ArrowRight, ArrowLeft } from "lucide-react";
-import formOptions from "./form-options.json";
+import { formOptions } from "./form-options";
 import type { MultiSelectOption } from "@/components/ui/multi-select";
 
 export default function AIToolsPage() {
@@ -29,7 +29,9 @@ export default function AIToolsPage() {
   const [language, setLanguage] = useState("english");
   const [iepComponents, setIepComponents] = useState<string[]>([]);
   const [existingServices, setExistingServices] = useState<string[]>([]);
+  const [customServicesOptions, setCustomServicesOptions] = useState<MultiSelectOption[]>([]);
   const [accommodations, setAccommodations] = useState<string[]>([]);
+  const [customAccommodationsOptions, setCustomAccommodationsOptions] = useState<MultiSelectOption[]>([]);
   const [attachments, setAttachments] = useState<File[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   const [recordingSeconds, setRecordingSeconds] = useState(0);
@@ -306,7 +308,7 @@ export default function AIToolsPage() {
                             <StepperTitle className="text-center">{title}</StepperTitle>
                           </StepperTrigger>
                           {arr.length > index + 1 && (
-                            <StepperSeparator className="mx-2 group-data-[state=completed]/step:bg-primary" />
+                            <StepperSeparator className="mx-2" />
                           )}
                         </StepperItem>
                       ))}
@@ -576,6 +578,14 @@ export default function AIToolsPage() {
                             onChange={setExistingServices}
                             placeholder="Select services"
                             summaryFormatter={(n) => `${n} types selected`}
+                            allowCustom={true}
+                            customOptionsMap={Object.fromEntries(customServicesOptions.map(o => [o.value, o.label]))}
+                            onAddCustomOption={(label) => {
+                              const newValue = `custom-service-${Date.now()}`
+                              setCustomServicesOptions(prev => [...prev, { value: newValue, label }])
+                              setExistingServices(prev => [...prev, newValue])
+                              toast.success(`Added: ${label}`)
+                            }}
                           />
                         </div>
 
@@ -589,6 +599,14 @@ export default function AIToolsPage() {
                             onChange={setAccommodations}
                             placeholder="Select types"
                             summaryFormatter={(n) => `${n} types selected`}
+                            allowCustom={true}
+                            customOptionsMap={Object.fromEntries(customAccommodationsOptions.map(o => [o.value, o.label]))}
+                            onAddCustomOption={(label) => {
+                              const newValue = `custom-accommodation-${Date.now()}`
+                              setCustomAccommodationsOptions(prev => [...prev, { value: newValue, label }])
+                              setAccommodations(prev => [...prev, newValue])
+                              toast.success(`Added: ${label}`)
+                            }}
                           />
                         </div>
                       </div>
