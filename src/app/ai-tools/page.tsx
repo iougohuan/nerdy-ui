@@ -14,6 +14,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles, ListChecks, ArrowRight, ArrowLeft } from "lucide-react";
 import formOptions from "./form-options.json";
+import type { MultiSelectOption } from "@/components/ui/multi-select";
 
 export default function AIToolsPage() {
   const [studentPerformance, setStudentPerformance] = useState("");
@@ -21,6 +22,7 @@ export default function AIToolsPage() {
   const [step, setStep] = useState(1);
   const [gradeLevel, setGradeLevel] = useState("");
   const [disabilityCategories, setDisabilityCategories] = useState<string[]>([]);
+  const [customDisabilityOptions, setCustomDisabilityOptions] = useState<MultiSelectOption[]>([]);
   const [areasOfConcern, setAreasOfConcern] = useState<string[]>([]);
   const [priorityGoalAreas, setPriorityGoalAreas] = useState<string[]>([]);
   const [evaluationSchedule, setEvaluationSchedule] = useState("quarterly");
@@ -427,7 +429,15 @@ export default function AIToolsPage() {
                             onChange={setDisabilityCategories}
                             placeholder="Select a category"
                             summaryFormatter={(n) => `${n} types selected`}
-                              invalid={showErrors && disabilityCategories.length === 0}
+                            invalid={showErrors && disabilityCategories.length === 0}
+                            allowCustom={true}
+                            customOptionsMap={Object.fromEntries(customDisabilityOptions.map(o => [o.value, o.label]))}
+                            onAddCustomOption={(label) => {
+                              const newValue = `custom-${Date.now()}`
+                              setCustomDisabilityOptions(prev => [...prev, { value: newValue, label }])
+                              setDisabilityCategories(prev => [...prev, newValue])
+                              toast.success(`Added: ${label}`)
+                            }}
                           />
                             {showErrors && disabilityCategories.length === 0 && (
                               <p className="mt-1 text-xs text-destructive">Required field</p>

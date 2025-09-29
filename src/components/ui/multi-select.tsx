@@ -9,6 +9,15 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export type MultiSelectOption = {
@@ -24,6 +33,9 @@ type MultiSelectProps = {
   summaryFormatter?: (count: number) => string
   className?: string
   invalid?: boolean
+  onAddCustomOption?: (label: string) => void
+  allowCustom?: boolean
+  customOptionsMap?: Record<string, string>
 }
 
 export function MultiSelect({
@@ -34,13 +46,20 @@ export function MultiSelect({
   summaryFormatter,
   className,
   invalid = false,
+  onAddCustomOption,
+  allowCustom = false,
+  customOptionsMap = {},
 }: MultiSelectProps) {
+  const [showCustomDialog, setShowCustomDialog] = React.useState(false)
+  const [customValue, setCustomValue] = React.useState("")
+  
   const selectedCount = value.length
   const optionsMap = React.useMemo(() => {
     const map: Record<string, string> = {}
     for (const opt of options) map[opt.value] = opt.label
-    return map
-  }, [options])
+    // Merge custom options for display in badges
+    return { ...map, ...customOptionsMap }
+  }, [options, customOptionsMap])
 
   const triggerRef = React.useRef<HTMLButtonElement | null>(null)
   const [triggerWidth, setTriggerWidth] = React.useState<number | undefined>(undefined)
@@ -56,8 +75,20 @@ export function MultiSelect({
   }, [])
 
   const toggle = (val: string) => {
+    if (val === "other" && allowCustom) {
+      setShowCustomDialog(true)
+      return
+    }
     if (value.includes(val)) onChange(value.filter((v) => v !== val))
     else onChange([...value, val])
+  }
+
+  const handleSaveCustom = () => {
+    if (customValue.trim()) {
+      onAddCustomOption?.(customValue.trim())
+      setCustomValue("")
+      setShowCustomDialog(false)
+    }
   }
 
   const summaryText = React.useMemo(() => {
@@ -125,6 +156,28 @@ export function MultiSelect({
           ))}
         </div>
       )}
+
+      <Dialog open={showCustomDialog} onOpenChange={setShowCustomDialog}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Add other</DialogTitle>
+          </DialogHeader>
+          <Input
+            placeholder="Type your option"
+            value={customValue}
+            onChange={(e) => setCustomValue(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                e.preventDefault()
+                handleSaveCustom()
+              }
+            }}
+          />
+          <DialogFooter>
+            <Button onClick={handleSaveCustom}>Save</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
