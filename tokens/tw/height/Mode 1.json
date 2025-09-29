@@ -1,0 +1,98 @@
+{
+  "h-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "h-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "h-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "h-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "h-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "h-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "h-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "h-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "h-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "h-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "h-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "h-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "h-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "h-18": {
+    "$type": "number",
+    "$value": "{72}"
+  },
+  "h-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "h-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "h-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "h-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "h-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "h-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "h-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "h-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "h-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "h-8": {
+    "$type": "number",
+    "$value": "{32}"
+  }
+}

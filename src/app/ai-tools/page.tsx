@@ -12,7 +12,7 @@ import { MultiSelect } from "@/components/ui/multi-select";
 import { Stepper, StepperIndicator, StepperItem, StepperNav, StepperSeparator, StepperTitle, StepperTrigger } from "@/components/ui/stepper";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles, ListChecks } from "lucide-react";
+import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles, ListChecks, ArrowRight, ArrowLeft } from "lucide-react";
 
 export default function AIToolsPage() {
   const [studentPerformance, setStudentPerformance] = useState("");
@@ -347,7 +347,10 @@ export default function AIToolsPage() {
                               multiple
                               onChange={handleFilesSelected}
                             />
-                            <Button variant="outline" onClick={handleAddFileClick}>
+                            <Button 
+                              variant="outline" 
+                              onClick={handleAddFileClick}
+                            >
                               <FilePlus className=" h-[20px]" />
                               Add file
                             </Button>
@@ -506,6 +509,7 @@ export default function AIToolsPage() {
                             className="h-10"
                           >
                             Next
+                            <ArrowRight className="size-4" />
                           </Button>
                       </div>
                     </div>
@@ -614,7 +618,10 @@ export default function AIToolsPage() {
                       </div>
 
                       <div className="flex items-center justify-between">
-                        <Button variant="outline" onClick={() => setStep(1)} className="h-10">Previous</Button>
+                        <Button variant="outline" onClick={() => setStep(1)} className="h-10">
+                          <ArrowLeft className="size-4" />
+                          Previous
+                        </Button>
                         <Button onClick={handleGenerate} className="h-10">
                           <WandSparkles className="size-4" />
                           Generate

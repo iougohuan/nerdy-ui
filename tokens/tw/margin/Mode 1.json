@@ -1,0 +1,982 @@
+{
+  "mb-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "mr-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "mr-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "mb-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "mr-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "ml-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "ml-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "mt-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "ml-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "mr-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "mt-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "mt-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "mx-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "mt-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "mt-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "mt-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "ml-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "mt-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "ml-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "mt-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "ml-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "m-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "mx-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "my-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "mr-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "ml-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "mt-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "mb-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "m-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "mx-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "my-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "mt-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "mb-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "mr-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "ml-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "m-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "my-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "mt-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "mr-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "ml-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "mb-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "m-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "mx-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "my-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "m-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "mx-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "my-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "mr-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "ml-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "mb-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "m-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "mx-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "my-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "mb-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "m-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "mx-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "my-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "ml-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "mt-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "mb-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "ml-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "m-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "mx-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "my-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "mr-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "mb-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "m-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "mx-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "my-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "mr-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "ml-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "mt-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "mb-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "m-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "mx-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "my-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "m-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "mx-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "my-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "mr-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "ml-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "mt-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "mb-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "m-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "mx-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "my-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "mr-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "mb-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "m-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "mx-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "my-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "mr-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "ml-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "mt-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "mb-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "m-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "mx-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "my-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "mr-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "mb-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "mb-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "mr-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "mt-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "m-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "mx-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "my-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "m-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "mx-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "my-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "mr-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "ml-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "mt-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "mb-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "m-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "mx-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "my-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "mr-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "ml-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "mt-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "mb-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "m-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "mx-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "my-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "mr-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "ml-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "mt-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "mb-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "m-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "mx-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "my-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "mr-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "ml-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "mt-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "mb-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "m-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "mx-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "my-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "mr-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "ml-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "mt-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "mb-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "m-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "mx-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "my-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "mr-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "ml-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "mt-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "mb-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "m-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "mx-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "my-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "mr-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "ml-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "mb-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "m-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "mx-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "my-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "mr-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "ml-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "mt-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "mb-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "m-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "mx-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "my-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "mr-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "ml-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "mt-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "mb-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "m-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "mx-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "my-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "mr-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "ml-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "mt-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "mb-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "m-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "mx-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "my-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "mr-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "ml-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "mt-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "mb-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "m-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "mx-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "my-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "mr-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "ml-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "mt-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "mb-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "m-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "mx-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "my-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "mr-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "ml-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "mt-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "mb-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "m-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "mx-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "my-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "mr-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "ml-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "mt-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "mb-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "m-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "mx-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "my-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "mr-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "ml-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "mt-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "mb-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "m-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "mx-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "my-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "mr-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "ml-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "mt-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "mb-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "m-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "mx-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "my-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "mr-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "ml-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "mt-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "mb-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "m-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "mx-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "my-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "mr-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "ml-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "mt-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "mb-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "m-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "mx-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "my-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "mr-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "ml-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "mt-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "mb-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "m-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "mx-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "my-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "mr-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "ml-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "mt-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "mb-96": {
+    "$type": "number",
+    "$value": "{384}"
+  }
+}

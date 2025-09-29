@@ -73,7 +73,7 @@ export function MultiSelect({
           <button
             type="button"
             className={cn(
-              "surface-input w-full rounded-xl px-4 py-3 text-left flex items-center justify-between gap-3 cursor-pointer",
+              "w-full rounded-xl border border-[rgba(255,255,255,0.16)] bg-[#161730] shadow-[0_1px_2px_0_rgba(0,0,0,0.10)] px-3 py-2.5 text-left flex items-center justify-between gap-3 cursor-pointer",
               "focus-visible:ring-ring/50 focus-visible:ring-[3px] outline-none",
               invalid && "ring-[3px] ring-destructive/20 border-destructive"
             )}

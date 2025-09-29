@@ -37,7 +37,7 @@ export default function RootLayout({
       <body
         suppressHydrationWarning
         style={{ overscrollBehaviorX: "auto" }}
-        className={`${karla.variable} ${poppins.variable} ${geistMono.variable} antialiased bg-sidebar text-sidebar-foreground`}
+        className={`${karla.variable} ${poppins.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}

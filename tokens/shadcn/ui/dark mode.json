@@ -1,0 +1,134 @@
+{
+  "background": {
+    "$type": "color",
+    "$value": "{brand.lilac.950}"
+  },
+  "foreground": {
+    "$type": "color",
+    "$value": "{brand.lilac.50}"
+  },
+  "border": {
+    "$type": "color",
+    "$value": "{alpha.white.300}"
+  },
+  "destructive": {
+    "$type": "color",
+    "$value": "{red.500}"
+  },
+  "secondary": {
+    "$type": "color",
+    "$value": "{neutral.50}"
+  },
+  "muted-foreground": {
+    "$type": "color",
+    "$value": "{neutral.400}"
+  },
+  "muted": {
+    "$type": "color",
+    "$value": "{neutral.800}"
+  },
+  "background-color": {
+    "$type": "color",
+    "$value": "{black.5}"
+  },
+  "primary": {
+    "$type": "color",
+    "$value": "{brand.vibrant.vibrant-cyan}"
+  },
+  "secondary-foreground": {
+    "$type": "color",
+    "$value": "{stone.900}"
+  },
+  "accent-foreground": {
+    "$type": "color",
+    "$value": "{neutral.50}"
+  },
+  "accent": {
+    "$type": "color",
+    "$value": "{neutral.700}"
+  },
+  "ring": {
+    "$type": "color",
+    "$value": "{neutral.500}"
+  },
+  "chart-3": {
+    "$type": "color",
+    "$value": "{blue.10}"
+  },
+  "chart-2": {
+    "$type": "color",
+    "$value": "{blue.9}"
+  },
+  "chart-4": {
+    "$type": "color",
+    "$value": "{blue.11}"
+  },
+  "chart-1": {
+    "$type": "color",
+    "$value": "{blue.8}"
+  },
+  "chart-5": {
+    "$type": "color",
+    "$value": "{blue.12}"
+  },
+  "card": {
+    "$type": "color",
+    "$value": "{alpha.black.400}"
+  },
+  "card-foreground": {
+    "$type": "color",
+    "$value": "{neutral.50}"
+  },
+  "popover": {
+    "$type": "color",
+    "$value": "{neutral.800}"
+  },
+  "popover-foreground": {
+    "$type": "color",
+    "$value": "{neutral.50}"
+  },
+  "primary-foreground": {
+    "$type": "color",
+    "$value": "{neutral.900}"
+  },
+  "input": {
+    "$type": "color",
+    "$value": "{neutral.900}"
+  },
+  "sidebar": {
+    "$type": "color",
+    "$value": "{neutral.900}"
+  },
+  "sidebar-foreground": {
+    "$type": "color",
+    "$value": "{neutral.50}"
+  },
+  "sidebar-primary": {
+    "$type": "color",
+    "$value": "{blue.10}"
+  },
+  "sidebar-primary-foreground": {
+    "$type": "color",
+    "$value": "{neutral.50}"
+  },
+  "sidebar-accent": {
+    "$type": "color",
+    "$value": "{neutral.800}"
+  },
+  "sidebar-accent-foreground": {
+    "$type": "color",
+    "$value": "{neutral.50}"
+  },
+  "sidebar-border": {
+    "$type": "color",
+    "$value": "{alpha.white.100}"
+  },
+  "sidebar-ring": {
+    "$type": "color",
+    "$value": "{neutral.500}"
+  },
+  "card glass": {
+    "$type": "color",
+    "$value": "{alpha.white.50}"
+  }
+}

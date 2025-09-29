@@ -1,0 +1,598 @@
+{
+  "rounded-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-es-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-ee-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-ee-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-ee-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-ee-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-ee-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-ee-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-se-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-se-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-se-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-se-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-ss-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-ss-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-ss-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-ss-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-ss-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-ss-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-ss-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-1-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-1-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-1-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-1-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-b-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-1-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-b-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-tr-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-b-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-r-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-e-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-b-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-r-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-r-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-t-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-1-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-t-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-r-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-r-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-t-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-r-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-e-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-e-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-e-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-e-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-bl-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-ss-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-bl-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-1-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-b-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-bl-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-s-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-tr-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-br-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-bl-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-es-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-br-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-e-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-e-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-bl-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-r-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-bl-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-r-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-es-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-br-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-ee-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-bl-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-se-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-es-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-br-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-t-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-e-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-br-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-s-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-s-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-br-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-1-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-es-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-br-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-es-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-tr-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-se-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-tl-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-tr-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-b-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-t-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-bl-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-tr-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-s-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-tr-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-tl-full": {
+    "$type": "number",
+    "$value": "{9999}"
+  },
+  "rounded-1-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-br-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-se-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-t-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-ss-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-tr-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-t-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-b-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-tr-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-ee-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-se-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-1-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-s-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-tr-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-tr-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-es-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-br-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-tl-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-ee-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-tl-4xl": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "rounded-br-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-r-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-tl-3xl": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "rounded-r-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "rounded-tl-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-s-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-b-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-tl-xs": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-s-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-t-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-s-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-bl-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-tl-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-se-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-b-xl": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "rounded-t-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-es-lg": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "rounded-tl-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-es-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-e-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-t-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-tl-sm": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "rounded-se-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-es-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-ee-none": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "rounded-b-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-ss-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-e-2xl": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "rounded-bl-md": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "rounded-s-xs": {
+    "$type": "number",
+    "$value": "{2}"
+  }
+}

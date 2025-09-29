@@ -1,0 +1,982 @@
+{
+  "px-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "px-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "py-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "pr-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "pt-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "pl-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "pb-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "px-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "py-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "pr-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "pl-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "pl-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "pt-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "pb-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "px-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "py-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "pr-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "pl-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "pt-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "pb-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "px-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "py-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "pr-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "pt-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "pb-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "px-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "py-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "pr-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "pl-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "pt-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "pb-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "px-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "py-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "pr-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "pl-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "pt-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "pb-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "px-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "py-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "pr-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "pl-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "pt-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "pb-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "px-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "py-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "pr-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "pl-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "pt-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "pb-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "px-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "py-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "pr-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "pl-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "pt-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "pb-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "px-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "py-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "pr-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "pt-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "pl-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "pb-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "px-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "py-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "pr-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "pl-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "pt-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "pb-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "px-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "py-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "pr-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "pl-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "pt-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "pb-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "px-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "py-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "pr-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "pl-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "pt-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "pb-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "px-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "py-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "pr-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "pl-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "pt-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "pb-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "px-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "py-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "pr-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "pl-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "pt-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "pb-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "px-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "py-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "pr-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "pl-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "pt-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "pb-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "px-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "py-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "pr-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "pl-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "pt-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "pb-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "px-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "py-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "pr-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "pl-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "pt-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "pb-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "px-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "py-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "pr-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "pl-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "pt-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "pb-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "px-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "py-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "pr-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "pl-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "pt-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "pb-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "px-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "py-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "pr-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "pl-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "pt-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "pb-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "px-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "py-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "pr-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "pl-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "pt-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "pb-96": {
+    "$type": "number",
+    "$value": "{384}"
+  },
+  "py-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "pr-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "pl-1,15": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "pt-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "pb-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "px-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "py-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "pr-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "pl-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "pt-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "pb-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "px-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "py-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "pr-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "pl-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "pt-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "pb-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "px-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "py-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "pr-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "pl-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "pt-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "pb-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "px-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "py-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "pr-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "pl-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "pt-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "pb-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "px-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "py-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "pt-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "pr-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "pl-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "pb-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "px-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "py-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "pr-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "pl-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "pt-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "pb-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "px-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "py-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "pr-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "pl-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "pt-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "pb-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "px-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "py-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "pr-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "pl-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "pt-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "pb-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "px-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "py-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "pr-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "pl-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "pt-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "pb-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "px-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "py-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "pr-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "pl-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "pt-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "pb-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "px-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "py-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "pr-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "pl-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "pt-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "pb-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "px-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "py-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "pr-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "pl-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "pt-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "pb-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "p-4": {
+    "$type": "number",
+    "$value": "{16}"
+  },
+  "p-5": {
+    "$type": "number",
+    "$value": "{20}"
+  },
+  "p-14": {
+    "$type": "number",
+    "$value": "{56}"
+  },
+  "p-6": {
+    "$type": "number",
+    "$value": "{24}"
+  },
+  "p-3": {
+    "$type": "number",
+    "$value": "{12}"
+  },
+  "p-1": {
+    "$type": "number",
+    "$value": "{4}"
+  },
+  "p-2": {
+    "$type": "number",
+    "$value": "{8}"
+  },
+  "p-0": {
+    "$type": "number",
+    "$value": "{0}"
+  },
+  "p-px": {
+    "$type": "number",
+    "$value": "{1}"
+  },
+  "p-0,5": {
+    "$type": "number",
+    "$value": "{2}"
+  },
+  "p-1,5": {
+    "$type": "number",
+    "$value": "{6}"
+  },
+  "p-2,5": {
+    "$type": "number",
+    "$value": "{10}"
+  },
+  "p-3,5": {
+    "$type": "number",
+    "$value": "{14}"
+  },
+  "p-7": {
+    "$type": "number",
+    "$value": "{28}"
+  },
+  "p-8": {
+    "$type": "number",
+    "$value": "{32}"
+  },
+  "p-9": {
+    "$type": "number",
+    "$value": "{36}"
+  },
+  "p-10": {
+    "$type": "number",
+    "$value": "{40}"
+  },
+  "p-11": {
+    "$type": "number",
+    "$value": "{44}"
+  },
+  "p-12": {
+    "$type": "number",
+    "$value": "{48}"
+  },
+  "p-16": {
+    "$type": "number",
+    "$value": "{64}"
+  },
+  "p-20": {
+    "$type": "number",
+    "$value": "{80}"
+  },
+  "p-24": {
+    "$type": "number",
+    "$value": "{96}"
+  },
+  "p-28": {
+    "$type": "number",
+    "$value": "{112}"
+  },
+  "p-32": {
+    "$type": "number",
+    "$value": "{128}"
+  },
+  "p-36": {
+    "$type": "number",
+    "$value": "{144}"
+  },
+  "p-40": {
+    "$type": "number",
+    "$value": "{160}"
+  },
+  "p-44": {
+    "$type": "number",
+    "$value": "{176}"
+  },
+  "p-48": {
+    "$type": "number",
+    "$value": "{192}"
+  },
+  "p-52": {
+    "$type": "number",
+    "$value": "{208}"
+  },
+  "p-56": {
+    "$type": "number",
+    "$value": "{224}"
+  },
+  "p-60": {
+    "$type": "number",
+    "$value": "{240}"
+  },
+  "p-64": {
+    "$type": "number",
+    "$value": "{256}"
+  },
+  "p-72": {
+    "$type": "number",
+    "$value": "{288}"
+  },
+  "p-80": {
+    "$type": "number",
+    "$value": "{320}"
+  },
+  "p-96": {
+    "$type": "number",
+    "$value": "{384}"
+  }
+}
