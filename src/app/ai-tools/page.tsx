@@ -13,6 +13,7 @@ import { Stepper, StepperIndicator, StepperItem, StepperNav, StepperSeparator, S
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles, ListChecks, ArrowRight, ArrowLeft } from "lucide-react";
+import formOptions from "./form-options.json";
 
 export default function AIToolsPage() {
   const [studentPerformance, setStudentPerformance] = useState("");
@@ -403,12 +404,11 @@ export default function AIToolsPage() {
                               <SelectValue placeholder="Select a grade" />
                             </SelectTrigger>
                             <SelectContent tone="surface">
-                              <SelectItem value="k">Kindergarten</SelectItem>
-                              <SelectItem value="1">1st Grade</SelectItem>
-                              <SelectItem value="2">2nd Grade</SelectItem>
-                              <SelectItem value="3">3rd Grade</SelectItem>
-                              <SelectItem value="4">4th Grade</SelectItem>
-                              <SelectItem value="5">5th Grade</SelectItem>
+                              {formOptions.gradeLevels.map((option) => (
+                                <SelectItem key={option.value} value={option.value}>
+                                  {option.label}
+                                </SelectItem>
+                              ))}
                             </SelectContent>
                           </Select>
                           {showErrors && !gradeLevel && (
@@ -422,15 +422,10 @@ export default function AIToolsPage() {
                             <span>Disability categories <span className="text-destructive">*</span></span>
                           </label>
                             <MultiSelect
-                            options={[
-                              { value: "autism", label: "Autism" },
-                              { value: "intellectual", label: "Intellectual Disability" },
-                              { value: "learning", label: "Learning Disability" },
-                              { value: "emotional", label: "Emotional Disturbance" },
-                            ]}
+                            options={formOptions.disabilityCategories}
                             value={disabilityCategories}
                             onChange={setDisabilityCategories}
-                            placeholder="Select types"
+                            placeholder="Select a category"
                             summaryFormatter={(n) => `${n} types selected`}
                               invalid={showErrors && disabilityCategories.length === 0}
                           />
@@ -447,13 +442,7 @@ export default function AIToolsPage() {
                             <span>Areas of concern <span className="text-destructive">*</span></span>
                           </label>
                           <MultiSelect
-                            options={[
-                              { value: "reading", label: "Reading" },
-                              { value: "math", label: "Mathematics" },
-                              { value: "writing", label: "Writing" },
-                              { value: "behavior", label: "Behavior" },
-                              { value: "social", label: "Social Skills" },
-                            ]}
+                            options={formOptions.areasOfConcern}
                             value={areasOfConcern}
                             onChange={setAreasOfConcern}
                             placeholder="Select a category"
@@ -471,12 +460,7 @@ export default function AIToolsPage() {
                             <span>Priority Goal Areas <span className="text-destructive">*</span></span>
                           </label>
                           <MultiSelect
-                            options={[
-                              { value: "academic", label: "Academic Skills" },
-                              { value: "functional", label: "Functional Skills" },
-                              { value: "communication", label: "Communication" },
-                              { value: "social-emotional", label: "Social-Emotional" },
-                            ]}
+                            options={formOptions.priorityGoalAreas}
                             value={priorityGoalAreas}
                             onChange={setPriorityGoalAreas}
                             placeholder="Select a category"
@@ -523,16 +507,7 @@ export default function AIToolsPage() {
                           IEP Components sections <span className="text-destructive">*</span>
                         </label>
                         <MultiSelect
-                          options={[
-                            { value: "student-info", label: "Student Information" },
-                            { value: "plaafp", label: "Present Levels of Academic Achievement and Functional Performance (PLAAFP)" },
-                            { value: "goals", label: "Goals and Objectives" },
-                            { value: "progress", label: "Progress Monitoring" },
-                            { value: "accommodations-mods", label: "Accommodations and Modifications" },
-                            { value: "services", label: "Services and Supports" },
-                            { value: "gen-ed", label: "Participation in General Education Curriculum" },
-                            { value: "team", label: "Team Members" },
-                          ]}
+                          options={formOptions.iepComponents}
                           value={iepComponents}
                           onChange={setIepComponents}
                           placeholder="Select sections"
@@ -551,10 +526,11 @@ export default function AIToolsPage() {
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent tone="surface">
-                              <SelectItem value="quarterly">Quarterly</SelectItem>
-                              <SelectItem value="monthly">Monthly</SelectItem>
-                              <SelectItem value="weekly">Weekly</SelectItem>
-                              <SelectItem value="annually">Annually</SelectItem>
+                              {formOptions.evaluationSchedule.map((option) => (
+                                <SelectItem key={option.value} value={option.value}>
+                                  {option.label}
+                                </SelectItem>
+                              ))}
                             </SelectContent>
                           </Select>
                         </div>
@@ -569,10 +545,11 @@ export default function AIToolsPage() {
                               <SelectValue />
                             </SelectTrigger>
                             <SelectContent tone="surface">
-                              <SelectItem value="english">English</SelectItem>
-                              <SelectItem value="spanish">Spanish</SelectItem>
-                              <SelectItem value="french">French</SelectItem>
-                              <SelectItem value="german">German</SelectItem>
+                              {formOptions.languages.map((option) => (
+                                <SelectItem key={option.value} value={option.value}>
+                                  {option.label}
+                                </SelectItem>
+                              ))}
                             </SelectContent>
                           </Select>
                         </div>
@@ -584,13 +561,7 @@ export default function AIToolsPage() {
                             <span>What services are already in place or anticipated for the student? <span className="text-destructive">*</span></span>
                           </label>
                           <MultiSelect
-                            options={[
-                              { value: "speech", label: "Speech Therapy" },
-                              { value: "counseling", label: "Counseling" },
-                              { value: "occupational", label: "Occupational Therapy" },
-                              { value: "physical", label: "Physical Therapy" },
-                              { value: "behavioral", label: "Behavioral Intervention" },
-                            ]}
+                            options={formOptions.existingServices}
                             value={existingServices}
                             onChange={setExistingServices}
                             placeholder="Select services"
@@ -603,12 +574,7 @@ export default function AIToolsPage() {
                             <span>Does the student require accommodations or modifications? <span className="text-destructive">*</span></span>
                           </label>
                           <MultiSelect
-                            options={[
-                              { value: "extended-time", label: "Extended time" },
-                              { value: "preferential-seating", label: "Preferential seating" },
-                              { value: "reduced-distractions", label: "Reduced distractions" },
-                              { value: "small-group", label: "Small group setting" },
-                            ]}
+                            options={formOptions.accommodations}
                             value={accommodations}
                             onChange={setAccommodations}
                             placeholder="Select types"
