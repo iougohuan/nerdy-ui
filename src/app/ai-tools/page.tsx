@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { Mic, FilePlus, Check, GraduationCap, BookUser, OctagonAlert, Goal, CalendarClock, Languages, WandSparkles, ListChecks, ArrowRight, ArrowLeft } from "lucide-react";
 import { formOptions } from "./form-options";
 import type { MultiSelectOption } from "@/components/ui/multi-select";
+import { LoadingDialog } from "@/components/loading-dialog";
 
 export default function AIToolsPage() {
   const [studentPerformance, setStudentPerformance] = useState("");
@@ -35,6 +36,7 @@ export default function AIToolsPage() {
   const [attachments, setAttachments] = useState<File[]>([]);
   const [isRecording, setIsRecording] = useState(false);
   const [recordingSeconds, setRecordingSeconds] = useState(0);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<any>(null);
@@ -54,8 +56,14 @@ export default function AIToolsPage() {
   ];
   const MAX_FILE_BYTES = 50 * 1024 * 1024; // 50MB
 
-  const handleGenerate = () => {
-    // Handle form submission
+  const handleGenerate = async () => {
+    setIsGenerating(true);
+    
+    // Simulate IEP generation (replace with actual API call)
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
+    setIsGenerating(false);
+    toast.success("IEP generated successfully!");
     console.log("Generating IEP...");
   };
 
@@ -629,6 +637,13 @@ export default function AIToolsPage() {
             </div>
           </div>
         </div>
+
+        {/* Loading Modal */}
+        <LoadingDialog 
+          open={isGenerating} 
+          onOpenChange={setIsGenerating}
+          onCancel={() => setIsGenerating(false)}
+        />
       </SidebarInset>
     </SidebarProvider>
   );
