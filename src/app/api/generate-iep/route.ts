@@ -91,7 +91,8 @@ function buildPrompt(data: z.infer<typeof RequestSchema>): string {
 - Use <strong> for bold text and emphasis
 - Use <ul> and <li> for unordered lists
 - Use <ol> and <li> for ordered lists
-- Use <table>, <thead>, <tbody>, <tr>, <th>, <td> for tables
+- For tables, ALWAYS use: <table class="iep-table"> with <thead>, <tbody>, <tr>, <th>, <td>
+- ALL tables MUST have class="iep-table" for proper styling
 - Use proper paragraph tags <p> for all text content
 - DO NOT use Markdown syntax
 - DO NOT include <hr> tags (separators will be added automatically)
@@ -166,9 +167,11 @@ For each section, return a JSON object with:
    - Use concrete percentages (e.g., "80% accuracy", "4 out of 5 opportunities")
    - Reference the evaluation schedule: ${evaluationLabel}
 
-7. **🧰 Accommodations & Supports** - Create an HTML table with columns "Category" and "Accommodation"
+7. **🧰 Accommodations & Supports** - Create an HTML table with class="iep-table" and columns "Category" and "Accommodation"
+   - IMPORTANT: Use <table class="iep-table"> for proper styling
    - Categories: 📘 Reading, ✍️ Writing, 🧠 General, 📝 Assessments
    - Provide specific, actionable accommodations for each category
+   - Example format: <table class="iep-table"><thead><tr><th>Category</th><th>Accommodation</th></tr></thead><tbody>...</tbody></table>
 
 8. **📊 Progress Monitoring** - Include:
    - How progress will be measured
@@ -181,10 +184,12 @@ For each section, return a JSON object with:
    - Support needed
    - Any pull-out services
 
-10. **👥 Special Education Services** - Create an HTML table with columns "Service", "Frequency", "Provider"
+10. **👥 Special Education Services** - Create an HTML table with class="iep-table" and columns "Service", "Frequency", "Provider"
+    - IMPORTANT: Use <table class="iep-table"> for proper styling
     - Include 2-3 services based on goals
     - Be specific about frequency (e.g., "3x per week, 30 min")
     - List appropriate providers (Special Education Teacher, Resource Room Support, etc.)
+    - Example format: <table class="iep-table"><thead><tr><th>Service</th><th>Frequency</th><th>Provider</th></tr></thead><tbody>...</tbody></table>
 
 11. **🤝 Team Members** - List team members with roles:
     - General Education Teacher: [name]
