@@ -82,7 +82,14 @@ function buildPrompt(data: z.infer<typeof RequestSchema>): string {
   // Determinar quais seções gerar
   const selectedSections = data.iepComponents.map((comp) => componentSectionMap[comp]).filter(Boolean);
 
-  return `You are an expert IEP (Individualized Education Program) writer. Generate a comprehensive, professional, and detailed IEP document based on the following information.
+  return `You are an expert IEP (Individualized Education Program) writer with deep knowledge of special education best practices.
+
+**CRITICAL INSTRUCTIONS:**
+This IEP must be PERSONALIZED and SPECIFIC to this individual student. Do NOT generate generic, template-like content. Every section must:
+- Reference the specific student context and performance data provided
+- Connect logically to other sections (PLAAFP → Goals → Services → Accommodations)
+- Use concrete, measurable language based on the student's actual needs
+- Sound like it was written by a team who knows this specific student well
 
 **CRITICAL FORMATTING REQUIREMENTS:**
 - Use HTML formatting ONLY (headings, paragraphs, lists, tables)
@@ -166,35 +173,66 @@ For each section, return a JSON object with:
 
 5. **🎯 Priority Goal Areas** - Simple bulleted list
 
-6. **🏁 ${evaluationLabel} Goals** - For each priority area, create:
-   - Goal title with emoji (e.g., "Goal 1: Reading Comprehension")
-   - Specific measurable objective with timeframe (e.g., "Within 12 months..." or "By the end of the ${evaluationLabel.toLowerCase()} period...")
-   - 3-4 short-term benchmarks with clear success criteria
-   - Use concrete percentages (e.g., "80% accuracy", "4 out of 5 opportunities")
-   - Reference the evaluation schedule: ${evaluationLabel}
+6. **🏁 ${evaluationLabel} Goals** - CRITICAL: Goals must be PERSONALIZED and CONNECTED to student's specific context:
+   - Create ONE goal for EACH priority goal area selected: ${goalLabels.join(", ")}
+   - Each goal MUST directly address the challenges described in the PLAAFP and student performance data
+   - Goal title with number and area (e.g., "Goal 1: Reading Comprehension", "Goal 2: Written Expression")
+   - Write SPECIFIC, MEASURABLE objectives that:
+     * Start from the student's CURRENT performance level described in PLAAFP
+     * Target realistic improvement based on their grade level (${gradeLevelLabel})
+     * Include clear success criteria with percentages (e.g., "80% accuracy", "4 out of 5 opportunities")
+     * Use appropriate timeframe: "Within ${evaluationLabel.toLowerCase()} assessment period" or "By the end of the school year"
+   - Create 3-4 short-term benchmarks that:
+     * Build progressively from easier to more challenging
+     * Reference specific strategies mentioned in accommodations: ${accommodationsLabels.join(", ")}
+     * Include concrete percentages and measurable criteria
+     * Connect to areas of concern: ${areasLabels.join(", ")}
+     * Are achievable given the student's current level and supports
+   - Use the student's name [Student name] throughout
+   - Make goals realistic, specific to THIS student, not generic templates
+   - Ensure benchmarks logically progress and support the main objective
 
 7. **🧰 Accommodations & Supports** - Create an HTML table with class="iep-table" and columns "Category" and "Accommodation"
    - IMPORTANT: Use <table class="iep-table"> for proper styling
    - Categories: 📘 Reading, ✍️ Writing, 🧠 General, 📝 Assessments
-   - Provide specific, actionable accommodations for each category
+   - PERSONALIZE accommodations based on:
+     * Specific challenges mentioned in PLAAFP
+     * Selected accommodations from form: ${accommodationsLabels.join(", ")}
+     * Student's learning style and needs described in performance data
+     * Grade level appropriateness (${gradeLevelLabel})
+   - Make accommodations SPECIFIC and ACTIONABLE, not generic
+   - Connect directly to the student's documented needs
    - Example format: <table class="iep-table"><thead><tr><th>Category</th><th>Accommodation</th></tr></thead><tbody>...</tbody></table>
 
-8. **📊 Progress Monitoring** - Include:
-   - How progress will be measured
-   - Frequency of monitoring: ${evaluationLabel}
-   - Tools/methods (work samples, observations, assessments, rubrics)
-   - Explicitly state: "Progress will be monitored ${evaluationLabel.toLowerCase()}"
+8. **📊 Progress Monitoring** - PERSONALIZE based on goals and student needs:
+   - Explicitly state: "Progress will be monitored ${evaluationLabel.toLowerCase()} through:"
+   - List SPECIFIC monitoring methods that align with each goal created
+   - Include grade-appropriate assessment tools for ${gradeLevelLabel}
+   - Reference specific benchmarks from the goals (e.g., "Reading comprehension rubrics", "Writing samples scored on 4-point scale")
+   - Mention data collection methods that match the student's accommodations
+   - Be specific about WHO will monitor (teacher, aide, specialist)
+   - Connect monitoring methods to the evaluation schedule: ${evaluationLabel}
 
-9. **🧑‍🏫 Participation in General Education Curriculum** - Describe:
-   - How student will participate in general education
-   - Support needed
-   - Any pull-out services
+9. **🧑‍🏫 Participation in General Education Curriculum** - PERSONALIZE based on student context:
+   - Describe specifically how THIS student will participate in ${gradeLevelLabel} general education
+   - Reference the accommodations and modifications needed for success
+   - Specify percentage of time in general education vs. specialized instruction
+   - Mention specific subjects/activities where student excels vs. needs support
+   - Connect to areas of concern: ${areasLabels.join(", ")}
+   - Describe pull-out services that align with the goals and services listed
+   - Be realistic about inclusion opportunities given the student's needs
 
 10. **👥 Special Education Services** - Create an HTML table with class="iep-table" and columns "Service", "Frequency", "Provider"
     - IMPORTANT: Use <table class="iep-table"> for proper styling
-    - Include 2-3 services based on goals
-    - Be specific about frequency (e.g., "3x per week, 30 min")
-    - List appropriate providers (Special Education Teacher, Resource Room Support, etc.)
+    - PERSONALIZE services based on:
+      * Selected existing services: ${servicesLabels.join(", ")}
+      * Specific goals created for this student
+      * Intensity of support needed based on PLAAFP
+      * Priority goal areas: ${goalLabels.join(", ")}
+    - Include 2-4 services that DIRECTLY support the student's goals
+    - Be SPECIFIC about frequency based on need level (e.g., "3x per week, 30 min" for intensive support, "1x per week, 30 min" for maintenance)
+    - Match services to appropriate providers based on the goals
+    - Connect services to specific benchmarks from goals section
     - Example format: <table class="iep-table"><thead><tr><th>Service</th><th>Frequency</th><th>Provider</th></tr></thead><tbody>...</tbody></table>
 
 11. **🤝 Team Members** - List team members with roles:
@@ -211,6 +249,14 @@ For each section, return a JSON object with:
 - Include concrete percentages and timeframes
 - Make accommodations practical and implementable
 - Ensure consistency with the student's grade level and needs
+
+**CRITICAL: ENSURE COHERENCE ACROSS ALL SECTIONS:**
+- Goals must directly address challenges described in PLAAFP
+- Accommodations must support the specific goals created
+- Services must align with the intensity and type of goals
+- Progress monitoring must measure the specific benchmarks in goals
+- Every section should reference and connect to the student's documented needs
+- The entire IEP should tell a cohesive story about THIS specific student
 
 Generate each section with proper HTML formatting and appropriate emojis as shown in the examples.`;
 }
