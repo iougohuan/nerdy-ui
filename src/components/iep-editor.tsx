@@ -312,11 +312,11 @@ export function IEPEditor({
       </div>
 
       {/* Editor with Toolbar */}
-      <div className="w-full bg-[#181b37] rounded-3xl overflow-hidden opacity-95">
+      <div className="w-full bg-[#181b37] rounded-3xl overflow-hidden opacity-95 flex flex-col h-[calc(100vh-200px)]">
         <EditorContext.Provider value={{ editor }}>
           <Toolbar
             ref={toolbarRef}
-            className="bg-[#0c0e24] border-b border-[rgba(232,232,253,0.05)] sticky top-0 z-10"
+            className="bg-[#0c0e24] border-b border-[rgba(232,232,253,0.05)] sticky top-0 z-10 flex-shrink-0"
             style={{
               ...(isMobile
                 ? {
@@ -339,11 +339,13 @@ export function IEPEditor({
             )}
           </Toolbar>
 
-          <EditorContent
-            editor={editor}
-            role="presentation"
-            className="simple-editor-content p-6 min-h-[800px]"
-          />
+          <div className="flex-1 overflow-y-auto">
+            <EditorContent
+              editor={editor}
+              role="presentation"
+              className="simple-editor-content p-6"
+            />
+          </div>
         </EditorContext.Provider>
       </div>
     </div>
