@@ -58,6 +58,41 @@ export default function AIToolsPage() {
   ];
   const MAX_FILE_BYTES = 50 * 1024 * 1024; // 50MB
 
+  // Função para preencher dados de exemplo
+  const fillExampleData = () => {
+    // Dados realistas de um estudante com dificuldades de aprendizagem
+    setStudentPerformance(
+      "Alex is currently in 6th grade and demonstrates strong verbal communication skills when discussing topics of interest. However, he experiences significant challenges with reading comprehension, particularly when identifying main ideas and making inferences from grade-level texts. Alex can decode simple words but struggles with multi-syllabic words and often loses comprehension when reading longer passages.\n\nIn written expression, Alex has difficulty organizing his thoughts on paper and frequently omits punctuation and capitalization. He benefits from graphic organizers, sentence starters, and one-on-one support during writing tasks. Alex shows increased motivation when using technology-based learning tools and responds well to visual supports and hands-on activities.\n\nSocially, Alex works well in small groups but can become frustrated when tasks feel overwhelming, sometimes requiring breaks to regulate his emotions. He demonstrates strong problem-solving skills in math when concepts are presented with concrete examples."
+    );
+    setGradeLevel("6");
+    setDisabilityCategories(["learning", "other-health"]);
+    setAreasOfConcern(["academic", "social-emotional"]);
+    setPriorityGoalAreas(["reading", "writing", "self-regulation"]);
+    toast.success("Example data filled! You can edit before proceeding.");
+  };
+
+  const fillExampleStep2 = () => {
+    // Preencher todas as seções de IEP Components
+    setIepComponents([
+      "student-info",
+      "plaafp",
+      "disability-categories",
+      "areas-concern",
+      "priority-goals",
+      "goals",
+      "accommodations-mods",
+      "progress",
+      "gen-ed",
+      "services",
+      "team"
+    ]);
+    setEvaluationSchedule("quarterly");
+    setLanguage("english");
+    setExistingServices(["special-ed", "speech"]);
+    setAccommodations(["extended-time", "visual-aids", "preferential-seating", "breaks"]);
+    toast.success("Step 2 example data filled!");
+  };
+
   const handleGenerate = async () => {
     setIsGenerating(true);
     
@@ -577,7 +612,15 @@ export default function AIToolsPage() {
                         </div>
                       </div>
 
-                        <div className="flex justify-end">
+                        <div className="flex justify-between items-center">
+                          <Button
+                            variant="outline"
+                            onClick={fillExampleData}
+                            className="h-10 gap-2"
+                          >
+                            <WandSparkles className="size-4" />
+                            Fill Example
+                          </Button>
                           <Button
                             onClick={() => {
                               const missing: string[] = [];
@@ -708,19 +751,29 @@ export default function AIToolsPage() {
                           <ArrowLeft className="size-4" />
                           Previous
                         </Button>
-                        <Button 
-                          onClick={() => {
-                            if (iepComponents.length === 0) {
-                              toast.error("Please select at least one IEP Component section");
-                              return;
-                            }
-                            handleGenerate();
-                          }} 
-                          className="h-10"
-                        >
-                          <WandSparkles className="size-4" />
-                          Generate
-                        </Button>
+                        <div className="flex gap-2">
+                          <Button 
+                            variant="outline"
+                            onClick={fillExampleStep2}
+                            className="h-10 gap-2"
+                          >
+                            <WandSparkles className="size-4" />
+                            Fill Example
+                          </Button>
+                          <Button 
+                            onClick={() => {
+                              if (iepComponents.length === 0) {
+                                toast.error("Please select at least one IEP Component section");
+                                return;
+                              }
+                              handleGenerate();
+                            }} 
+                            className="h-10"
+                          >
+                            <WandSparkles className="size-4" />
+                            Generate
+                          </Button>
+                        </div>
                       </div>
                     </div>
                     )}
