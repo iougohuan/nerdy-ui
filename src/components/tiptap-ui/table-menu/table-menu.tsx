@@ -5,6 +5,13 @@ import { useCurrentEditor } from "@tiptap/react"
 
 // --- Icons ---
 import { ChevronDownIcon } from "@/components/tiptap-icons/chevron-down-icon"
+import { 
+  Trash2, 
+  ArrowDownToLine,
+  ArrowRightToLine,
+  ArrowUpToLine,
+  ArrowLeftToLine
+} from "lucide-react"
 
 // --- UI Primitives ---
 import { Button } from "@/components/tiptap-ui-primitive/button"
@@ -13,6 +20,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
 } from "@/components/tiptap-ui-primitive/dropdown-menu"
 
 export function TableMenu() {
@@ -37,42 +45,52 @@ export function TableMenu() {
           onClick={() => editor.chain().focus().addRowBefore().run()}
           disabled={!isInTable}
         >
+          <ArrowUpToLine className="tiptap-button-icon" />
           Add Row Above
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addRowAfter().run()}
           disabled={!isInTable}
         >
+          <ArrowDownToLine className="tiptap-button-icon" />
           Add Row Below
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addColumnBefore().run()}
           disabled={!isInTable}
         >
+          <ArrowLeftToLine className="tiptap-button-icon" />
           Add Column Before
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addColumnAfter().run()}
           disabled={!isInTable}
         >
+          <ArrowRightToLine className="tiptap-button-icon" />
           Add Column After
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => editor.chain().focus().deleteRow().run()}
           disabled={!isInTable}
         >
+          <Trash2 className="tiptap-button-icon" />
           Delete Row
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().deleteColumn().run()}
           disabled={!isInTable}
         >
+          <Trash2 className="tiptap-button-icon" />
           Delete Column
         </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => editor.chain().focus().deleteTable().run()}
           disabled={!isInTable}
         >
+          <Trash2 className="tiptap-button-icon" />
           Delete Table
         </DropdownMenuItem>
       </DropdownMenuContent>
