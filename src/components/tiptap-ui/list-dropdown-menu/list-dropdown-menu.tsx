@@ -45,7 +45,7 @@ export interface ListDropdownMenuProps extends Omit<ButtonProps, "type"> {
   onOpenChange?: (isOpen: boolean) => void
   /**
    * Whether to render the dropdown menu in a portal
-   * @default false
+   * @default true
    */
   portal?: boolean
 }
@@ -55,7 +55,7 @@ export function ListDropdownMenu({
   types = ["bulletList", "orderedList", "taskList"],
   hideWhenUnavailable = false,
   onOpenChange,
-  portal = false,
+  portal = true,
   ...props
 }: ListDropdownMenuProps) {
   const { editor } = useTiptapEditor(providedEditor)
@@ -100,7 +100,12 @@ export function ListDropdownMenu({
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="start" portal={portal}>
+      <DropdownMenuContent 
+        side="bottom"
+        align="start"
+        sideOffset={8}
+        portal={portal}
+      >
         <Card>
           <CardBody>
             <ButtonGroup>

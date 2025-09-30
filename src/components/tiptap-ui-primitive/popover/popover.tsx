@@ -20,14 +20,20 @@ function PopoverTrigger({
 function PopoverContent({
   className,
   align = "center",
-  sideOffset = 4,
+  side = "bottom",
+  sideOffset = 8,
+  alignOffset = 0,
   ...props
 }: React.ComponentProps<typeof PopoverPrimitive.Content>) {
   return (
     <PopoverPrimitive.Portal>
       <PopoverPrimitive.Content
         align={align}
+        side={side}
         sideOffset={sideOffset}
+        alignOffset={alignOffset}
+        collisionPadding={8}
+        avoidCollisions={true}
         className={cn("tiptap-popover", className)}
         {...props}
       />

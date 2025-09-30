@@ -29,7 +29,7 @@ export interface HeadingDropdownMenuProps
     UseHeadingDropdownMenuConfig {
   /**
    * Whether to render the dropdown menu in a portal
-   * @default false
+   * @default true
    */
   portal?: boolean
   /**
@@ -52,7 +52,7 @@ export const HeadingDropdownMenu = React.forwardRef<
       editor: providedEditor,
       levels = [1, 2, 3, 4, 5, 6],
       hideWhenUnavailable = false,
-      portal = false,
+      portal = true,
       onOpenChange,
       ...buttonProps
     },
@@ -101,7 +101,12 @@ export const HeadingDropdownMenu = React.forwardRef<
           </Button>
         </DropdownMenuTrigger>
 
-        <DropdownMenuContent align="start" portal={portal}>
+        <DropdownMenuContent 
+          side="bottom"
+          align="start"
+          sideOffset={8}
+          portal={portal}
+        >
           <Card>
             <CardBody>
               <ButtonGroup>

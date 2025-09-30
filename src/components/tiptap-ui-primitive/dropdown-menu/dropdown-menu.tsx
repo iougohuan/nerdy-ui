@@ -63,13 +63,16 @@ const DropdownMenuContent = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content> & {
     portal?: boolean
   }
->(({ className, sideOffset = 4, portal = false, ...props }, ref) => {
+>(({ className, sideOffset = 8, portal = true, ...props }, ref) => {
   const content = (
     <DropdownMenuPrimitive.Content
       ref={ref}
       sideOffset={sideOffset}
       onCloseAutoFocus={(e) => e.preventDefault()}
       className={cn("tiptap-dropdown-menu", className)}
+      collisionPadding={8}
+      avoidCollisions={true}
+      sticky="always"
       {...props}
     />
   )

@@ -7,14 +7,15 @@
   border: 1px solid var(--tt-dropdown-menu-border-color);
   border-radius: 12px;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.10);
-  padding: 4px;
+  padding: 6px;
+  min-width: 160px;
 }
 
 /* --------------------------------------------
     --------- DROPDOWN MENU STYLING SETTINGS -----------
     -------------------------------------------- */
 .tiptap-dropdown-menu {
-  z-index: 50;
+  z-index: 9999;
   outline: none;
   transform-origin: var(--radix-dropdown-menu-content-transform-origin);
   max-height: var(--radix-dropdown-menu-content-available-height);
@@ -66,8 +67,14 @@
 [data-radix-collection-item] {
   outline: none;
   cursor: pointer;
+  width: 100%;
   
   &[data-highlighted] {
     outline: none;
+  }
+  
+  button {
+    width: 100%;
+    justify-content: flex-start;
   }
 }
