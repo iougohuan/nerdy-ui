@@ -142,7 +142,7 @@ For each section, return a JSON object with:
 - Disability Categories: 📋
 - Areas of Concern: ⚠️
 - Priority Goal Areas: 🎯
-- Annual Goals: 🏁 (use "${evaluationLabel} Goals" as title, e.g., "🏁 Quarterly Goals", "🏁 Weekly Goals")
+- Annual Goals: 🏁 (IMPORTANT: Title MUST be exactly "🏁 ${evaluationLabel} Goals", e.g., "🏁 Quarterly Goals", "🏁 Annually Goals", "🏁 Weekly Goals")
 - Accommodations & Supports: 🧰
 - Progress Monitoring: 📊
 - Participation in General Education: 🧑‍🏫
@@ -182,7 +182,11 @@ For each section, return a JSON object with:
      * Target realistic improvement based on their grade level (${gradeLevelLabel})
      * Include clear success criteria with percentages (e.g., "80% accuracy", "4 out of 5 opportunities")
      * Use appropriate timeframe: "Within ${evaluationLabel.toLowerCase()} assessment period" or "By the end of the school year"
-   - Create 3-4 short-term benchmarks that:
+   - Create 3-4 short-term benchmarks that are ALIGNED WITH THE EVALUATION SCHEDULE (${evaluationLabel}):
+     * If ${evaluationLabel} is "Annually": Use timeframes like "By Fall semester", "By Winter break", "By Spring semester", "By end of year"
+     * If ${evaluationLabel} is "Quarterly": Use "By end of Q1", "By end of Q2", "By end of Q3", "By end of Q4"
+     * If ${evaluationLabel} is "Weekly": Use "Week 1-4", "Week 5-8", "Week 9-12", etc.
+     * If ${evaluationLabel} is "Bi-weekly": Use "Weeks 1-2", "Weeks 3-4", etc.
      * Build progressively from easier to more challenging
      * Reference specific strategies mentioned in accommodations: ${accommodationsLabels.join(", ")}
      * Include concrete percentages and measurable criteria
@@ -226,13 +230,22 @@ For each section, return a JSON object with:
     - IMPORTANT: Use <table class="iep-table"> for proper styling
     - PERSONALIZE services based on:
       * Selected existing services: ${servicesLabels.join(", ")}
-      * Specific goals created for this student
+      * Specific goals created for this student (${goalLabels.join(", ")})
       * Intensity of support needed based on PLAAFP
-      * Priority goal areas: ${goalLabels.join(", ")}
-    - Include 2-4 services that DIRECTLY support the student's goals
-    - Be SPECIFIC about frequency based on need level (e.g., "3x per week, 30 min" for intensive support, "1x per week, 30 min" for maintenance)
-    - Match services to appropriate providers based on the goals
-    - Connect services to specific benchmarks from goals section
+    - CRITICAL: Each service must DIRECTLY support at least one goal:
+      * For Reading Comprehension goal → Reading Intervention/Literacy Support
+      * For Written Expression goal → Writing Support/Resource Room
+      * For Math goal → Math Intervention
+      * For Self-Regulation goal → Counseling/Behavioral Support
+      * For Social Skills goal → Social Skills Group/Counseling
+      * For Communication goal → Speech Therapy
+    - ONLY include services that match the priority goal areas: ${goalLabels.join(", ")}
+    - DO NOT include services not connected to the goals (e.g., don't add Speech Therapy if no communication goals)
+    - Be SPECIFIC about frequency based on need level: 
+      * Intensive support (addressing significant gaps): "3-5x per week, 30-45 min"
+      * Moderate support (addressing specific skills): "2-3x per week, 30 min"
+      * Maintenance/monitoring: "1x per week" or "2x per month"
+    - Name services to clearly show connection to goals (e.g., "Reading Comprehension Intervention" not just "Special Ed Support")
     - Example format: <table class="iep-table"><thead><tr><th>Service</th><th>Frequency</th><th>Provider</th></tr></thead><tbody>...</tbody></table>
 
 11. **🤝 Team Members** - List team members with roles:
