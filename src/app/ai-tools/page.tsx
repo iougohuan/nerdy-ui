@@ -72,95 +72,57 @@ export default function AIToolsPage() {
   };
 
   const generateMockIEP = () => {
+    // Retorna HTML string que será convertido pelo TipTap
     return `
-      <h1>IEP - [Student name] - 4th grade</h1>
+      <h3>IEP - [Student name] - ${formOptions.gradeLevels.find(g => g.value === gradeLevel)?.label || '4th grade'}</h3>
       <p><strong>📋 Student Name:</strong> [Student name]</p>
       <p><strong>📚 Grade Level:</strong> ${formOptions.gradeLevels.find(g => g.value === gradeLevel)?.label || '4th Grade'}</p>
       <p><strong>🗣️ Language:</strong> ${formOptions.languages.find(l => l.value === language)?.label || 'English'}</p>
       <p><strong>📅 Evaluation Schedule:</strong> ${formOptions.evaluationSchedule.find(e => e.value === evaluationSchedule)?.label || 'Quarterly'}</p>
-
-      <h2>📖 Present Level of Academic Achievement and Functional Performance (PLAAFP)</h2>
-      <p>${studentPerformance || '[Student name] is currently in 6th grade and demonstrates the ability to identify explicit information in short texts with minimal support. However, he has difficulty making inferences, identifying the main idea, and analyzing longer narrative and informational texts. These challenges significantly impact his ability to participate in grade-level reading and writing tasks.'}</p>
-      <p>[Student name] benefits from guided reading sessions, oral questioning prior to writing activities, and structured visual supports like graphic organizers. He demonstrates increased motivation and engagement when tasks are broken into manageable steps and supported with scaffolding strategies.</p>
-
-      <h2>📚 Disability Categories</h2>
+      <hr>
+      <h3>📖 Present Level of Academic Achievement and Functional Performance (PLAAFP)</h3>
+      <p>${studentPerformance || '[Student name] is currently in 6th grade and demonstrates the ability to identify explicit information in short texts with minimal support. However, he has difficulty making inferences, identifying the main idea, and analyzing longer narrative and informational texts.'}</p>
+      <p>[Student name] benefits from guided reading sessions, oral questioning prior to writing activities, and structured visual supports like graphic organizers.</p>
+      <hr>
+      <h3>📚 Disability Categories</h3>
       <ul>
         ${disabilityCategories.map(cat => {
           const option = formOptions.disabilityCategories.find(o => o.value === cat);
           return `<li>${option?.label || cat}</li>`;
         }).join('')}
       </ul>
-
-      <h2>⚠️ Areas of Concern</h2>
+      <hr>
+      <h3>⚠️ Areas of Concern</h3>
       <ul>
         ${areasOfConcern.map(area => {
           const option = formOptions.areasOfConcern.find(o => o.value === area);
           return `<li>${option?.label || area}</li>`;
         }).join('')}
       </ul>
-
-      <h2>🎯 Priority Goal Areas</h2>
+      <hr>
+      <h3>🎯 Priority Goal Areas</h3>
       <ul>
         ${priorityGoalAreas.map(goal => {
           const option = formOptions.priorityGoalAreas.find(o => o.value === goal);
           return `<li>${option?.label || goal}</li>`;
         }).join('')}
       </ul>
-
-      <h2>📊 Annual Goals</h2>
+      <hr>
+      <h3>📊 Annual Goals</h3>
       <p><strong>Goal 1: Reading Comprehension</strong></p>
-      <p><strong>Objective:</strong><br>
-      Within 12 months, [Student name] will improve his reading comprehension skills by accurately answering at least 4 out of 5 literal/inferential main idea questions based on grade-level texts in 4 out of 5 opportunities, with visual supports and guided instruction.</p>
-      
+      <p><strong>Objective:</strong></p>
+      <p>Within 12 months, [Student name] will improve his reading comprehension skills by accurately answering at least 4 out of 5 literal/inferential main idea questions.</p>
       <p><strong>Short-Term Benchmarks:</strong></p>
       <ol>
         <li>Given a short narrative passage, [Student name] will identify the main idea with 80% accuracy using a graphic organizer.</li>
-        <li>When reading an informational text, [Student name] will answer "why" and "how" questions with 75% accuracy in structured group reading.</li>
+        <li>When reading an informational text, [Student name] will answer "why" and "how" questions with 75% accuracy.</li>
         <li>[Student name] will complete a cause-effect chart after reading a story, scoring at least 3 out of 4 on a rubric.</li>
       </ol>
-
       <p><strong>Goal 2: Written Expression</strong></p>
-      <p><strong>Objective:</strong><br>
-      Within 12 months, [Student name] will improve written expression by composing a multi-sentence paragraph that includes a clear topic sentence, at least two supporting details, and a closing sentence in 4 out of 5 writing tasks, with sentence starters and teacher modeling.</p>
-
-      <p><strong>Short-Term Benchmarks:</strong></p>
-      <ol>
-        <li>[Student name] will use sentence frames to write a topic sentence independently in 5 out of 4 opportunities.</li>
-        <li>[Student name] will add at least two relevant supporting details to a topic sentence using a graphic organizer with 80% success.</li>
-        <li>[Student name] will revise a draft paragraph to include punctuation and capitalization with teacher support in 4 out of 5 tasks.</li>
-      </ol>
-
-      <h2>🛠️ Accommodations & Supports</h2>
-      <p>To support [Student name] in achieving his goals, the following accommodations will be implemented across settings:</p>
-      
-      <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-        <thead>
-          <tr>
-            <th style="text-align: left; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Category</th>
-            <th style="text-align: left; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Accommodation</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">📖 Reading</td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Use of graphic organizers, guided reading groups, text chunking, and highlighting key details</td>
-          </tr>
-          <tr>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">✍️ Writing</td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Sentence starters, paragraph templates, verbal brainstorming prior to writing</td>
-          </tr>
-          <tr>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">📝 General</td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Frequent breaks, extended time on assignments, check-ins during tasks, small-group instruction</td>
-          </tr>
-          <tr>
-            <td style="padding: 0.5rem;">📋 Assessments</td>
-            <td style="padding: 0.5rem;">Oral administration of questions, simplified language, use of visuals</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>📈 Progress Monitoring</h2>
+      <p><strong>Objective:</strong></p>
+      <p>Within 12 months, [Student name] will improve written expression by composing multi-sentence paragraphs with sentence starters and teacher modeling.</p>
+      <hr>
+      <h3>📈 Progress Monitoring</h3>
       <p>Progress will be monitored quarterly through:</p>
       <ul>
         <li>Work samples</li>
@@ -168,41 +130,8 @@ export default function AIToolsPage() {
         <li>Rubrics for comprehension and writing tasks</li>
         <li>Informal reading assessments</li>
       </ul>
-
-      <h2>🎓 Participation in General Education Curriculum</h2>
-      <p>[Student name] will continue to participate in the general education curriculum with support and accommodations. He will receive targeted instruction in reading and writing within a resource room or small group setting as needed.</p>
-
-      <h2>👥 Special Education Services</h2>
-      <p>To support [Student name] in achieving his goals, the following accommodations will be implemented across settings:</p>
-      
-      <table style="width: 100%; border-collapse: collapse; margin: 1rem 0;">
-        <thead>
-          <tr>
-            <th style="text-align: left; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Service</th>
-            <th style="text-align: left; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Frequency</th>
-            <th style="text-align: left; padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Provider</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">📖 Reading Intervention</td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">3x per week, 30 min</td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Special Education Teacher</td>
-          </tr>
-          <tr>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">✍️ Writing Support</td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">2x per week, 30 min</td>
-            <td style="padding: 0.5rem; border-bottom: 1px solid rgba(255,255,255,0.16);">Resource Room Support</td>
-          </tr>
-          <tr>
-            <td style="padding: 0.5rem;">🎯 Check-ins/Coaching</td>
-            <td style="padding: 0.5rem;">1x per week</td>
-            <td style="padding: 0.5rem;">Case Manager</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <h2>👨‍👩‍👧‍👦 Team Members</h2>
+      <hr>
+      <h3>👨‍👩‍👧‍👦 Team Members</h3>
       <ul>
         <li><strong>General Education Teacher:</strong> [name]</li>
         <li><strong>Special Education Teacher:</strong> [name]</li>
@@ -420,7 +349,12 @@ export default function AIToolsPage() {
       >
         <AppSidebar variant="inset" />
         <SidebarInset>
-          <SiteHeader />
+          <SiteHeader 
+            breadcrumbItems={[
+              { label: "My resources", onClick: () => setGeneratedIEP(null) }
+            ]}
+            currentPage={`IEP - [Student name] - ${formOptions.gradeLevels.find(g => g.value === gradeLevel)?.label || "4th grade"}`}
+          />
           <Toaster />
           <div className="flex flex-1 flex-col relative">
             <div className="@container/main flex flex-1 flex-col gap-2">
