@@ -40,6 +40,21 @@ export default function AIToolsPage() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedIEP, setGeneratedIEP] = useState<string | null>(null);
 
+  // Carregar IEP do localStorage ao montar o componente
+  useEffect(() => {
+    const savedIEP = localStorage.getItem('generatedIEP');
+    if (savedIEP) {
+      setGeneratedIEP(savedIEP);
+    }
+  }, []);
+
+  // Salvar IEP no localStorage sempre que mudar
+  useEffect(() => {
+    if (generatedIEP) {
+      localStorage.setItem('generatedIEP', generatedIEP);
+    }
+  }, [generatedIEP]);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<any>(null);
   const recordingTimerRef = useRef<number | null>(null);
@@ -341,6 +356,17 @@ export default function AIToolsPage() {
     return () => window.removeEventListener("keydown", handler);
   }, [isRecording, language]);
 
+  // Função para resetar e voltar ao início
+  const handleStartOver = () => {
+    setGeneratedIEP(null);
+    localStorage.removeItem('generatedIEP');
+    setStep(1);
+    // Opcionalmente, limpar outros campos também
+    // setStudentPerformance("");
+    // setGradeLevel("");
+    // etc...
+  };
+
   // Show result if IEP is generated
   if (generatedIEP) {
     return (
@@ -355,7 +381,7 @@ export default function AIToolsPage() {
         <SidebarInset>
           <SiteHeader 
             breadcrumbItems={[
-              { label: "My resources", onClick: () => setGeneratedIEP(null) }
+              { label: "My resources", onClick: handleStartOver }
             ]}
             currentPage={`IEP - [Student name] - ${formOptions.gradeLevels.find(g => g.value === gradeLevel)?.label || "4th grade"}`}
           />
@@ -368,7 +394,7 @@ export default function AIToolsPage() {
                     content={generatedIEP}
                     studentName="[Student name]"
                     gradeLevel={formOptions.gradeLevels.find(g => g.value === gradeLevel)?.label || "4th grade"}
-                    onBack={() => setGeneratedIEP(null)}
+                    onBack={handleStartOver}
                     onExport={() => toast.success("Exporting IEP...")}
                     onEdit={() => toast.info("Edit mode coming soon...")}
                   />

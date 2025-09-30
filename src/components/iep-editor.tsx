@@ -3,7 +3,7 @@
 import * as React from "react"
 import { EditorContent, EditorContext, useEditor } from "@tiptap/react"
 import { Button } from "@/components/ui/button"
-import { Pencil, FileDown } from "lucide-react"
+import { Pencil, FileDown, RotateCcw } from "lucide-react"
 
 // --- Tiptap Core Extensions ---
 import { StarterKit } from "@tiptap/starter-kit"
@@ -283,14 +283,24 @@ export function IEPEditor({
             </button>
           )}
         </div>
-        <Button 
-          variant="outline" 
-          onClick={onExport}
-          className="gap-2"
-        >
-          <FileDown className="size-4" />
-          Export
-        </Button>
+        <div className="flex gap-2">
+          <Button 
+            variant="outline" 
+            onClick={onBack}
+            className="gap-2"
+          >
+            <RotateCcw className="size-4" />
+            Start Over
+          </Button>
+          <Button 
+            variant="outline" 
+            onClick={onExport}
+            className="gap-2"
+          >
+            <FileDown className="size-4" />
+            Export
+          </Button>
+        </div>
       </div>
 
       {/* Editor with Toolbar */}
