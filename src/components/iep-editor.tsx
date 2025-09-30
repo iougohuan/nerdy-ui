@@ -59,6 +59,7 @@ import {
 import { MarkButton } from "@/components/tiptap-ui/mark-button"
 import { TextAlignButton } from "@/components/tiptap-ui/text-align-button"
 import { UndoRedoButton } from "@/components/tiptap-ui/undo-redo-button"
+import { TableMenu } from "@/components/tiptap-ui/table-menu/table-menu"
 
 // --- Icons ---
 import { ArrowLeftIcon } from "@/components/tiptap-icons/arrow-left-icon"
@@ -154,6 +155,12 @@ const MainToolbarContent = ({
         <ImageUploadButton text="Add" />
       </ToolbarGroup>
 
+      <ToolbarSeparator />
+
+      <ToolbarGroup>
+        <TableMenu />
+      </ToolbarGroup>
+
       <Spacer />
     </>
   )
@@ -239,6 +246,7 @@ export function IEPEditor({
         HTMLAttributes: {
           class: 'iep-table',
         },
+        allowTableNodeSelection: true, // Permite selecionar a tabela inteira
       }),
       TableRow,
       TableHeader,
