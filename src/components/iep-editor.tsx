@@ -15,6 +15,10 @@ import { Highlight } from "@tiptap/extension-highlight"
 import { Subscript } from "@tiptap/extension-subscript"
 import { Superscript } from "@tiptap/extension-superscript"
 import { Selection } from "@tiptap/extensions"
+import { Table } from "@tiptap/extension-table"
+import { TableRow } from "@tiptap/extension-table-row"
+import { TableCell } from "@tiptap/extension-table-cell"
+import { TableHeader } from "@tiptap/extension-table-header"
 
 // --- UI Primitives ---
 import { Spacer } from "@/components/tiptap-ui-primitive/spacer"
@@ -71,6 +75,7 @@ import { handleImageUpload, MAX_FILE_SIZE } from "@/lib/tiptap-utils"
 
 // --- Styles ---
 import "@/components/tiptap-templates/simple/simple-editor.scss"
+import "@/components/iep-table.scss"
 
 export interface IEPEditorProps {
   content: string
@@ -229,6 +234,15 @@ export function IEPEditor({
       Superscript,
       Subscript,
       Selection,
+      Table.configure({
+        resizable: true,
+        HTMLAttributes: {
+          class: 'iep-table',
+        },
+      }),
+      TableRow,
+      TableHeader,
+      TableCell,
       ImageUploadNode.configure({
         accept: "image/*",
         maxSize: MAX_FILE_SIZE,
