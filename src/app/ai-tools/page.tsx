@@ -55,6 +55,75 @@ export default function AIToolsPage() {
     }
   }, [generatedIEP]);
 
+  // Auto-selecionar seções baseadas nos campos preenchidos
+  useEffect(() => {
+    // Criar Set para evitar duplicatas
+    const autoSelectedSections = new Set<string>();
+
+    // Sempre incluir informações básicas se houver dados do Step 1
+    if (gradeLevel || language || evaluationSchedule) {
+      autoSelectedSections.add("student-info");
+    }
+
+    // Se tem performance do estudante, incluir PLAAFP
+    if (studentPerformance.trim()) {
+      autoSelectedSections.add("plaafp");
+    }
+
+    // Se tem categorias de deficiência
+    if (disabilityCategories.length > 0) {
+      autoSelectedSections.add("disability-categories");
+    }
+
+    // Se tem áreas de preocupação
+    if (areasOfConcern.length > 0) {
+      autoSelectedSections.add("areas-concern");
+    }
+
+    // Se tem áreas prioritárias de goals
+    if (priorityGoalAreas.length > 0) {
+      autoSelectedSections.add("priority-goals");
+      // Se tem priority goals, deve ter goals também
+      autoSelectedSections.add("goals");
+    }
+
+    // Se tem acomodações
+    if (accommodations.length > 0) {
+      autoSelectedSections.add("accommodations-mods");
+    }
+
+    // Se tem serviços
+    if (existingServices.length > 0) {
+      autoSelectedSections.add("services");
+    }
+
+    // Sempre incluir seções padrão úteis se há dados preenchidos
+    if (autoSelectedSections.size > 0) {
+      autoSelectedSections.add("progress");
+      autoSelectedSections.add("gen-ed");
+      autoSelectedSections.add("team");
+    }
+
+    // Converter para array e atualizar apenas se mudou
+    const newSectionsArray = Array.from(autoSelectedSections);
+    const currentSelections = [...iepComponents].sort().join(",");
+    const newSelections = newSectionsArray.sort().join(",");
+    
+    if (newSelections && currentSelections !== newSelections) {
+      setIepComponents(newSectionsArray);
+    }
+  }, [
+    studentPerformance,
+    gradeLevel,
+    language,
+    evaluationSchedule,
+    disabilityCategories.length,
+    areasOfConcern.length,
+    priorityGoalAreas.length,
+    accommodations.length,
+    existingServices.length,
+  ]);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const recognitionRef = useRef<any>(null);
   const recordingTimerRef = useRef<number | null>(null);
