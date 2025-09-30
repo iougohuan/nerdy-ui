@@ -2,23 +2,18 @@
 
 import * as React from "react"
 import { useCurrentEditor } from "@tiptap/react"
-import { Button } from "@/components/ui/button"
-import { 
-  Table, 
-  Trash2, 
-  Plus,
-  ArrowDownToLine,
-  ArrowRightToLine,
-  ArrowUpToLine,
-  ArrowLeftToLine
-} from "lucide-react"
+
+// --- Icons ---
+import { ChevronDownIcon } from "@/components/tiptap-icons/chevron-down-icon"
+
+// --- UI Primitives ---
+import { Button } from "@/components/tiptap-ui-primitive/button"
 import {
   DropdownMenu,
+  DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/tiptap-ui-primitive/dropdown-menu"
 
 export function TableMenu() {
   const { editor } = useCurrentEditor()
@@ -30,69 +25,54 @@ export function TableMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="sm" className="gap-2">
-          <Table className="size-4" />
-          Table
+        <Button data-style="ghost">
+          <svg className="tiptap-button-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.5 4.5h13v11h-13v-11zm0 0v11m13-11v11m-9.75-11v11m6.5-11v11m-9.75-5.5h13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <ChevronDownIcon className="tiptap-button-icon" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="start" className="w-48">
+      <DropdownMenuContent>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addRowBefore().run()}
           disabled={!isInTable}
-          className="gap-2"
         >
-          <ArrowUpToLine className="size-4" />
           Add Row Above
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addRowAfter().run()}
           disabled={!isInTable}
-          className="gap-2"
         >
-          <ArrowDownToLine className="size-4" />
           Add Row Below
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addColumnBefore().run()}
           disabled={!isInTable}
-          className="gap-2"
         >
-          <ArrowLeftToLine className="size-4" />
           Add Column Before
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addColumnAfter().run()}
           disabled={!isInTable}
-          className="gap-2"
         >
-          <ArrowRightToLine className="size-4" />
           Add Column After
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => editor.chain().focus().deleteRow().run()}
           disabled={!isInTable}
-          className="gap-2 text-destructive focus:text-destructive"
         >
-          <Trash2 className="size-4" />
           Delete Row
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().deleteColumn().run()}
           disabled={!isInTable}
-          className="gap-2 text-destructive focus:text-destructive"
         >
-          <Trash2 className="size-4" />
           Delete Column
         </DropdownMenuItem>
-        <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => editor.chain().focus().deleteTable().run()}
           disabled={!isInTable}
-          className="gap-2 text-destructive focus:text-destructive"
         >
-          <Trash2 className="size-4" />
           Delete Table
         </DropdownMenuItem>
       </DropdownMenuContent>
