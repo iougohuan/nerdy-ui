@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { useEditorState } from "@tiptap/react"
+import { useCurrentEditor } from "@tiptap/react"
 import { Button } from "@/components/ui/button"
 import { 
   Table, 
@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export function TableMenu() {
-  const { editor } = useEditorState()
+  const { editor } = useCurrentEditor()
 
   if (!editor) return null
 
