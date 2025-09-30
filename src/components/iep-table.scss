@@ -1,3 +1,9 @@
+// Ajustar largura do editor para preencher todo o container
+.simple-editor-content {
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
 // Estilos para tabelas do IEP
 .simple-editor {
   .iep-table {
