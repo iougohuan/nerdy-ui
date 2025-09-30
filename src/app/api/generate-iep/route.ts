@@ -23,9 +23,8 @@ const RequestSchema = z.object({
 
 // Schema para a estrutura do IEP
 const IEPSectionSchema = z.object({
-  title: z.string(),
-  content: z.string(),
-  emoji: z.string().optional(),
+  title: z.string().describe("Section title WITH emoji at the start (e.g., '👦 Student Information')"),
+  content: z.string().describe("HTML formatted content for the section"),
 });
 
 const IEPDocumentSchema = z.object({
@@ -86,15 +85,16 @@ function buildPrompt(data: z.infer<typeof RequestSchema>): string {
   return `You are an expert IEP (Individualized Education Program) writer. Generate a comprehensive, professional, and detailed IEP document based on the following information.
 
 **CRITICAL FORMATTING REQUIREMENTS:**
-- Use HTML formatting ONLY (headings, paragraphs, lists, tables, hr)
-- Each section must start with an emoji followed by the section title in <h3> tags
-- Use <hr> tags to separate sections
+- Use HTML formatting ONLY (headings, paragraphs, lists, tables)
+- Return each section with a title that INCLUDES the emoji at the start
+- Section titles should be returned WITHOUT <h3> tags (just plain text with emoji)
 - Use <strong> for bold text and emphasis
 - Use <ul> and <li> for unordered lists
 - Use <ol> and <li> for ordered lists
 - Use <table>, <thead>, <tbody>, <tr>, <th>, <td> for tables
 - Use proper paragraph tags <p> for all text content
 - DO NOT use Markdown syntax
+- DO NOT include <hr> tags (separators will be added automatically)
 
 **Student Context:**
 - Grade Level: ${gradeLevelLabel}
@@ -124,51 +124,69 @@ Generate ONLY the following sections (in this order):
 ${selectedSections.map((section, i) => `${i + 1}. ${section}`).join("\n")}
 
 **SECTION-SPECIFIC INSTRUCTIONS:**
+For each section, return a JSON object with:
+- "title": The section name WITH emoji (e.g., "👦 Student Information")
+- "content": HTML content for that section
 
-1. **Student Information** - Include:
+**EMOJI MAPPING FOR SECTIONS:**
+- Student Information: 👦
+- PLAAFP: 🔍
+- Disability Categories: 📋
+- Areas of Concern: ⚠️
+- Priority Goal Areas: 🎯
+- Annual Goals: 🏁
+- Accommodations & Supports: 🧰
+- Progress Monitoring: 📊
+- Participation in General Education: 🧑‍🏫
+- Special Education Services: 👥
+- Team Members: 🤝
+
+1. **👦 Student Information** - Include:
    - 👦 Student Name: [Student name]
    - 🏫 Grade Level: ${gradeLevelLabel}
    - 🗣️ Language: ${languageLabel}
    - 📆 Evaluation Schedule: ${evaluationLabel}
 
-2. **PLAAFP** - Expand on the provided performance data with:
+2. **🔍 Present Levels of Academic Achievement and Functional Performance (PLAAFP)** - Expand on the provided performance data with:
    - Current academic and functional performance
    - Specific strengths and challenges
    - How disability affects participation in general education
    - Use multiple paragraphs for clarity
 
-3. **Disability Categories** - Simple bulleted list of categories
+3. **📋 Disability Categories** - Simple bulleted list of categories
 
-4. **Areas of Concern** - Simple bulleted list
+4. **⚠️ Areas of Concern** - Simple bulleted list
 
-5. **Priority Goal Areas** - Simple bulleted list
+5. **🎯 Priority Goal Areas** - Simple bulleted list
 
-6. **Annual Goals** - For each priority area, create:
+6. **🏁 Annual Goals** - For each priority area, create:
    - Goal title with emoji (e.g., "Goal 1: Reading Comprehension")
-   - Specific measurable objective
+   - Specific measurable objective with timeframe (e.g., "Within 12 months..." or "By the end of the ${evaluationLabel.toLowerCase()} period...")
    - 3-4 short-term benchmarks with clear success criteria
    - Use concrete percentages (e.g., "80% accuracy", "4 out of 5 opportunities")
+   - Reference the evaluation schedule: ${evaluationLabel}
 
-7. **Accommodations & Supports** - Create an HTML table with columns "Category" and "Accommodation"
+7. **🧰 Accommodations & Supports** - Create an HTML table with columns "Category" and "Accommodation"
    - Categories: 📘 Reading, ✍️ Writing, 🧠 General, 📝 Assessments
    - Provide specific, actionable accommodations for each category
 
-8. **Progress Monitoring** - Include:
+8. **📊 Progress Monitoring** - Include:
    - How progress will be measured
-   - Frequency of monitoring
+   - Frequency of monitoring: ${evaluationLabel}
    - Tools/methods (work samples, observations, assessments, rubrics)
+   - Explicitly state: "Progress will be monitored ${evaluationLabel.toLowerCase()}"
 
-9. **Participation in General Education Curriculum** - Describe:
+9. **🧑‍🏫 Participation in General Education Curriculum** - Describe:
    - How student will participate in general education
    - Support needed
    - Any pull-out services
 
-10. **Special Education Services** - Create an HTML table with columns "Service", "Frequency", "Provider"
+10. **👥 Special Education Services** - Create an HTML table with columns "Service", "Frequency", "Provider"
     - Include 2-3 services based on goals
     - Be specific about frequency (e.g., "3x per week, 30 min")
     - List appropriate providers (Special Education Teacher, Resource Room Support, etc.)
 
-11. **Team Members** - List team members with roles:
+11. **🤝 Team Members** - List team members with roles:
     - General Education Teacher: [name]
     - Special Education Teacher: [name]
     - Parent/Guardian: [name]
@@ -186,7 +204,7 @@ ${selectedSections.map((section, i) => `${i + 1}. ${section}`).join("\n")}
 Generate each section with proper HTML formatting and appropriate emojis as shown in the examples.`;
 }
 
-function formatIEPToHTML(sections: Array<{ title: string; content: string; emoji?: string }>): string {
+function formatIEPToHTML(sections: Array<{ title: string; content: string }>): string {
   let html = "";
 
   sections.forEach((section, index) => {
@@ -195,9 +213,8 @@ function formatIEPToHTML(sections: Array<{ title: string; content: string; emoji
       html += "<hr>\n";
     }
 
-    // Add section title with emoji
-    const emoji = section.emoji || "";
-    html += `<h3>${emoji} ${section.title}</h3>\n`;
+    // Add section title (already includes emoji from AI)
+    html += `<h3>${section.title}</h3>\n`;
 
     // Add section content (already in HTML format from AI)
     html += section.content + "\n";
