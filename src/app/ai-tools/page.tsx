@@ -175,7 +175,7 @@ export default function AIToolsPage() {
     {
       performance: "Maya struggles with attention and task completion, often requiring redirection to stay on task. She has difficulty following multi-step directions and organizing her materials. Maya responds well to visual schedules, timers, and movement breaks throughout the day.",
       grade: "3",
-      disabilities: ["other-health"],
+      disabilities: ["adhd"],
       concerns: ["behavioral", "academic"],
       goals: ["attention", "organization", "self-regulation"],
     },

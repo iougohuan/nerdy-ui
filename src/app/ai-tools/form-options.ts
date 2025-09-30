@@ -17,6 +17,7 @@ export const formOptions = {
     { value: "12", label: "12th Grade" }
   ],
   disabilityCategories: [
+    { value: "adhd", label: "ADHD / Attention Deficit Hyperactivity Disorder" },
     { value: "autism", label: "Autism Spectrum Disorder (ASD)" },
     { value: "deaf-blindness", label: "Deaf-Blindness (DB)" },
     { value: "deafness", label: "Deafness (D)" },
