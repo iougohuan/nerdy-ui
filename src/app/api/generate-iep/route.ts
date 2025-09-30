@@ -134,7 +134,7 @@ For each section, return a JSON object with:
 - Disability Categories: 📋
 - Areas of Concern: ⚠️
 - Priority Goal Areas: 🎯
-- Annual Goals: 🏁
+- Annual Goals: 🏁 (use "${evaluationLabel} Goals" as title, e.g., "🏁 Quarterly Goals", "🏁 Weekly Goals")
 - Accommodations & Supports: 🧰
 - Progress Monitoring: 📊
 - Participation in General Education: 🧑‍🏫
@@ -159,7 +159,7 @@ For each section, return a JSON object with:
 
 5. **🎯 Priority Goal Areas** - Simple bulleted list
 
-6. **🏁 Annual Goals** - For each priority area, create:
+6. **🏁 ${evaluationLabel} Goals** - For each priority area, create:
    - Goal title with emoji (e.g., "Goal 1: Reading Comprehension")
    - Specific measurable objective with timeframe (e.g., "Within 12 months..." or "By the end of the ${evaluationLabel.toLowerCase()} period...")
    - 3-4 short-term benchmarks with clear success criteria

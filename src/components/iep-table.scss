@@ -10,7 +10,7 @@
     td {
       border: 1px solid rgba(255, 255, 255, 0.1);
       padding: 12px 16px;
-      text-align: left;
+      text-align: left; // Sempre alinhado à esquerda
       vertical-align: top;
     }
     
@@ -19,11 +19,13 @@
       font-weight: 600;
       font-size: 14px;
       color: rgba(255, 255, 255, 0.9);
+      text-align: left; // Forçar alinhamento à esquerda no header
     }
     
     td {
       font-size: 14px;
       color: rgba(255, 255, 255, 0.8);
+      text-align: left; // Forçar alinhamento à esquerda no conteúdo
     }
     
     // Primeira coluna (Category)
@@ -31,6 +33,11 @@
     td:first-child {
       font-weight: 500;
       min-width: 150px;
+    }
+    
+    // Border no footer de cada row (última célula de cada linha)
+    tbody tr {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     // Linhas zebradas para melhor leitura
@@ -41,6 +48,11 @@
     // Hover effect
     tbody tr:hover {
       background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    // Garantir que todo conteúdo fique alinhado à esquerda
+    * {
+      text-align: left !important;
     }
   }
 }
