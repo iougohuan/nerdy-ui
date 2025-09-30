@@ -109,8 +109,10 @@ This IEP must be PERSONALIZED and SPECIFIC to this individual student. Do NOT ge
 - Language: ${languageLabel}
 - Evaluation Schedule: ${evaluationLabel}
 
-**Present Level of Academic Achievement and Functional Performance (PLAAFP):**
+**Teacher's Brief Description of Student Performance:**
 ${data.studentPerformance}
+
+NOTE: This is a BRIEF teacher note (1 paragraph). You MUST expand this significantly into a comprehensive PLAAFP.
 
 **Disability Categories:**
 ${disabilityLabels.map((label) => `- ${label}`).join("\n")}
@@ -155,17 +157,23 @@ For each section, return a JSON object with:
    - 🗣️ Language: ${languageLabel}
    - 📆 Evaluation Schedule: ${evaluationLabel}
 
-2. **🔍 Present Levels of Academic Achievement and Functional Performance (PLAAFP)** - This is CRITICAL - DO NOT just copy the provided text. Instead:
-   - EXPAND and ELABORATE on the teacher's notes provided in the performance data
-   - Create a comprehensive, professional PLAAFP section (3-4 detailed paragraphs)
-   - First paragraph: Current academic performance with specific examples and grade-level context
-   - Second paragraph: Functional performance, learning behaviors, and how challenges manifest in the classroom
-   - Third paragraph: Student's strengths, what strategies work well, and conditions for success
-   - Fourth paragraph: How the disability specifically impacts participation in general education curriculum
-   - Use professional IEP language while keeping it clear and specific
-   - Include measurable observations and concrete examples
-   - Make it sound like a professionally written PLAAFP by a special education team
-   - Transform brief teacher notes into detailed, comprehensive educational assessment
+2. **🔍 Present Levels of Academic Achievement and Functional Performance (PLAAFP)** - CRITICAL EXPANSION REQUIRED:
+   - The teacher provided a BRIEF 1-paragraph description - you MUST transform this into a comprehensive 3-4 paragraph PLAAFP
+   - INFER and ADD realistic details based on:
+     * The grade level: ${gradeLevelLabel}
+     * Disability categories: ${disabilityLabels.join(", ")}
+     * Areas of concern: ${areasLabels.join(", ")}
+     * Priority goals: ${goalLabels.join(", ")}
+   - Structure (3-4 detailed paragraphs):
+     * Paragraph 1: Academic Performance - Expand on reading/writing/math abilities with grade-level benchmarks and specific examples (e.g., "reads at X grade level", "scores Y% on assessments")
+     * Paragraph 2: Functional Performance - How challenges manifest daily in classroom, learning behaviors, attention span, task completion patterns
+     * Paragraph 3: Strengths & Effective Strategies - What works for this student, engagement triggers, successful interventions already in use
+     * Paragraph 4: Impact on General Education - Specific ways disability affects curriculum access, peer interactions, and learning opportunities
+   - Add REALISTIC DETAILS that align with the disability and grade level
+   - Use professional language: "demonstrates", "exhibits", "requires", "benefits from"
+   - Include measurable observations: percentages, grade levels, frequency descriptors
+   - Reference specific academic subjects and activities relevant to ${gradeLevelLabel}
+   - Make it sound like a team of educators who have observed this student for months
 
 3. **📋 Disability Categories** - Simple bulleted list of categories
 

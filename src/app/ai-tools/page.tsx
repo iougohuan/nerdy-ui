@@ -142,17 +142,56 @@ export default function AIToolsPage() {
   ];
   const MAX_FILE_BYTES = 50 * 1024 * 1024; // 50MB
 
-  // Função para preencher dados de exemplo
+  // Múltiplos exemplos de estudantes
+  const studentExamples = [
+    {
+      performance: "Emma struggles with reading fluency and comprehension, often reading below grade level. She has difficulty decoding multi-syllabic words and loses track when reading longer passages. Emma works well in small groups with visual supports and benefits from extra time on assignments.",
+      grade: "4",
+      disabilities: ["learning"],
+      concerns: ["academic"],
+      goals: ["reading", "attention"],
+    },
+    {
+      performance: "Marcus shows strong verbal skills but has significant challenges with written expression and organization. He often starts assignments enthusiastically but struggles to complete them independently. Marcus benefits from structured routines and responds well to positive reinforcement.",
+      grade: "7",
+      disabilities: ["learning", "other-health"],
+      concerns: ["academic", "behavioral"],
+      goals: ["writing", "organization", "self-regulation"],
+    },
+    {
+      performance: "Sophia demonstrates age-appropriate social skills but has difficulty with mathematical problem-solving and abstract concepts. She can complete basic computation but struggles when word problems require multiple steps. Sophia works best with concrete examples and hands-on activities.",
+      grade: "5",
+      disabilities: ["learning"],
+      concerns: ["academic"],
+      goals: ["math", "attention"],
+    },
+    {
+      performance: "Tyler has challenges with reading comprehension and written expression that impact his performance across all subjects. He benefits from assistive technology, preferential seating, and frequent check-ins. Tyler shows improvement when tasks are broken into smaller steps with clear expectations.",
+      grade: "8",
+      disabilities: ["learning", "other-health"],
+      concerns: ["academic", "functional"],
+      goals: ["reading", "writing", "functional"],
+    },
+    {
+      performance: "Maya struggles with attention and task completion, often requiring redirection to stay on task. She has difficulty following multi-step directions and organizing her materials. Maya responds well to visual schedules, timers, and movement breaks throughout the day.",
+      grade: "3",
+      disabilities: ["other-health"],
+      concerns: ["behavioral", "academic"],
+      goals: ["attention", "organization", "self-regulation"],
+    },
+  ];
+
+  // Função para preencher dados de exemplo (randomizado)
   const fillExampleData = () => {
-    // Dados realistas de um estudante com dificuldades de aprendizagem
-    setStudentPerformance(
-      "Alex is currently in 6th grade and demonstrates strong verbal communication skills when discussing topics of interest. However, he experiences significant challenges with reading comprehension, particularly when identifying main ideas and making inferences from grade-level texts. Alex can decode simple words but struggles with multi-syllabic words and often loses comprehension when reading longer passages.\n\nIn written expression, Alex has difficulty organizing his thoughts on paper and frequently omits punctuation and capitalization. He benefits from graphic organizers, sentence starters, and one-on-one support during writing tasks. Alex shows increased motivation when using technology-based learning tools and responds well to visual supports and hands-on activities.\n\nSocially, Alex works well in small groups but can become frustrated when tasks feel overwhelming, sometimes requiring breaks to regulate his emotions. He demonstrates strong problem-solving skills in math when concepts are presented with concrete examples."
-    );
-    setGradeLevel("6");
-    setDisabilityCategories(["learning", "other-health"]);
-    setAreasOfConcern(["academic", "social-emotional"]);
-    setPriorityGoalAreas(["reading", "writing", "self-regulation"]);
-    toast.success("Example data filled! You can edit before proceeding.");
+    // Selecionar exemplo aleatório
+    const randomExample = studentExamples[Math.floor(Math.random() * studentExamples.length)];
+    
+    setStudentPerformance(randomExample.performance);
+    setGradeLevel(randomExample.grade);
+    setDisabilityCategories(randomExample.disabilities);
+    setAreasOfConcern(randomExample.concerns);
+    setPriorityGoalAreas(randomExample.goals);
+    toast.success("Example data filled! Each click generates a different student.");
   };
 
   const fillExampleStep2 = () => {
