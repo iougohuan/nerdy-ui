@@ -1,3 +1,5 @@
+import type { MultiSelectOption } from "@/components/ui/multi-select";
+
 export const formOptions = {
   gradeLevels: [
     { value: "k", label: "Kindergarten" },
@@ -113,4 +115,14 @@ export const formOptions = {
     { value: "alternative-testing", label: "Alternative testing environment (quiet space, small group)" },
     { value: "other", label: "Other" }
   ]
-} as const;
+} satisfies {
+  gradeLevels: MultiSelectOption[];
+  disabilityCategories: MultiSelectOption[];
+  areasOfConcern: MultiSelectOption[];
+  priorityGoalAreas: MultiSelectOption[];
+  evaluationSchedule: MultiSelectOption[];
+  languages: MultiSelectOption[];
+  iepComponents: MultiSelectOption[];
+  existingServices: MultiSelectOption[];
+  accommodations: MultiSelectOption[];
+};

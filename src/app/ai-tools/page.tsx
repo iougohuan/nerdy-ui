@@ -61,86 +61,55 @@ export default function AIToolsPage() {
   const handleGenerate = async () => {
     setIsGenerating(true);
     
-    // Simulate IEP generation (replace with actual API call)
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    
-    // Mock generated IEP content
-    const mockIEP = generateMockIEP();
-    setGeneratedIEP(mockIEP);
-    setIsGenerating(false);
-    toast.success("IEP generated successfully!");
+    try {
+      // Preparar dados para enviar à API
+      const requestData = {
+        studentPerformance,
+        gradeLevel,
+        disabilityCategories,
+        areasOfConcern,
+        priorityGoalAreas,
+        evaluationSchedule,
+        language,
+        iepComponents,
+        existingServices,
+        accommodations,
+        customDisabilityOptions: Object.fromEntries(
+          customDisabilityOptions.map(opt => [opt.value, opt.label])
+        ),
+        customServicesOptions: Object.fromEntries(
+          customServicesOptions.map(opt => [opt.value, opt.label])
+        ),
+        customAccommodationsOptions: Object.fromEntries(
+          customAccommodationsOptions.map(opt => [opt.value, opt.label])
+        ),
+      };
+
+      // Chamar API para gerar IEP
+      const response = await fetch("/api/generate-iep", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestData),
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to generate IEP");
+      }
+
+      const result = await response.json();
+      setGeneratedIEP(result.html);
+      toast.success(`IEP generated successfully with ${result.sectionsCount} sections!`);
+    } catch (error) {
+      console.error("Error generating IEP:", error);
+      toast.error(error instanceof Error ? error.message : "Failed to generate IEP. Please try again.");
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
-  const generateMockIEP = () => {
-    // Retorna HTML string que será convertido pelo TipTap
-    return `
-      <h3>IEP - [Student name] - ${formOptions.gradeLevels.find(g => g.value === gradeLevel)?.label || '4th grade'}</h3>
-      <p><strong>📋 Student Name:</strong> [Student name]</p>
-      <p><strong>📚 Grade Level:</strong> ${formOptions.gradeLevels.find(g => g.value === gradeLevel)?.label || '4th Grade'}</p>
-      <p><strong>🗣️ Language:</strong> ${formOptions.languages.find(l => l.value === language)?.label || 'English'}</p>
-      <p><strong>📅 Evaluation Schedule:</strong> ${formOptions.evaluationSchedule.find(e => e.value === evaluationSchedule)?.label || 'Quarterly'}</p>
-      <hr>
-      <h3>📖 Present Level of Academic Achievement and Functional Performance (PLAAFP)</h3>
-      <p>${studentPerformance || '[Student name] is currently in 6th grade and demonstrates the ability to identify explicit information in short texts with minimal support. However, he has difficulty making inferences, identifying the main idea, and analyzing longer narrative and informational texts.'}</p>
-      <p>[Student name] benefits from guided reading sessions, oral questioning prior to writing activities, and structured visual supports like graphic organizers.</p>
-      <hr>
-      <h3>📚 Disability Categories</h3>
-      <ul>
-        ${disabilityCategories.map(cat => {
-          const option = formOptions.disabilityCategories.find(o => o.value === cat);
-          return `<li>${option?.label || cat}</li>`;
-        }).join('')}
-      </ul>
-      <hr>
-      <h3>⚠️ Areas of Concern</h3>
-      <ul>
-        ${areasOfConcern.map(area => {
-          const option = formOptions.areasOfConcern.find(o => o.value === area);
-          return `<li>${option?.label || area}</li>`;
-        }).join('')}
-      </ul>
-      <hr>
-      <h3>🎯 Priority Goal Areas</h3>
-      <ul>
-        ${priorityGoalAreas.map(goal => {
-          const option = formOptions.priorityGoalAreas.find(o => o.value === goal);
-          return `<li>${option?.label || goal}</li>`;
-        }).join('')}
-      </ul>
-      <hr>
-      <h3>📊 Annual Goals</h3>
-      <p><strong>Goal 1: Reading Comprehension</strong></p>
-      <p><strong>Objective:</strong></p>
-      <p>Within 12 months, [Student name] will improve his reading comprehension skills by accurately answering at least 4 out of 5 literal/inferential main idea questions.</p>
-      <p><strong>Short-Term Benchmarks:</strong></p>
-      <ol>
-        <li>Given a short narrative passage, [Student name] will identify the main idea with 80% accuracy using a graphic organizer.</li>
-        <li>When reading an informational text, [Student name] will answer "why" and "how" questions with 75% accuracy.</li>
-        <li>[Student name] will complete a cause-effect chart after reading a story, scoring at least 3 out of 4 on a rubric.</li>
-      </ol>
-      <p><strong>Goal 2: Written Expression</strong></p>
-      <p><strong>Objective:</strong></p>
-      <p>Within 12 months, [Student name] will improve written expression by composing multi-sentence paragraphs with sentence starters and teacher modeling.</p>
-      <hr>
-      <h3>📈 Progress Monitoring</h3>
-      <p>Progress will be monitored quarterly through:</p>
-      <ul>
-        <li>Work samples</li>
-        <li>Teacher observations</li>
-        <li>Rubrics for comprehension and writing tasks</li>
-        <li>Informal reading assessments</li>
-      </ul>
-      <hr>
-      <h3>👨‍👩‍👧‍👦 Team Members</h3>
-      <ul>
-        <li><strong>General Education Teacher:</strong> [name]</li>
-        <li><strong>Special Education Teacher:</strong> [name]</li>
-        <li><strong>Parent/Guardian:</strong> [name]</li>
-        <li><strong>School Psychologist:</strong> [name]</li>
-        <li><strong>IEP Coordinator:</strong> [name]</li>
-      </ul>
-    `;
-  };
 
   const handleAddFileClick = () => {
     fileInputRef.current?.click();
@@ -739,7 +708,16 @@ export default function AIToolsPage() {
                           <ArrowLeft className="size-4" />
                           Previous
                         </Button>
-                        <Button onClick={handleGenerate} className="h-10">
+                        <Button 
+                          onClick={() => {
+                            if (iepComponents.length === 0) {
+                              toast.error("Please select at least one IEP Component section");
+                              return;
+                            }
+                            handleGenerate();
+                          }} 
+                          className="h-10"
+                        >
                           <WandSparkles className="size-4" />
                           Generate
                         </Button>
