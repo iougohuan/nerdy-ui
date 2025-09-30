@@ -27,8 +27,6 @@ export function TableMenu() {
 
   const isInTable = editor.isActive("table")
 
-  if (!isInTable) return null
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -40,6 +38,7 @@ export function TableMenu() {
       <DropdownMenuContent align="start" className="w-48">
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addRowBefore().run()}
+          disabled={!isInTable}
           className="gap-2"
         >
           <ArrowUpToLine className="size-4" />
@@ -47,6 +46,7 @@ export function TableMenu() {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addRowAfter().run()}
+          disabled={!isInTable}
           className="gap-2"
         >
           <ArrowDownToLine className="size-4" />
@@ -55,6 +55,7 @@ export function TableMenu() {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addColumnBefore().run()}
+          disabled={!isInTable}
           className="gap-2"
         >
           <ArrowLeftToLine className="size-4" />
@@ -62,6 +63,7 @@ export function TableMenu() {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addColumnAfter().run()}
+          disabled={!isInTable}
           className="gap-2"
         >
           <ArrowRightToLine className="size-4" />
@@ -70,6 +72,7 @@ export function TableMenu() {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => editor.chain().focus().deleteRow().run()}
+          disabled={!isInTable}
           className="gap-2 text-destructive focus:text-destructive"
         >
           <Trash2 className="size-4" />
@@ -77,6 +80,7 @@ export function TableMenu() {
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => editor.chain().focus().deleteColumn().run()}
+          disabled={!isInTable}
           className="gap-2 text-destructive focus:text-destructive"
         >
           <Trash2 className="size-4" />
@@ -85,6 +89,7 @@ export function TableMenu() {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => editor.chain().focus().deleteTable().run()}
+          disabled={!isInTable}
           className="gap-2 text-destructive focus:text-destructive"
         >
           <Trash2 className="size-4" />
