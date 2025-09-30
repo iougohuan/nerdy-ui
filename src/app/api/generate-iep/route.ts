@@ -16,9 +16,9 @@ const RequestSchema = z.object({
   iepComponents: z.array(z.string()),
   existingServices: z.array(z.string()),
   accommodations: z.array(z.string()),
-  customDisabilityOptions: z.record(z.string()).optional(),
-  customServicesOptions: z.record(z.string()).optional(),
-  customAccommodationsOptions: z.record(z.string()).optional(),
+  customDisabilityOptions: z.record(z.string(), z.string()).optional(),
+  customServicesOptions: z.record(z.string(), z.string()).optional(),
+  customAccommodationsOptions: z.record(z.string(), z.string()).optional(),
 });
 
 // Schema para a estrutura do IEP
@@ -265,7 +265,7 @@ export async function POST(request: NextRequest) {
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Invalid request data", details: error.errors },
+        { error: "Invalid request data", details: error.issues },
         { status: 400 }
       );
     }
