@@ -46,7 +46,7 @@ export function TableMenu() {
         </TooltipTrigger>
         <TooltipContent>Table</TooltipContent>
       </Tooltip>
-      <DropdownMenuContent>
+      <DropdownMenuContent align="start">
         <DropdownMenuItem
           onClick={() => editor.chain().focus().addRowBefore().run()}
           disabled={!isInTable}
