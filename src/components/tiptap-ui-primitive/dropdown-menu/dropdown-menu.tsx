@@ -31,6 +31,8 @@ const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup
 
 const DropdownMenuItem = DropdownMenuPrimitive.Item
 
+const DropdownMenuSeparator = DropdownMenuPrimitive.Separator
+
 const DropdownMenuSubTrigger = DropdownMenuPrimitive.SubTrigger
 
 const DropdownMenuSubContent = React.forwardRef<
@@ -92,6 +94,7 @@ export {
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuSeparator,
   DropdownMenuGroup,
   DropdownMenuSub,
   DropdownMenuPortal,
