@@ -148,11 +148,17 @@ For each section, return a JSON object with:
    - 🗣️ Language: ${languageLabel}
    - 📆 Evaluation Schedule: ${evaluationLabel}
 
-2. **🔍 Present Levels of Academic Achievement and Functional Performance (PLAAFP)** - Expand on the provided performance data with:
-   - Current academic and functional performance
-   - Specific strengths and challenges
-   - How disability affects participation in general education
-   - Use multiple paragraphs for clarity
+2. **🔍 Present Levels of Academic Achievement and Functional Performance (PLAAFP)** - This is CRITICAL - DO NOT just copy the provided text. Instead:
+   - EXPAND and ELABORATE on the teacher's notes provided in the performance data
+   - Create a comprehensive, professional PLAAFP section (3-4 detailed paragraphs)
+   - First paragraph: Current academic performance with specific examples and grade-level context
+   - Second paragraph: Functional performance, learning behaviors, and how challenges manifest in the classroom
+   - Third paragraph: Student's strengths, what strategies work well, and conditions for success
+   - Fourth paragraph: How the disability specifically impacts participation in general education curriculum
+   - Use professional IEP language while keeping it clear and specific
+   - Include measurable observations and concrete examples
+   - Make it sound like a professionally written PLAAFP by a special education team
+   - Transform brief teacher notes into detailed, comprehensive educational assessment
 
 3. **📋 Disability Categories** - Simple bulleted list of categories
 
