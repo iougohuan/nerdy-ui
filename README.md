@@ -1,24 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nerdy UI
 
-## Getting Started
+Um projeto [Next.js](https://nextjs.org) com componentes de UI personalizados e integração com [Tiptap Editor](https://tiptap.dev).
 
-First, run the development server:
+## 🚀 Getting Started
+
+Execute o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
+# ou
 yarn dev
-# or
+# ou
 pnpm dev
-# or
+# ou
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no navegador para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📝 Tiptap Editor
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Este projeto usa o **Tiptap Simple Editor Template** (licença MIT) com componentes personalizados.
+
+### Recursos do Editor:
+- ✅ **Formatação de texto**: Negrito, Itálico, Sublinhado, Tachado, Código
+- ✅ **Cabeçalhos**: 6 níveis via dropdown
+- ✅ **Listas**: Marcadores, Numeradas, Tarefas (checkboxes)
+- ✅ **Alinhamento**: Esquerda, Centro, Direita, Justificado
+- ✅ **Links**: Editor de links com preview
+- ✅ **Imagens**: Upload e inserção de imagens
+- ✅ **Highlight**: Destaque de texto com cores
+- ✅ **Subscrito/Sobrescrito**: Para fórmulas e notações
+- ✅ **Desfazer/Refazer**: Histórico completo de edições
+- ✅ **Modo Claro/Escuro**: Suporte nativo
+- ✅ **Responsivo**: Otimizado para mobile
+
+### Usando o Editor:
+
+#### Simple Editor (template básico):
+```tsx
+import { SimpleEditor } from '@/components/tiptap-templates/simple/simple-editor'
+
+export default function Page() {
+  return <SimpleEditor />
+}
+```
+
+#### IEP Editor (versão customizada para IEP):
+```tsx
+import { IEPEditor } from '@/components/iep-editor'
+
+export default function IEPPage() {
+  return (
+    <IEPEditor
+      content="<h1>IEP Document</h1><p>Start writing...</p>"
+      studentName="John Doe"
+      gradeLevel="4th grade"
+      onBack={() => console.log('Back clicked')}
+      onExport={() => console.log('Export clicked')}
+      onEdit={() => console.log('Edit title clicked')}
+    />
+  )
+}
+```
+
+### Componentes Disponíveis:
+
+```tsx
+// Botões de formatação
+import { MarkButton } from '@/components/tiptap-ui/mark-button'
+import { HeadingButton } from '@/components/tiptap-ui/heading-button'
+import { ListButton } from '@/components/tiptap-ui/list-button'
+
+// Dropdowns
+import { HeadingDropdownMenu } from '@/components/tiptap-ui/heading-dropdown-menu'
+import { ListDropdownMenu } from '@/components/tiptap-ui/list-dropdown-menu'
+
+// Popovers
+import { ColorHighlightPopover } from '@/components/tiptap-ui/color-highlight-popover'
+import { LinkPopover } from '@/components/tiptap-ui/link-popover'
+
+// Primitivos
+import { Toolbar } from '@/components/tiptap-ui-primitive/toolbar'
+import { Button } from '@/components/tiptap-ui-primitive/button'
+```
+
+### Customização:
+
+Os estilos podem ser customizados em:
+- `/src/styles/_variables.scss` - Variáveis CSS globais
+- `/src/components/tiptap-ui-primitive/*/*.scss` - Estilos dos componentes
+
+## 🎨 Design Tokens
+
+O projeto usa design tokens para consistência visual:
+
+```bash
+npm run tokens
+```
+
+Este comando gera as variáveis CSS a partir dos tokens em `/tokens`.
+
+## 📄 Licença
+
+Este projeto está licenciado sob a **MIT License** - veja o arquivo [LICENSE](LICENSE) para detalhes.
+
+Os componentes Tiptap também são licenciados sob MIT - veja [TIPTAP_LICENSE.md](TIPTAP_LICENSE.md).
 
 ## Learn More
 
