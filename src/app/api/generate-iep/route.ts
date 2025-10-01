@@ -181,28 +181,35 @@ For each section, return a JSON object with:
 
 5. **🎯 Priority Goal Areas** - Simple bulleted list
 
-6. **🏁 ${evaluationLabel} Goals** - CRITICAL: Goals must be PERSONALIZED and CONNECTED to student's specific context:
+6. **🏁 ${evaluationLabel} Goals** - CRITICAL: Use SMART methodology (Specific, Measurable, Achievable, Relevant, Time-bound):
    - Create ONE goal for EACH priority goal area selected: ${goalLabels.join(", ")}
-   - Each goal MUST directly address the challenges described in the PLAAFP and student performance data
+   - Each goal MUST follow SMART criteria:
+     * **S**pecific - Clearly defined, addressing exact challenges from PLAAFP (not vague like "improve reading")
+     * **M**easurable - Include concrete metrics: percentages, grade levels, frequency (e.g., "80% accuracy", "4 out of 5 trials")
+     * **A**chievable - Realistic given student's CURRENT level in PLAAFP and ${gradeLevelLabel} expectations
+     * **R**elevant - Directly addresses student's documented needs and areas of concern: ${areasLabels.join(", ")}
+     * **T**ime-bound - Clear deadline: "By end of ${evaluationLabel.toLowerCase()} period" or "Within one school year"
    - Goal title with number and area (e.g., "Goal 1: Reading Comprehension", "Goal 2: Written Expression")
-   - Write SPECIFIC, MEASURABLE objectives that:
-     * Start from the student's CURRENT performance level described in PLAAFP
-     * Target realistic improvement based on their grade level (${gradeLevelLabel})
-     * Include clear success criteria with percentages (e.g., "80% accuracy", "4 out of 5 opportunities")
-     * Use appropriate timeframe: "Within ${evaluationLabel.toLowerCase()} assessment period" or "By the end of the school year"
-   - Create 3-4 short-term benchmarks that are ALIGNED WITH THE EVALUATION SCHEDULE (${evaluationLabel}):
-     * If ${evaluationLabel} is "Annually": Use timeframes like "By Fall semester", "By Winter break", "By Spring semester", "By end of year"
-     * If ${evaluationLabel} is "Quarterly": Use "By end of Q1", "By end of Q2", "By end of Q3", "By end of Q4"
-     * If ${evaluationLabel} is "Weekly": Use "Week 1-4", "Week 5-8", "Week 9-12", etc.
-     * If ${evaluationLabel} is "Bi-weekly": Use "Weeks 1-2", "Weeks 3-4", etc.
-     * Build progressively from easier to more challenging
-     * Reference specific strategies mentioned in accommodations: ${accommodationsLabels.join(", ")}
-     * Include concrete percentages and measurable criteria
+   - Write objectives starting from CURRENT performance level and targeting realistic improvement
+   - Create 3-4 SMART short-term benchmarks that are ALIGNED WITH THE EVALUATION SCHEDULE (${evaluationLabel}):
+     * Each benchmark MUST also be SMART:
+       - Specific: Exact skill/behavior to demonstrate
+       - Measurable: Include percentage or frequency (60%, 70%, 80%, 4 out of 5, etc.)
+       - Achievable: Realistic steps from current level
+       - Relevant: Supports main goal and uses selected accommodations
+       - Time-bound: Match evaluation schedule
+     * Timeframe alignment:
+       - If "Annually": Use "By Fall semester (Sept-Dec)", "By Winter break (Jan-Mar)", "By Spring semester (Apr-Jun)", "By end of school year"
+       - If "Quarterly": Use "By end of Q1 (Sept-Nov)", "By end of Q2 (Dec-Feb)", "By end of Q3 (Mar-May)", "By end of Q4 (Jun)"
+       - If "Weekly": Use "Week 1-4", "Week 5-8", "Week 9-12", "Week 13-16"
+       - If "Bi-weekly": Use "Weeks 1-2", "Weeks 3-4", "Weeks 5-6", "Weeks 7-8"
+     * Build progressively: Start at 60-70% accuracy → End at 80-90%
+     * Reference accommodations: ${accommodationsLabels.join(", ")}
+     * Include success criteria: "with teacher support", "independently", "using graphic organizers"
      * Connect to areas of concern: ${areasLabels.join(", ")}
-     * Are achievable given the student's current level and supports
-   - Use the student's name [Student name] throughout
-   - Make goals realistic, specific to THIS student, not generic templates
-   - Ensure benchmarks logically progress and support the main objective
+   - Use [Student name] throughout objectives and benchmarks
+   - Ensure goals are NOT generic templates - specific to THIS student's needs
+   - Benchmarks must logically build toward the main objective (progressive difficulty)
 
 7. **🧰 Accommodations & Supports** - Create an HTML table with class="iep-table" and columns "Category" and "Accommodation"
    - IMPORTANT: Use <table class="iep-table"> for proper styling
