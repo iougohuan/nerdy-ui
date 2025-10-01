@@ -1,46 +1,120 @@
 {
+  "version": "2.0",
+  "lastUpdated": "2025-10-01",
+  "description": "Estrutura completa do prompt usado para gerar IEPs personalizados com IA (OpenAI GPT-4o)",
+  
   "systemRole": "You are an expert IEP (Individualized Education Program) writer with deep knowledge of special education best practices.",
   
   "criticalInstructions": {
-    "personalization": "This IEP must be PERSONALIZED and SPECIFIC to this individual student. Do NOT generate generic, template-like content.",
-    "requirements": [
-      "Reference the specific student context and performance data provided",
-      "Connect logically to other sections (PLAAFP → Goals → Services → Accommodations)",
-      "Use concrete, measurable language based on the student's actual needs",
-      "Sound like it was written by a team who knows this specific student well"
-    ]
+    "personalization": {
+      "rule": "This IEP must be PERSONALIZED and SPECIFIC to this individual student",
+      "prohibitions": ["Do NOT generate generic, template-like content"],
+      "requirements": [
+        "Reference the specific student context and performance data provided",
+        "Connect logically to other sections (PLAAFP → Goals → Services → Accommodations)",
+        "Use concrete, measurable language based on the student's actual needs",
+        "Sound like it was written by a team who knows this specific student well"
+      ]
+    }
   },
 
   "formattingRequirements": {
     "htmlOnly": true,
-    "markdown": false,
-    "sectionTitles": "Include emoji at start, WITHOUT <h3> tags (just plain text)",
-    "elements": {
-      "bold": "<strong>",
-      "lists": "<ul>, <ol>, <li>",
-      "tables": "<table class='iep-table'> with <thead>, <tbody>, <tr>, <th>, <td>",
-      "paragraphs": "<p>",
-      "separators": "NO <hr> tags (added automatically)"
+    "markdownAllowed": false,
+    "sectionTitles": {
+      "format": "Plain text WITH emoji at start",
+      "noTags": "Do NOT wrap in <h3> tags",
+      "example": "👦 Student Information"
     },
-    "tableClass": "iep-table (REQUIRED for all tables)"
+    "elements": {
+      "bold": "<strong>text</strong>",
+      "unorderedList": "<ul><li>item</li></ul>",
+      "orderedList": "<ol><li>item</li></ol>",
+      "tables": {
+        "required": "<table class='iep-table'>",
+        "structure": "<thead><tr><th>Header</th></tr></thead><tbody><tr><td>Data</td></tr></tbody></table>",
+        "note": "ALL tables MUST have class='iep-table' for styling"
+      },
+      "paragraphs": "<p>text</p>",
+      "separators": "NO <hr> tags (added automatically between sections)"
+    }
   },
 
-  "studentContext": {
-    "note": "Valores dinâmicos preenchidos com dados do formulário",
-    "gradeLevel": "${gradeLevelLabel}",
-    "language": "${languageLabel}",
-    "evaluationSchedule": "${evaluationLabel}",
-    "studentPerformance": "${data.studentPerformance} (BRIEF 1-paragraph teacher note to be expanded)",
-    "disabilityCategories": "${disabilityLabels}",
-    "areasOfConcern": "${areasLabels}",
-    "priorityGoalAreas": "${goalLabels}",
-    "existingServices": "${servicesLabels}",
-    "accommodations": "${accommodationsLabels}"
+  "inputData": {
+    "note": "Dados fornecidos pelo formulário do usuário",
+    "studentContext": {
+      "gradeLevel": "string (e.g., '6th Grade')",
+      "language": "string (e.g., 'English')",
+      "evaluationSchedule": "string (e.g., 'Quarterly', 'Annually', 'Weekly', 'Bi-weekly')"
+    },
+    "teacherBriefNote": {
+      "field": "studentPerformance",
+      "type": "string (1 paragraph brief description)",
+      "purpose": "To be EXPANDED into comprehensive 3-4 paragraph PLAAFP",
+      "example": "Emma struggles with reading fluency and comprehension, often reading below grade level..."
+    },
+    "disabilityCategories": {
+      "type": "array of strings",
+      "options": [
+        "ADHD / Attention Deficit Hyperactivity Disorder",
+        "Autism Spectrum Disorder (ASD)",
+        "Specific Learning Disability (SLD)",
+        "Other Health Impairment (OHI)",
+        "etc."
+      ]
+    },
+    "areasOfConcern": {
+      "type": "array of strings",
+      "examples": ["Academic", "Behavioral", "Social/Emotional", "Functional"]
+    },
+    "priorityGoalAreas": {
+      "type": "array of strings",
+      "examples": ["Reading Comprehension", "Written Expression", "Self-Regulation", "Math Problem Solving"],
+      "note": "ONE goal will be created for EACH area selected"
+    },
+    "existingServices": {
+      "type": "array of strings",
+      "examples": ["Special Education Teacher Support", "Speech Therapy", "Counseling Services"]
+    },
+    "accommodations": {
+      "type": "array of strings",
+      "examples": ["Extended time", "Visual aids", "Preferential seating", "Breaks"]
+    },
+    "iepComponents": {
+      "type": "array of strings",
+      "purpose": "Determines which sections to generate",
+      "autoSelection": "Automatically selected based on filled form fields",
+      "values": [
+        "student-info",
+        "plaafp",
+        "disability-categories",
+        "areas-concern",
+        "priority-goals",
+        "goals",
+        "accommodations-mods",
+        "progress",
+        "gen-ed",
+        "services",
+        "team"
+      ]
+    }
   },
 
-  "sectionsToGenerate": {
-    "note": "Geradas APENAS as seções selecionadas pelo usuário",
-    "selectedSections": "${selectedSections}"
+  "autoSelectionLogic": {
+    "description": "Seções são automaticamente selecionadas baseado em campos preenchidos",
+    "rules": {
+      "student-info": "IF gradeLevel OR language OR evaluationSchedule filled",
+      "plaafp": "IF studentPerformance has text",
+      "disability-categories": "IF disabilityCategories.length > 0",
+      "areas-concern": "IF areasOfConcern.length > 0",
+      "priority-goals": "IF priorityGoalAreas.length > 0",
+      "goals": "IF priorityGoalAreas.length > 0 (auto-added with priority-goals)",
+      "accommodations-mods": "IF accommodations.length > 0",
+      "services": "IF existingServices.length > 0",
+      "progress": "Always added if any data exists",
+      "gen-ed": "Always added if any data exists",
+      "team": "Always added if any data exists"
+    }
   },
 
   "emojiMapping": {
@@ -49,18 +123,20 @@
     "disabilityCategories": "📋",
     "areasOfConcern": "⚠️",
     "priorityGoals": "🎯",
-    "goals": "🏁 (Title: '🏁 ${evaluationLabel} Goals')",
+    "goals": "🏁",
+    "goalsTitle": "MUST be exactly '🏁 ${evaluationLabel} Goals' (e.g., '🏁 Quarterly Goals', '🏁 Annually Goals')",
     "accommodations": "🧰",
     "progressMonitoring": "📊",
-    "genEd": "🧑‍🏫",
+    "genEdParticipation": "🧑‍🏫",
     "services": "👥",
-    "team": "🤝"
+    "teamMembers": "🤝"
   },
 
   "sectionInstructions": {
     "1_studentInformation": {
       "title": "👦 Student Information",
-      "content": [
+      "format": "List with emojis",
+      "requiredFields": [
         "👦 Student Name: [Student name]",
         "🏫 Grade Level: ${gradeLevelLabel}",
         "🗣️ Language: ${languageLabel}",
@@ -70,7 +146,9 @@
 
     "2_plaafp": {
       "title": "🔍 Present Levels of Academic Achievement and Functional Performance (PLAAFP)",
-      "criticalRequirement": "EXPAND brief 1-paragraph teacher note into comprehensive 3-4 paragraphs",
+      "critical": "EXPAND brief 1-paragraph teacher note into 3-4 comprehensive paragraphs",
+      "input": "Brief teacher description (1 paragraph)",
+      "output": "Detailed professional PLAAFP (3-4 paragraphs)",
       "inferDetailsFrom": [
         "Grade level",
         "Disability categories",
@@ -78,105 +156,208 @@
         "Priority goals"
       ],
       "structure": {
-        "paragraph1": "Academic Performance - reading/writing/math with grade-level benchmarks and percentages",
-        "paragraph2": "Functional Performance - daily classroom challenges, behaviors, attention, task completion",
-        "paragraph3": "Strengths & Strategies - what works, engagement triggers, successful interventions",
-        "paragraph4": "Impact on General Education - curriculum access, peer interactions, learning opportunities"
+        "paragraph1": {
+          "focus": "Academic Performance",
+          "content": "Expand on reading/writing/math abilities with grade-level benchmarks",
+          "examples": "reads at X grade level, scores Y% on assessments",
+          "specificity": "Include measurable data points"
+        },
+        "paragraph2": {
+          "focus": "Functional Performance",
+          "content": "How challenges manifest daily in classroom",
+          "topics": ["learning behaviors", "attention span", "task completion patterns"]
+        },
+        "paragraph3": {
+          "focus": "Strengths & Effective Strategies",
+          "content": "What works for this student",
+          "topics": ["engagement triggers", "successful interventions", "conditions for success"]
+        },
+        "paragraph4": {
+          "focus": "Impact on General Education",
+          "content": "How disability affects curriculum access",
+          "topics": ["peer interactions", "learning opportunities", "support needs"]
+        }
       },
-      "requirements": [
-        "Add REALISTIC DETAILS aligned with disability and grade",
-        "Use professional language: demonstrates, exhibits, requires, benefits from",
-        "Include measurable observations: percentages, grade levels, frequencies",
-        "Reference specific subjects relevant to grade level",
-        "Sound like a team who observed student for months"
-      ]
+      "language": {
+        "professional": ["demonstrates", "exhibits", "requires", "benefits from"],
+        "measurable": ["percentages", "grade levels", "frequency descriptors"],
+        "specific": "Reference actual subjects and activities for grade level"
+      },
+      "tone": "Sound like special education team who observed student for months"
     },
 
     "3_disabilityCategories": {
       "title": "📋 Disability Categories",
-      "content": "Simple bulleted list of selected categories"
+      "format": "Simple bulleted list (<ul><li>)",
+      "source": "Selected disability categories from form"
     },
 
     "4_areasOfConcern": {
       "title": "⚠️ Areas of Concern",
-      "content": "Simple bulleted list"
+      "format": "Simple bulleted list (<ul><li>)",
+      "source": "Selected areas from form"
     },
 
     "5_priorityGoals": {
       "title": "🎯 Priority Goal Areas",
-      "content": "Simple bulleted list"
+      "format": "Simple bulleted list (<ul><li>)",
+      "source": "Selected priority goal areas from form"
     },
 
     "6_goals": {
-      "title": "🏁 ${evaluationLabel} Goals (EXACT title required)",
-      "critical": "Goals must be PERSONALIZED and CONNECTED to student context",
-      "requirements": [
-        "Create ONE goal for EACH priority goal area",
-        "Goals MUST address PLAAFP challenges directly",
-        "Start from student's CURRENT performance level",
-        "Target realistic improvement for grade level",
-        "Include success criteria with percentages",
-        "Use timeframe matching evaluation schedule"
-      ],
-      "benchmarkAlignment": {
-        "Annually": ["By Fall semester", "By Winter break", "By Spring semester", "By end of year"],
-        "Quarterly": ["By end of Q1", "By end of Q2", "By end of Q3", "By end of Q4"],
-        "Weekly": ["Week 1-4", "Week 5-8", "Week 9-12", "etc."],
-        "Bi-weekly": ["Weeks 1-2", "Weeks 3-4", "etc."]
+      "title": "🏁 ${evaluationLabel} Goals",
+      "methodology": "SMART (Specific, Measurable, Achievable, Relevant, Time-bound)",
+      "critical": "Goals must be PERSONALIZED and use SMART methodology",
+      
+      "smartCriteria": {
+        "S_Specific": {
+          "requirement": "Clearly defined, addressing EXACT challenges from PLAAFP",
+          "prohibited": "Vague statements like 'improve reading'",
+          "required": "Exact skill/behavior (e.g., 'identify main ideas in narrative texts')"
+        },
+        "M_Measurable": {
+          "requirement": "Include concrete metrics",
+          "examples": ["80% accuracy", "4 out of 5 trials", "reads at 5th grade level"],
+          "formats": ["percentages", "grade levels", "frequency ratios"]
+        },
+        "A_Achievable": {
+          "requirement": "Realistic given student's CURRENT level from PLAAFP",
+          "basedOn": ["${gradeLevelLabel} expectations", "Current performance baseline"],
+          "consideration": "Available supports and accommodations"
+        },
+        "R_Relevant": {
+          "requirement": "Directly addresses documented needs",
+          "mustConnect": ["Areas of concern", "Disability impact", "Student challenges from PLAAFP"]
+        },
+        "T_TimeBound": {
+          "requirement": "Clear deadline matching evaluation schedule",
+          "format": "By end of ${evaluationLabel.toLowerCase()} period",
+          "examples": ["By end of school year", "By end of Q4", "By Week 12"]
+        }
       },
-      "benchmarkRequirements": [
-        "Build progressively easier → challenging",
-        "Reference specific accommodations selected",
-        "Include concrete percentages",
-        "Connect to areas of concern",
-        "Achievable given current level"
-      ],
-      "style": [
-        "Use [Student name] throughout",
-        "NOT generic templates",
-        "Benchmarks support main objective logically"
-      ]
+
+      "goalCreation": {
+        "quantity": "ONE goal for EACH priority goal area selected",
+        "format": "Goal [number]: [Goal Area Name]",
+        "examples": ["Goal 1: Reading Comprehension", "Goal 2: Written Expression"],
+        "objectiveStructure": "Start from CURRENT level → Target realistic improvement → Include success criteria → Add timeframe"
+      },
+
+      "benchmarks": {
+        "quantity": "3-4 short-term benchmarks per goal",
+        "smartRequired": "Each benchmark MUST also follow SMART criteria",
+        "components": {
+          "specific": "Exact skill/behavior to demonstrate",
+          "measurable": "Percentage or frequency (60%, 70%, 80%, 4 of 5)",
+          "achievable": "Realistic steps from current level",
+          "relevant": "Supports main goal, uses selected accommodations",
+          "timeBound": "Matches evaluation schedule"
+        },
+        "timeframeAlignment": {
+          "Annually": {
+            "benchmarks": [
+              "By Fall semester (September-December)",
+              "By Winter break (January-March)",
+              "By Spring semester (April-June)",
+              "By end of school year"
+            ]
+          },
+          "Quarterly": {
+            "benchmarks": [
+              "By end of Q1 (Sept-Nov)",
+              "By end of Q2 (Dec-Feb)",
+              "By end of Q3 (Mar-May)",
+              "By end of Q4 (Jun)"
+            ]
+          },
+          "Weekly": {
+            "benchmarks": ["Week 1-4", "Week 5-8", "Week 9-12", "Week 13-16"]
+          },
+          "Bi-weekly": {
+            "benchmarks": ["Weeks 1-2", "Weeks 3-4", "Weeks 5-6", "Weeks 7-8"]
+          }
+        },
+        "progression": {
+          "pattern": "Start easier → Build to challenging",
+          "accuracyProgression": "60% → 70% → 75% → 80-90%",
+          "supportProgression": "With full support → Minimal prompting → Independently"
+        },
+        "requirements": [
+          "Reference accommodations: ${accommodationsLabels}",
+          "Include success criteria descriptions",
+          "Connect to areas of concern",
+          "Logically build toward main objective"
+        ]
+      },
+
+      "exampleSmartGoal": {
+        "context": "Student reading at 4th grade level in 6th grade, struggles with inferences",
+        "objective": "By the end of the school year, [Student name] will improve reading comprehension by accurately answering inferential and main idea questions in 6th-grade texts with 80% accuracy in 4 out of 5 opportunities, using graphic organizers.",
+        "smartBreakdown": {
+          "specific": "Inferential and main idea questions in 6th-grade texts",
+          "measurable": "80% accuracy in 4 out of 5 opportunities",
+          "achievable": "From 4th to approaching 6th grade level in 1 year",
+          "relevant": "Addresses reading comprehension concern from PLAAFP",
+          "timeBound": "By end of school year"
+        }
+      }
     },
 
     "7_accommodations": {
       "title": "🧰 Accommodations & Supports",
       "format": "HTML table with class='iep-table'",
       "columns": ["Category", "Accommodation"],
-      "categories": ["📘 Reading", "✍️ Writing", "🧠 General", "📝 Assessments"],
+      "categories": {
+        "reading": "📘 Reading",
+        "writing": "✍️ Writing",
+        "general": "🧠 General",
+        "assessments": "📝 Assessments"
+      },
       "personalizationBasis": [
-        "Specific PLAAFP challenges",
-        "Selected accommodations from form",
+        "Specific challenges mentioned in PLAAFP",
+        "Selected accommodations from form: ${accommodationsLabels}",
         "Student's learning style from performance data",
-        "Grade level appropriateness"
+        "Grade level appropriateness: ${gradeLevelLabel}"
       ],
       "requirements": [
-        "SPECIFIC and ACTIONABLE, not generic",
-        "Connect directly to documented needs"
-      ]
+        "Make SPECIFIC and ACTIONABLE, not generic",
+        "Connect directly to student's documented needs",
+        "Reference strategies that support goals"
+      ],
+      "example": "<table class='iep-table'><thead><tr><th>Category</th><th>Accommodation</th></tr></thead><tbody><tr><td>📘 Reading</td><td>Graphic organizers for main idea identification, color-coded highlighting</td></tr></tbody></table>"
     },
 
     "8_progressMonitoring": {
       "title": "📊 Progress Monitoring",
       "personalizationRequired": true,
-      "format": "Start with: 'Progress will be monitored ${evaluationLabel.toLowerCase()} through:'",
+      "openingStatement": "Progress will be monitored ${evaluationLabel.toLowerCase()} through:",
       "requirements": [
-        "SPECIFIC methods aligned with each goal",
-        "Grade-appropriate assessment tools",
-        "Reference specific goal benchmarks",
-        "Data collection methods matching accommodations",
-        "Specify WHO monitors (teacher, aide, specialist)"
+        "List SPECIFIC monitoring methods aligned with each goal",
+        "Include grade-appropriate assessment tools for ${gradeLevelLabel}",
+        "Reference specific benchmarks from goals (e.g., 'Reading rubrics', 'Writing samples on 4-point scale')",
+        "Mention data collection methods matching accommodations",
+        "Specify WHO monitors (teacher, aide, specialist)",
+        "Connect to evaluation schedule: ${evaluationLabel}"
+      ],
+      "example": [
+        "Reading comprehension rubrics focused on inferential questions",
+        "Writing samples scored on 4-point organization scale",
+        "Weekly self-regulation check-ins with behavior specialist",
+        "Data collected by Special Education Teacher and reviewed monthly"
       ]
     },
 
     "9_genEdParticipation": {
       "title": "🧑‍🏫 Participation in General Education Curriculum",
-      "personalizationBasis": [
-        "Specific to ${gradeLevelLabel} general education",
-        "Reference accommodations/modifications needed",
-        "Percentage of time in gen ed vs specialized",
-        "Subjects where student excels vs needs support",
-        "Connect to areas of concern",
-        "Pull-out services aligned with goals"
+      "personalizationRequired": true,
+      "requirements": [
+        "Describe specifically how THIS student participates in ${gradeLevelLabel} general education",
+        "Reference accommodations/modifications needed for success",
+        "Specify percentage of time (e.g., '70% in gen ed, 30% in resource room')",
+        "Mention specific subjects where student excels vs. needs support",
+        "Connect to areas of concern: ${areasLabels}",
+        "Describe pull-out services aligned with goals",
+        "Be realistic about inclusion opportunities given needs"
       ]
     },
 
@@ -184,131 +365,174 @@
       "title": "👥 Special Education Services",
       "format": "HTML table with class='iep-table'",
       "columns": ["Service", "Frequency", "Provider"],
-      "critical": "Each service MUST support at least one goal",
+      "critical": "Each service MUST DIRECTLY support at least one goal",
+      
       "serviceToGoalMapping": {
-        "ReadingComprehension": "Reading Intervention/Literacy Support",
-        "WrittenExpression": "Writing Support/Resource Room",
-        "Math": "Math Intervention",
-        "SelfRegulation": "Counseling/Behavioral Support",
-        "SocialSkills": "Social Skills Group/Counseling",
-        "Communication": "Speech Therapy"
+        "ReadingComprehension": "Reading Intervention OR Literacy Support",
+        "WrittenExpression": "Writing Support OR Resource Room",
+        "MathProblemSolving": "Math Intervention",
+        "SelfRegulation": "Counseling OR Behavioral Support",
+        "SocialSkills": "Social Skills Group OR Counseling",
+        "CommunicationDevelopment": "Speech Therapy",
+        "AttentionFocus": "Behavioral Support OR Study Skills",
+        "Organization": "Executive Function Coaching OR Study Skills"
       },
+
       "rules": [
-        "ONLY include services matching priority goal areas",
-        "DO NOT include unrelated services (e.g., no Speech Therapy without communication goals)"
+        "ONLY include services matching priority goal areas: ${goalLabels}",
+        "DO NOT include unrelated services",
+        "Example: No Speech Therapy if no communication/language goals"
       ],
+
       "frequencyLevels": {
-        "intensive": "3-5x per week, 30-45 min (significant gaps)",
-        "moderate": "2-3x per week, 30 min (specific skills)",
-        "maintenance": "1x per week or 2x per month"
+        "intensive": {
+          "when": "Addressing significant gaps (2+ grade levels behind)",
+          "frequency": "3-5x per week, 30-45 minutes",
+          "example": "Student reading at 3rd grade level in 6th grade"
+        },
+        "moderate": {
+          "when": "Addressing specific skill deficits",
+          "frequency": "2-3x per week, 30 minutes",
+          "example": "Student at grade level but needs strategy instruction"
+        },
+        "maintenance": {
+          "when": "Monitoring progress or light support",
+          "frequency": "1x per week OR 2x per month, 30 minutes",
+          "example": "Student making steady progress, needs check-ins"
+        }
       },
-      "namingConvention": "Clearly show connection to goals (e.g., 'Reading Comprehension Intervention')"
+
+      "namingConvention": "Clearly show connection to goals (e.g., 'Reading Comprehension Intervention' not 'Special Ed Support')",
+      
+      "example": "<table class='iep-table'><thead><tr><th>Service</th><th>Frequency</th><th>Provider</th></tr></thead><tbody><tr><td>Reading Comprehension Intervention</td><td>3x per week, 45 min</td><td>Special Education Teacher</td></tr></tbody></table>"
     },
 
     "11_teamMembers": {
       "title": "🤝 Team Members",
-      "roles": [
+      "format": "Bulleted list with roles",
+      "requiredRoles": [
         "General Education Teacher: [name]",
         "Special Education Teacher: [name]",
         "Parent/Guardian: [name]",
         "School Psychologist: [name]",
         "IEP Coordinator: [name]"
-      ]
+      ],
+      "note": "Use [name] placeholder, do not invent names"
     }
-  },
-
-  "styleGuidelines": {
-    "studentName": "[Student name] (placeholder, do not invent)",
-    "specificity": "Be specific and measurable in all goals/objectives",
-    "tone": "Professional, encouraging language",
-    "metrics": "Include concrete percentages and timeframes",
-    "practicality": "Make accommodations practical and implementable",
-    "consistency": "Ensure consistency with grade level and needs"
   },
 
   "coherenceRequirements": {
     "critical": "ENSURE COHERENCE ACROSS ALL SECTIONS",
-    "connections": [
-      "Goals MUST address PLAAFP challenges",
-      "Accommodations MUST support specific goals",
-      "Services MUST align with goal intensity/type",
-      "Progress monitoring MUST measure goal benchmarks",
-      "Every section references student's documented needs",
-      "Entire IEP tells cohesive story about THIS student"
-    ]
+    "connections": {
+      "plaafpToGoals": "Goals MUST directly address challenges described in PLAAFP",
+      "goalsToAccommodations": "Accommodations MUST support the specific goals created",
+      "goalsToServices": "Services MUST align with intensity and type of goals",
+      "goalsToMonitoring": "Progress monitoring MUST measure specific goal benchmarks",
+      "overall": "Every section should reference and connect to student's documented needs"
+    },
+    "narrative": "The entire IEP should tell a cohesive story about THIS specific student"
   },
 
-  "exampleStudentProfiles": [
-    {
-      "name": "Emma",
+  "styleGuidelines": {
+    "studentName": "[Student name] (placeholder - do NOT invent actual names)",
+    "specificity": "Be specific and measurable in all goals and objectives",
+    "tone": "Professional, encouraging language",
+    "metrics": "Include concrete percentages and timeframes",
+    "practicality": "Make accommodations practical and implementable",
+    "consistency": "Ensure consistency with student's grade level and needs"
+  },
+
+  "exampleStudentProfiles": {
+    "note": "5 diverse student examples that rotate randomly on 'Fill Example' click",
+    "format": "Brief 1-paragraph teacher notes (NOT detailed descriptions)",
+    
+    "emma": {
       "grade": "4th Grade",
-      "briefNote": "Emma struggles with reading fluency and comprehension, often reading below grade level. She has difficulty decoding multi-syllabic words and loses track when reading longer passages. Emma works well in small groups with visual supports and benefits from extra time on assignments.",
+      "teacherNote": "Emma struggles with reading fluency and comprehension, often reading below grade level. She has difficulty decoding multi-syllabic words and loses track when reading longer passages. Emma works well in small groups with visual supports and benefits from extra time on assignments.",
       "disabilities": ["Specific Learning Disability (SLD)"],
-      "concerns": ["Academic"],
-      "goals": ["Reading Comprehension", "Attention & Focus"]
+      "concerns": ["Academic (reading, writing, math)"],
+      "priorityGoals": ["Reading Comprehension", "Attention & Focus"],
+      "expectedExpansion": "AI will expand this brief note into 3-4 detailed PLAAFP paragraphs"
     },
-    {
-      "name": "Marcus",
+
+    "marcus": {
       "grade": "7th Grade",
-      "briefNote": "Marcus shows strong verbal skills but has significant challenges with written expression and organization. He often starts assignments enthusiastically but struggles to complete them independently. Marcus benefits from structured routines and responds well to positive reinforcement.",
+      "teacherNote": "Marcus shows strong verbal skills but has significant challenges with written expression and organization. He often starts assignments enthusiastically but struggles to complete them independently. Marcus benefits from structured routines and responds well to positive reinforcement.",
       "disabilities": ["Specific Learning Disability (SLD)", "Other Health Impairment (OHI)"],
       "concerns": ["Academic", "Behavioral"],
-      "goals": ["Written Expression", "Organization & Task Completion", "Self-Regulation & Behavior"]
+      "priorityGoals": ["Written Expression", "Organization & Task Completion", "Self-Regulation & Behavior"]
     },
-    {
-      "name": "Sophia",
+
+    "sophia": {
       "grade": "5th Grade",
-      "briefNote": "Sophia demonstrates age-appropriate social skills but has difficulty with mathematical problem-solving and abstract concepts. She can complete basic computation but struggles when word problems require multiple steps. Sophia works best with concrete examples and hands-on activities.",
+      "teacherNote": "Sophia demonstrates age-appropriate social skills but has difficulty with mathematical problem-solving and abstract concepts. She can complete basic computation but struggles when word problems require multiple steps. Sophia works best with concrete examples and hands-on activities.",
       "disabilities": ["Specific Learning Disability (SLD)"],
       "concerns": ["Academic"],
-      "goals": ["Math Problem Solving", "Attention & Focus"]
+      "priorityGoals": ["Math Problem Solving", "Attention & Focus"]
     },
-    {
-      "name": "Tyler",
+
+    "tyler": {
       "grade": "8th Grade",
-      "briefNote": "Tyler has challenges with reading comprehension and written expression that impact his performance across all subjects. He benefits from assistive technology, preferential seating, and frequent check-ins. Tyler shows improvement when tasks are broken into smaller steps with clear expectations.",
+      "teacherNote": "Tyler has challenges with reading comprehension and written expression that impact his performance across all subjects. He benefits from assistive technology, preferential seating, and frequent check-ins. Tyler shows improvement when tasks are broken into smaller steps with clear expectations.",
       "disabilities": ["Specific Learning Disability (SLD)", "Other Health Impairment (OHI)"],
       "concerns": ["Academic", "Functional"],
-      "goals": ["Reading Comprehension", "Written Expression", "Functional Independence"]
+      "priorityGoals": ["Reading Comprehension", "Written Expression", "Functional Independence"]
     },
-    {
-      "name": "Maya",
+
+    "maya": {
       "grade": "3rd Grade",
-      "briefNote": "Maya struggles with attention and task completion, often requiring redirection to stay on task. She has difficulty following multi-step directions and organizing her materials. Maya responds well to visual schedules, timers, and movement breaks throughout the day.",
+      "teacherNote": "Maya struggles with attention and task completion, often requiring redirection to stay on task. She has difficulty following multi-step directions and organizing her materials. Maya responds well to visual schedules, timers, and movement breaks throughout the day.",
       "disabilities": ["ADHD / Attention Deficit Hyperactivity Disorder"],
       "concerns": ["Behavioral", "Academic"],
-      "goals": ["Attention & Focus", "Organization & Task Completion", "Self-Regulation & Behavior"]
-    }
-  ],
-
-  "aiModelConfig": {
-    "model": "gpt-4o-2024-08-06",
-    "temperature": 0.7,
-    "outputFormat": "structured (Zod schema)",
-    "schema": {
-      "sections": [
-        {
-          "title": "string (with emoji)",
-          "content": "string (HTML formatted)"
-        }
-      ]
+      "priorityGoals": ["Attention & Focus", "Organization & Task Completion", "Self-Regulation & Behavior"]
     }
   },
 
-  "expectedOutput": {
-    "format": "JSON with sections array",
-    "example": {
-      "sections": [
-        {
-          "title": "👦 Student Information",
-          "content": "<p><strong>👦 Student Name:</strong> [Student name]</p><p><strong>🏫 Grade Level:</strong> 6th Grade</p>..."
-        },
-        {
-          "title": "🔍 Present Levels of Academic Achievement and Functional Performance (PLAAFP)",
-          "content": "<p>First paragraph about academic performance...</p><p>Second paragraph about functional performance...</p>..."
+  "technicalConfiguration": {
+    "aiModel": {
+      "name": "gpt-4o-2024-08-06",
+      "provider": "OpenAI via Vercel AI SDK",
+      "temperature": 0.7,
+      "note": "Temperature 0.7 balances creativity with consistency"
+    },
+    "outputFormat": {
+      "type": "Structured Output (generateObject)",
+      "validation": "Zod schema",
+      "schema": {
+        "IEPDocument": {
+          "sections": [
+            {
+              "title": "string (section name WITH emoji)",
+              "content": "string (HTML formatted content)"
+            }
+          ]
         }
-      ]
+      }
+    },
+    "postProcessing": {
+      "function": "formatIEPToHTML",
+      "action": "Adds <h3> tags around titles and <hr> separators between sections"
     }
-  }
-}
+  },
 
+  "apiRoute": {
+    "endpoint": "POST /api/generate-iep",
+    "location": "src/app/api/generate-iep/route.ts",
+    "security": "Server-side only (API key not exposed to client)",
+    "validation": "Zod schema validation on request and response"
+  },
+
+  "keyFeatures": [
+    "✅ SMART methodology for all goals and benchmarks",
+    "✅ Personalized content based on student context",
+    "✅ Auto-selection of relevant IEP sections",
+    "✅ Brief teacher notes expanded into professional PLAAFP",
+    "✅ Goals directly connected to PLAAFP challenges",
+    "✅ Services mapped to specific goals (no unrelated services)",
+    "✅ Evaluation schedule alignment (Annually, Quarterly, Weekly)",
+    "✅ HTML table formatting with iep-table class",
+    "✅ Coherence across all sections",
+    "✅ 5 randomized student examples",
+    "✅ ADHD added to disability categories"
+  ]
+}
