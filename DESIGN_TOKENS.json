@@ -1,0 +1,535 @@
+{
+  "version": "1.0",
+  "generated": "2025-10-02",
+  "description": "Design tokens do Nerdy UI - Shadcn + Tailwind + Custom Tokens",
+  
+  "colors": {
+    "semantic": {
+      "light": {
+        "background": "#ffffff",
+        "foreground": "#0a0a0a",
+        "primary": "#17e2ea",
+        "primaryForeground": "#171717",
+        "secondary": "#f5f5f5",
+        "secondaryForeground": "#0a0a0a",
+        "accent": "#f5f5f5",
+        "accentForeground": "#171717",
+        "destructive": "#dc2626",
+        "muted": "#f5f5f5",
+        "mutedForeground": "#737373",
+        "border": "#00000029",
+        "input": "#e5e5e5",
+        "ring": "#737373",
+        "card": "#ffffff3d",
+        "cardForeground": "#0a0a0a",
+        "cardGlass": "#0000000a",
+        "popover": "#ffffff",
+        "popoverForeground": "#0a0a0a"
+      },
+      "dark": {
+        "background": "#202344",
+        "foreground": "#edf2ff",
+        "primary": "#17e2ea",
+        "primaryForeground": "#171717",
+        "secondary": "#fafafa",
+        "secondaryForeground": "#1c1917",
+        "accent": "#404040",
+        "accentForeground": "#fafafa",
+        "destructive": "#ef4444",
+        "muted": "#262626",
+        "mutedForeground": "#a3a3a3",
+        "border": "#ffffff29",
+        "input": "#171717",
+        "ring": "#737373",
+        "card": "#0000003d",
+        "cardForeground": "#fafafa",
+        "cardGlass": "#ffffff0a",
+        "popover": "#262626",
+        "popoverForeground": "#fafafa"
+      }
+    },
+
+    "brand": {
+      "lilac": {
+        "50": "#edf2ff",
+        "100": "#dfe6ff",
+        "200": "#c5d2ff",
+        "300": "#b3c1ff",
+        "400": "#7d8afc",
+        "500": "#5e63f6",
+        "600": "#4841ea",
+        "700": "#3d33cf",
+        "800": "#332ca7",
+        "900": "#2d2b84",
+        "950": "#202344"
+      },
+      "soft": {
+        "base": "#B3C1FF",
+        "50": "color-mix(in oklch, #B3C1FF 5%, white)",
+        "100": "color-mix(in oklch, #B3C1FF 12%, white)",
+        "200": "color-mix(in oklch, #B3C1FF 24%, white)",
+        "300": "color-mix(in oklch, #B3C1FF 40%, white)",
+        "400": "color-mix(in oklch, #B3C1FF 60%, white)",
+        "500": "#B3C1FF",
+        "600": "color-mix(in oklch, #B3C1FF 80%, black)",
+        "700": "color-mix(in oklch, #B3C1FF 87%, black)",
+        "800": "color-mix(in oklch, #B3C1FF 92%, black)",
+        "900": "color-mix(in oklch, #B3C1FF 96%, black)",
+        "950": "color-mix(in oklch, #B3C1FF 98%, black)"
+      }
+    },
+
+    "vibrant": {
+      "cyan": "#17E2EA",
+      "yellow": "#FFC32B",
+      "pink": "#FB43DA",
+      "purple": "#D684FF",
+      "gradient": "linear-gradient(90deg, #FFC32B 17.4%, #FB43DA 41.57%, #D684FF 49.25%, #17E2EA 68.58%)"
+    },
+
+    "tailwind": {
+      "slate": {
+        "50": "#f8fafc",
+        "100": "#f1f5f9",
+        "200": "#e2e8f0",
+        "300": "#cbd5e1",
+        "400": "#94a3b8",
+        "500": "#64748b",
+        "600": "#475569",
+        "700": "#334155",
+        "800": "#1e293b",
+        "900": "#0f172a",
+        "950": "#020617"
+      },
+      "gray": {
+        "50": "#f9fafb",
+        "100": "#f3f4f6",
+        "200": "#e5e7eb",
+        "300": "#d1d5db",
+        "400": "#9ca3af",
+        "500": "#6b7280",
+        "600": "#4b5563",
+        "700": "#374151",
+        "800": "#1f2937",
+        "900": "#111827",
+        "950": "#030712"
+      },
+      "zinc": {
+        "50": "#fafafa",
+        "100": "#f4f4f5",
+        "200": "#e4e4e7",
+        "300": "#d4d4d8",
+        "400": "#a1a1aa",
+        "500": "#71717a",
+        "600": "#52525b",
+        "700": "#3f3f46",
+        "800": "#27272a",
+        "900": "#18181b",
+        "950": "#09090b"
+      },
+      "red": {
+        "50": "#fef2f2",
+        "100": "#fee2e2",
+        "200": "#fecaca",
+        "300": "#fca5a5",
+        "400": "#f87171",
+        "500": "#ef4444",
+        "600": "#dc2626",
+        "700": "#b91c1c",
+        "800": "#991b1b",
+        "900": "#7f1d1d",
+        "950": "#450a0a"
+      },
+      "orange": {
+        "50": "#fff7ed",
+        "100": "#ffedd5",
+        "200": "#fed7aa",
+        "300": "#fdba74",
+        "400": "#fb923c",
+        "500": "#f97316",
+        "600": "#ea580c",
+        "700": "#c2410c",
+        "800": "#9a3412",
+        "900": "#7c2d12",
+        "950": "#431407"
+      },
+      "yellow": {
+        "50": "#fefce8",
+        "100": "#fef9c3",
+        "200": "#fef08a",
+        "300": "#fde047",
+        "400": "#facc15",
+        "500": "#eab308",
+        "600": "#ca8a04",
+        "700": "#a16207",
+        "800": "#854d0e",
+        "900": "#713f12",
+        "950": "#422006"
+      },
+      "green": {
+        "50": "#f0fdf4",
+        "100": "#dcfce7",
+        "200": "#bbf7d0",
+        "300": "#86efac",
+        "400": "#4ade80",
+        "500": "#22c55e",
+        "600": "#16a34a",
+        "700": "#15803d",
+        "800": "#166534",
+        "900": "#14532d",
+        "950": "#052e16"
+      },
+      "blue": {
+        "50": "#eff6ff",
+        "100": "#dbeafe",
+        "200": "#bfdbfe",
+        "300": "#93c5fd",
+        "400": "#60a5fa",
+        "500": "#3b82f6",
+        "600": "#2563eb",
+        "700": "#1d4ed8",
+        "800": "#1e40af",
+        "900": "#1e3a8a",
+        "950": "#172554"
+      },
+      "purple": {
+        "50": "#faf5ff",
+        "100": "#f3e8ff",
+        "200": "#e9d5ff",
+        "300": "#d8b4fe",
+        "400": "#c084fc",
+        "500": "#a855f7",
+        "600": "#9333ea",
+        "700": "#7e22ce",
+        "800": "#6b21a8",
+        "900": "#581c87",
+        "950": "#3b0764"
+      },
+      "pink": {
+        "50": "#fdf2f8",
+        "100": "#fce7f3",
+        "200": "#fbcfe8",
+        "300": "#f9a8d4",
+        "400": "#f472b6",
+        "500": "#ec4899",
+        "600": "#db2777",
+        "700": "#be185d",
+        "800": "#9d174d",
+        "900": "#831843",
+        "950": "#500724"
+      }
+    },
+
+    "alpha": {
+      "black": {
+        "50": "#0000000a",
+        "100": "#0000000f",
+        "200": "#00000014",
+        "300": "#00000029",
+        "400": "#0000003d",
+        "500": "#0000005c",
+        "600": "#0000007a",
+        "700": "#000000a3",
+        "800": "#000000cc",
+        "900": "#000000eb",
+        "950": "#000000f2"
+      },
+      "white": {
+        "50": "#ffffff0a",
+        "100": "#ffffff0f",
+        "200": "#ffffff14",
+        "300": "#ffffff29",
+        "400": "#ffffff3d",
+        "500": "#ffffff5c",
+        "600": "#ffffff7a",
+        "700": "#ffffffa3",
+        "800": "#ffffffcc",
+        "900": "#ffffffeb",
+        "950": "#fffffff2"
+      }
+    }
+  },
+
+  "spacing": {
+    "note": "Baseado em var(--spacing) do sistema",
+    "base": "var(--spacing)",
+    "examples": {
+      "sidebar-width": "calc(var(--spacing) * 72)",
+      "header-height": "calc(var(--spacing) * 12)"
+    }
+  },
+
+  "borderRadius": {
+    "base": "0.625rem",
+    "sm": "calc(var(--radius) - 4px)",
+    "md": "calc(var(--radius) - 2px)",
+    "lg": "var(--radius)",
+    "xl": "calc(var(--radius) + 4px)",
+    "button": "12px",
+    "card": "20px"
+  },
+
+  "borderWidth": {
+    "thin": "1px",
+    "medium": "2px",
+    "thick": "3px"
+  },
+
+  "typography": {
+    "fontFamilies": {
+      "sans": "var(--font-karla)",
+      "headings": "var(--font-poppins)",
+      "mono": "var(--font-geist-mono)"
+    },
+    "fontWeights": {
+      "label": 600
+    }
+  },
+
+  "customSemanticTokens": {
+    "menu": {
+      "accent": "var(--vibrant-cyan-500)",
+      "interactiveBg": "oklch(1 0 0 / 0.04)"
+    },
+    "surface": {
+      "card": "oklch(1 0 0 / 0.04)",
+      "chip": "oklch(1 0 0 / 0.08)",
+      "inputBg": "#161730",
+      "inputBorder": "#161730"
+    },
+    "stepper": {
+      "activeBg": "var(--brand-soft-500)",
+      "activeFg": "#161730",
+      "inactiveBg": "rgba(255, 255, 255, 0.10)"
+    }
+  },
+
+  "sidebar": {
+    "light": {
+      "background": "#fafafa",
+      "foreground": "#0a0a0a",
+      "primary": "#171717",
+      "primaryForeground": "#fafafa",
+      "accent": "#f5f5f5",
+      "accentForeground": "#171717",
+      "border": "#00000014",
+      "ring": "#737373"
+    },
+    "dark": {
+      "background": "#171717",
+      "foreground": "#fafafa",
+      "primary": "{blue.10}",
+      "primaryForeground": "#fafafa",
+      "accent": "#262626",
+      "accentForeground": "#fafafa",
+      "border": "#ffffff0f",
+      "ring": "#737373"
+    }
+  },
+
+  "charts": {
+    "chart1": "{blue.8}",
+    "chart2": "{blue.9}",
+    "chart3": "{blue.10}",
+    "chart4": "{blue.11}",
+    "chart5": "{blue.12}"
+  },
+
+  "gradients": {
+    "backgroundEllipse": {
+      "type": "linear-gradient",
+      "direction": "90deg",
+      "stops": [
+        { "color": "var(--vibrant-yellow-500)", "position": "17.4%" },
+        { "color": "var(--vibrant-pink-500)", "position": "41.57%" },
+        { "color": "var(--vibrant-purple-500)", "position": "49.25%" },
+        { "color": "var(--vibrant-cyan-500)", "position": "68.58%" }
+      ]
+    },
+    "background": {
+      "type": "linear-gradient",
+      "direction": "99deg",
+      "stops": [
+        { "color": "var(--vibrant-yellow-500)", "position": "0%" },
+        { "color": "var(--vibrant-pink-500)", "position": "53.72%" },
+        { "color": "var(--vibrant-purple-500)", "position": "70.33%" },
+        { "color": "var(--vibrant-cyan-500)", "position": "101.59%" }
+      ]
+    }
+  },
+
+  "usage": {
+    "primary": {
+      "description": "Cor primária do sistema - Cyan vibrante",
+      "value": "#17e2ea",
+      "usedIn": [
+        "Botões primários",
+        "Links",
+        "Ícones ativos na toolbar",
+        "Highlights e destaques",
+        "Stepper ativo"
+      ]
+    },
+    "destructive": {
+      "description": "Cor para ações destrutivas e erros",
+      "light": "#dc2626",
+      "dark": "#ef4444",
+      "usedIn": [
+        "Botões de delete",
+        "Mensagens de erro",
+        "Validação de formulários",
+        "Actions destrutivas no menu Table"
+      ]
+    },
+    "brandLilac": {
+      "description": "Escala de lilac baseada em #202344",
+      "base": "#202344",
+      "usedIn": [
+        "Background dark mode",
+        "Elementos de marca",
+        "Cards e surfaces"
+      ]
+    },
+    "brandSoft": {
+      "description": "Escala soft baseada em #B3C1FF",
+      "base": "#B3C1FF",
+      "usedIn": [
+        "Stepper ativo",
+        "Highlights suaves",
+        "Estados hover"
+      ]
+    },
+    "vibrantColors": {
+      "cyan": "#17E2EA",
+      "yellow": "#FFC32B",
+      "pink": "#FB43DA",
+      "purple": "#D684FF",
+      "usedIn": "Gradientes de background, accents, elementos vibrantes"
+    }
+  },
+
+  "componentSpecific": {
+    "button": {
+      "radius": "12px",
+      "height": {
+        "default": "40px",
+        "sm": "32px",
+        "lg": "48px"
+      }
+    },
+    "card": {
+      "radius": "20px",
+      "background": "oklch(1 0 0 / 0.04)"
+    },
+    "input": {
+      "background": "#161730",
+      "border": "#161730"
+    },
+    "chip": {
+      "background": "oklch(1 0 0 / 0.08)"
+    }
+  },
+
+  "editorTokens": {
+    "iepEditor": {
+      "background": "#181b37",
+      "toolbar": {
+        "background": "#0c0e24",
+        "border": "rgba(232, 232, 253, 0.05)"
+      },
+      "table": {
+        "border": "rgba(255, 255, 255, 0.1)",
+        "headerBg": "rgba(255, 255, 255, 0.05)",
+        "rowHoverBg": "rgba(255, 255, 255, 0.05)",
+        "zebraStripeBg": "rgba(255, 255, 255, 0.02)"
+      }
+    },
+    "tiptap": {
+      "buttonActiveIconColor": "var(--primary)",
+      "toolbarHeight": "44px"
+    }
+  },
+
+  "cssVariablesMapping": {
+    "note": "Mapeamento de CSS variables para Tailwind",
+    "colors": {
+      "--color-primary": "var(--primary)",
+      "--color-destructive": "var(--destructive)",
+      "--color-background": "var(--background)",
+      "--color-foreground": "var(--foreground)"
+    },
+    "radius": {
+      "--radius-sm": "calc(var(--radius) - 4px)",
+      "--radius-md": "calc(var(--radius) - 2px)",
+      "--radius-lg": "var(--radius)",
+      "--radius-xl": "calc(var(--radius) + 4px)"
+    }
+  },
+
+  "tailwindExtendedColors": {
+    "note": "Todas as escalas de cores do Tailwind CSS disponíveis",
+    "grayscales": ["slate", "gray", "zinc", "neutral", "stone"],
+    "colors": ["red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"],
+    "special": ["white", "black"]
+  },
+
+  "accessibilityTokens": {
+    "contrastRatios": {
+      "primary": "WCAG AA compliant on dark backgrounds",
+      "destructive": "High contrast for visibility"
+    },
+    "focusRing": {
+      "color": "var(--ring)",
+      "width": "2px",
+      "offset": "2px"
+    }
+  },
+
+  "animationTokens": {
+    "note": "Usando tw-animate-css library",
+    "available": true,
+    "keyframes": "Ver src/styles/_keyframe-animations.scss"
+  },
+
+  "generatedFrom": {
+    "script": "scripts/generate-tokens.mjs",
+    "sources": [
+      "tokens/$metadata.json",
+      "tokens/$themes.json",
+      "tokens/shadcn/ui/*.json",
+      "tokens/tw/*/*.json"
+    ],
+    "output": "src/styles/tokens.css"
+  },
+
+  "howToUse": {
+    "inTailwind": "Use as utility classes: bg-primary, text-destructive, border-border",
+    "inCSS": "Use as variables: var(--primary), var(--destructive)",
+    "inJS": "Import from globals.css or use Tailwind classes",
+    "customTokens": "Define in src/app/globals.css under :root"
+  },
+
+  "keyTokens": {
+    "mostUsed": [
+      { "name": "--primary", "value": "#17e2ea", "usage": "Primary actions, active states" },
+      { "name": "--destructive", "value": "#dc2626 (light) / #ef4444 (dark)", "usage": "Delete buttons, errors" },
+      { "name": "--background", "value": "#ffffff (light) / #202344 (dark)", "usage": "Page background" },
+      { "name": "--foreground", "value": "#0a0a0a (light) / #edf2ff (dark)", "usage": "Text color" },
+      { "name": "--card", "value": "#ffffff3d (light) / #0000003d (dark)", "usage": "Card backgrounds" },
+      { "name": "--border", "value": "#00000029 (light) / #ffffff29 (dark)", "usage": "Borders" },
+      { "name": "--radius", "value": "0.625rem", "usage": "Default border radius" },
+      { "name": "--radius-card", "value": "20px", "usage": "Card border radius" },
+      { "name": "--radius-button", "value": "12px", "usage": "Button border radius" }
+    ]
+  },
+
+  "relatedFiles": [
+    "src/styles/tokens.css (auto-generated)",
+    "src/app/globals.css (custom tokens)",
+    "src/styles/_variables.scss (SCSS variables)",
+    "scripts/generate-tokens.mjs (generator script)",
+    "tokens/ (source JSON files)",
+    "tailwind.config.ts (Tailwind configuration)"
+  ]
+}
+
