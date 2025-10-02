@@ -3,6 +3,13 @@ import { generateObject } from "ai";
 import { openai } from "@ai-sdk/openai";
 import { z } from "zod";
 import { formOptions } from "@/app/ai-tools/form-options";
+import { 
+  isLangfuseEnabled, 
+  getLangfusePrompt, 
+  compilePromptTemplate, 
+  createLangfuseTrace, 
+  flushLangfuse 
+} from "@/lib/langfuse";
 
 // Schema para validar a requisição
 const RequestSchema = z.object({
@@ -308,7 +315,62 @@ function formatIEPToHTML(sections: Array<{ title: string; content: string }>): s
   return html;
 }
 
+/**
+ * Função para construir o prompt usando Langfuse
+ */
+async function buildPromptWithLangfuse(data: z.infer<typeof RequestSchema>): Promise<string> {
+  // Buscar o prompt do Langfuse
+  const { userMessageTemplate } = await getLangfusePrompt();
+
+  // Preparar labels para as variáveis
+  const gradeLevelLabel = getLabelForValue(formOptions.gradeLevels, data.gradeLevel);
+  const languageLabel = getLabelForValue(formOptions.languages, data.language);
+  const evaluationLabel = getLabelForValue(formOptions.evaluationSchedule, data.evaluationSchedule);
+
+  const disabilityLabels = data.disabilityCategories.map((cat) =>
+    getLabelForValue(formOptions.disabilityCategories, cat, data.customDisabilityOptions)
+  );
+
+  const areasLabels = data.areasOfConcern.map((area) =>
+    getLabelForValue(formOptions.areasOfConcern, area)
+  );
+
+  const goalLabels = data.priorityGoalAreas.map((goal) =>
+    getLabelForValue(formOptions.priorityGoalAreas, goal)
+  );
+
+  const servicesLabels = data.existingServices.map((service) =>
+    getLabelForValue(formOptions.existingServices, service, data.customServicesOptions)
+  );
+
+  const accommodationsLabels = data.accommodations.map((acc) =>
+    getLabelForValue(formOptions.accommodations, acc, data.customAccommodationsOptions)
+  );
+
+  // Preparar variáveis para o template do Langfuse
+  const variables = {
+    studentPerformance: data.studentPerformance,
+    gradeLevel: gradeLevelLabel,
+    language: languageLabel,
+    evaluationSchedule: evaluationLabel,
+    disabilityCategories: disabilityLabels.map(label => `- ${label}`).join('\n'),
+    areasOfConcern: areasLabels.map(label => `- ${label}`).join('\n'),
+    priorityGoalAreas: goalLabels.map(label => `- ${label}`).join('\n'),
+    existingServices: servicesLabels.map(label => `- ${label}`).join('\n'),
+    accommodations: accommodationsLabels.map(label => `- ${label}`).join('\n'),
+    iepComponents: data.iepComponents.map((comp) => componentSectionMap[comp]).filter(Boolean).join(', '),
+  };
+
+  // Compilar o template com as variáveis
+  return compilePromptTemplate(userMessageTemplate, variables);
+}
+
 export async function POST(request: NextRequest) {
+  // Criar trace no Langfuse para monitoramento
+  const trace = createLangfuseTrace('generate-iep', {
+    timestamp: new Date().toISOString(),
+  });
+
   try {
     const body = await request.json();
     const data = RequestSchema.parse(body);
@@ -321,8 +383,34 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Construir o prompt
-    const prompt = buildPrompt(data);
+    // Verificar se deve usar Langfuse
+    const useLangfuse = isLangfuseEnabled();
+    
+    // Construir o prompt (Langfuse ou hardcoded)
+    let prompt: string;
+    let promptSource: string;
+
+    if (useLangfuse) {
+      console.log('[IEP Generator] Using Langfuse prompt');
+      prompt = await buildPromptWithLangfuse(data);
+      promptSource = 'langfuse';
+    } else {
+      console.log('[IEP Generator] Using hardcoded prompt');
+      prompt = buildPrompt(data);
+      promptSource = 'hardcoded';
+    }
+
+    // Criar generation span no Langfuse
+    const generation = trace.generation({
+      name: 'openai-generate-iep',
+      model: 'gpt-4o-2024-08-06',
+      input: { prompt, data },
+      metadata: {
+        promptSource,
+        gradeLevel: data.gradeLevel,
+        sectionsRequested: data.iepComponents.length,
+      },
+    });
 
     // Gerar o IEP usando OpenAI com structured output
     const { object } = await generateObject({
@@ -332,16 +420,47 @@ export async function POST(request: NextRequest) {
       temperature: 0.7,
     });
 
+    // Atualizar generation com resultado
+    generation.update({
+      output: object,
+      metadata: {
+        sectionsGenerated: object.sections.length,
+      },
+    });
+    generation.end();
+
     // Formatar para HTML
     const html = formatIEPToHTML(object.sections);
+
+    // Atualizar trace com sucesso
+    trace.update({
+      output: { 
+        success: true, 
+        sectionsCount: object.sections.length 
+      },
+    });
+
+    // Flush eventos do Langfuse (não-bloqueante)
+    if (useLangfuse) {
+      flushLangfuse().catch(console.error);
+    }
 
     return NextResponse.json({ 
       success: true, 
       html,
-      sectionsCount: object.sections.length 
+      sectionsCount: object.sections.length,
+      promptSource, // Informar qual fonte foi usada
     });
   } catch (error) {
     console.error("Error generating IEP:", error);
+
+    // Atualizar trace com erro
+    trace.update({
+      output: { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Unknown error' 
+      },
+    });
 
     if (error instanceof z.ZodError) {
       return NextResponse.json(
