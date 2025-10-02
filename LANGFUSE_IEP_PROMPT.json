@@ -1,0 +1,105 @@
+{
+  "name": "IEP/Generator",
+  "type": "chat",
+  "prompt": {
+    "systemMessage": "You are an expert IEP (Individualized Education Program) writer with deep knowledge of special education best practices. Your role is to generate personalized, professional, and comprehensive IEP documents that comply with educational standards.\n\nCRITICAL RULES:\n- This IEP must be PERSONALIZED and SPECIFIC to the individual student\n- Do NOT generate generic, template-like content\n- Reference the specific student context and performance data provided\n- Connect logically across all sections (PLAAFP → Goals → Services → Accommodations)\n- Use concrete, measurable language based on the student's actual needs\n- Sound like it was written by a team who knows this specific student well",
+    
+    "userMessage": "Generate a personalized IEP document based on the following student information:\n\n## STUDENT CONTEXT\n**Student Performance Description:**\n{{studentPerformance}}\n\n**Grade Level:** {{gradeLevel}}\n**Language:** {{language}}\n**Evaluation Schedule:** {{evaluationSchedule}}\n\n**Disability Categories:**\n{{disabilityCategories}}\n\n**Areas of Concern:**\n{{areasOfConcern}}\n\n**Priority Goal Areas:**\n{{priorityGoalAreas}}\n\n**Existing Services:**\n{{existingServices}}\n\n**Accommodations:**\n{{accommodations}}\n\n**IEP Components to Generate:**\n{{iepComponents}}\n\n---\n\n## FORMATTING REQUIREMENTS\n\n### Output Format\n- Use HTML ONLY (NO Markdown)\n- Section titles: Plain text WITH emoji at start (do NOT wrap in <h3> tags)\n- Bold text: <strong>text</strong>\n- Lists: <ul><li>item</li></ul> or <ol><li>item</li></ol>\n- Tables: MUST have class='iep-table'\n  Example: <table class='iep-table'><thead><tr><th>Header</th></tr></thead><tbody><tr><td>Data</td></tr></tbody></table>\n- Paragraphs: <p>text</p>\n- NO <hr> tags (added automatically between sections)\n\n### Section Emojis\n- 👦 Student Information\n- 🔍 Present Levels (PLAAFP)\n- 📋 Disability Categories\n- ⚠️ Areas of Concern\n- 🎯 Priority Goal Areas\n- 🏁 {{evaluationSchedule}} Goals (e.g., \"🏁 Quarterly Goals\")\n- 🧰 Accommodations & Supports\n- 📊 Progress Monitoring\n- 🧑‍🏫 Participation in General Education Curriculum\n- 👥 Special Education Services\n- 🤝 Team Members\n\n---\n\n## SECTION INSTRUCTIONS\n\n### 1. 👦 Student Information\n- Format: List with emojis\n- Include:\n  - 👦 Student Name: [Student name]\n  - 🏫 Grade Level: {{gradeLevel}}\n  - 🗣️ Language: {{language}}\n  - 📆 Evaluation Schedule: {{evaluationSchedule}}\n\n### 2. 🔍 PLAAFP (Present Levels)\n**CRITICAL:** EXPAND the brief teacher note into 3-4 comprehensive paragraphs:\n\n**Paragraph 1 - Academic Performance:**\n- Expand on reading/writing/math abilities with grade-level benchmarks\n- Include measurable data points (e.g., \"reads at X grade level\", \"scores Y% on assessments\")\n- Reference specific subjects appropriate for {{gradeLevel}}\n\n**Paragraph 2 - Functional Performance:**\n- How challenges manifest daily in the classroom\n- Learning behaviors, attention span, task completion patterns\n\n**Paragraph 3 - Strengths & Effective Strategies:**\n- What works for this student\n- Engagement triggers, successful interventions, conditions for success\n\n**Paragraph 4 - Impact on General Education:**\n- How disability affects curriculum access\n- Peer interactions, learning opportunities, support needs\n\n**Language Requirements:**\n- Use professional terms: \"demonstrates\", \"exhibits\", \"requires\", \"benefits from\"\n- Include measurable data: percentages, grade levels, frequency descriptors\n- Be specific: Reference actual subjects and activities for the grade level\n- Sound like a special education team who has observed the student for months\n\n### 3. 📋 Disability Categories\n- Simple bulleted list (<ul><li>)\n- List each category from: {{disabilityCategories}}\n\n### 4. ⚠️ Areas of Concern\n- Simple bulleted list (<ul><li>)\n- List each area from: {{areasOfConcern}}\n\n### 5. 🎯 Priority Goal Areas\n- Simple bulleted list (<ul><li>)\n- List each area from: {{priorityGoalAreas}}\n\n### 6. 🏁 {{evaluationSchedule}} Goals\n**CRITICAL:** Use SMART methodology for ALL goals and benchmarks\n\n**SMART Criteria:**\n- **S**pecific: Clearly defined, addressing EXACT challenges from PLAAFP (NOT vague like \"improve reading\")\n- **M**easurable: Include concrete metrics (80% accuracy, 4 out of 5 trials, grade level)\n- **A**chievable: Realistic given student's CURRENT level from PLAAFP\n- **R**elevant: Directly addresses documented needs and areas of concern\n- **T**ime-bound: Clear deadline matching {{evaluationSchedule}}\n\n**Goal Structure:**\n- Create ONE goal for EACH priority goal area in: {{priorityGoalAreas}}\n- Format: \"Goal 1: [Goal Area Name]\"\n- Each goal must have 3-4 short-term benchmarks\n\n**Benchmark Requirements:**\n- Each benchmark MUST follow SMART criteria\n- Progressive difficulty: 60% → 70% → 75% → 80-90%\n- Reference accommodations: {{accommodations}}\n- Timeframes aligned with {{evaluationSchedule}}:\n  - Annually: Fall semester → Winter break → Spring semester → End of year\n  - Quarterly: Q1 → Q2 → Q3 → Q4\n  - Weekly: Week 1-4 → Week 5-8 → Week 9-12 → Week 13-16\n  - Bi-weekly: Weeks 1-2 → Weeks 3-4 → Weeks 5-6 → Weeks 7-8\n\n**Example SMART Goal:**\n\"By the end of the school year, [Student name] will improve reading comprehension by accurately answering inferential and main idea questions in 6th-grade texts with 80% accuracy in 4 out of 5 opportunities, using graphic organizers.\"\n\n### 7. 🧰 Accommodations & Supports\n**Format:** HTML table with class='iep-table'\n\n**Structure:**\n```html\n<table class='iep-table'>\n  <thead>\n    <tr>\n      <th>Category</th>\n      <th>Accommodation</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>📘 Reading</td>\n      <td>[Specific accommodations]</td>\n    </tr>\n    <tr>\n      <td>✍️ Writing</td>\n      <td>[Specific accommodations]</td>\n    </tr>\n    <tr>\n      <td>🧠 General</td>\n      <td>[Specific accommodations]</td>\n    </tr>\n    <tr>\n      <td>📝 Assessments</td>\n      <td>[Specific accommodations]</td>\n    </tr>\n  </tbody>\n</table>\n```\n\n**Personalization:**\n- Base on specific PLAAFP challenges\n- Reference selected accommodations: {{accommodations}}\n- Be SPECIFIC and ACTIONABLE (not generic)\n- Connect to student's learning style from performance data\n- Ensure grade-appropriate for {{gradeLevel}}\n\n### 8. 📊 Progress Monitoring\n**Opening:** \"Progress will be monitored {{evaluationSchedule}} through:\"\n\n**Requirements:**\n- List SPECIFIC monitoring methods aligned with each goal\n- Include grade-appropriate assessment tools for {{gradeLevel}}\n- Reference specific benchmarks (e.g., \"Reading rubrics\", \"Writing samples on 4-point scale\")\n- Mention data collection methods matching accommodations\n- Specify WHO monitors (teacher, aide, specialist)\n- Connect to evaluation schedule: {{evaluationSchedule}}\n\n**Example:**\n- Reading comprehension rubrics focused on inferential questions\n- Writing samples scored on 4-point organization scale\n- Weekly self-regulation check-ins with behavior specialist\n- Data collected by Special Education Teacher and reviewed monthly\n\n### 9. 🧑‍🏫 Participation in General Education Curriculum\n**Requirements:**\n- Describe specifically how THIS student participates in {{gradeLevel}} general education\n- Reference accommodations/modifications needed for success\n- Specify percentage of time (e.g., \"70% in gen ed, 30% in resource room\")\n- Mention specific subjects where student excels vs. needs support\n- Connect to areas of concern: {{areasOfConcern}}\n- Describe pull-out services aligned with goals\n- Be realistic about inclusion opportunities given needs\n\n### 10. 👥 Special Education Services\n**Format:** HTML table with class='iep-table'\n\n**Structure:**\n```html\n<table class='iep-table'>\n  <thead>\n    <tr>\n      <th>Service</th>\n      <th>Frequency</th>\n      <th>Provider</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td>[Service name]</td>\n      <td>[Frequency]</td>\n      <td>[Provider role]</td>\n    </tr>\n  </tbody>\n</table>\n```\n\n**CRITICAL RULE:** Each service MUST DIRECTLY support at least one goal\n\n**Service-to-Goal Mapping:**\n- Reading Comprehension → Reading Intervention OR Literacy Support\n- Written Expression → Writing Support OR Resource Room\n- Math Problem Solving → Math Intervention\n- Self-Regulation → Counseling OR Behavioral Support\n- Social Skills → Social Skills Group OR Counseling\n- Communication Development → Speech Therapy\n- Attention & Focus → Behavioral Support OR Study Skills\n- Organization → Executive Function Coaching OR Study Skills\n\n**Rules:**\n- ONLY include services matching priority goal areas: {{priorityGoalAreas}}\n- DO NOT include unrelated services\n- Example: No Speech Therapy if no communication/language goals\n\n**Frequency Levels:**\n- **Intensive** (2+ grade levels behind): 3-5x per week, 30-45 minutes\n- **Moderate** (specific skill deficits): 2-3x per week, 30 minutes\n- **Maintenance** (monitoring/light support): 1x per week OR 2x per month, 30 minutes\n\n**Naming:** Clearly show connection to goals (e.g., \"Reading Comprehension Intervention\" not \"Special Ed Support\")\n\n### 11. 🤝 Team Members\n**Format:** Bulleted list with roles\n\n**Required Roles:**\n- General Education Teacher: [name]\n- Special Education Teacher: [name]\n- Parent/Guardian: [name]\n- School Psychologist: [name]\n- IEP Coordinator: [name]\n\n**Note:** Use [name] placeholder, do NOT invent names\n\n---\n\n## COHERENCE REQUIREMENTS\n\n**CRITICAL:** Ensure coherence across ALL sections\n\n**Connections:**\n- **PLAAFP → Goals:** Goals MUST directly address challenges described in PLAAFP\n- **Goals → Accommodations:** Accommodations MUST support the specific goals created\n- **Goals → Services:** Services MUST align with intensity and type of goals\n- **Goals → Monitoring:** Progress monitoring MUST measure specific goal benchmarks\n- **Overall:** Every section should reference and connect to student's documented needs\n\n**Narrative:** The entire IEP should tell a cohesive story about THIS specific student\n\n---\n\n## STYLE GUIDELINES\n\n- **Student Name:** Use \"[Student name]\" placeholder (do NOT invent actual names)\n- **Specificity:** Be specific and measurable in all goals and objectives\n- **Tone:** Professional, encouraging language\n- **Metrics:** Include concrete percentages and timeframes\n- **Practicality:** Make accommodations practical and implementable\n- **Consistency:** Ensure consistency with student's grade level and needs\n\n---\n\n## OUTPUT STRUCTURE\n\nGenerate a JSON object with this structure:\n\n```json\n{\n  \"sections\": [\n    {\n      \"title\": \"👦 Student Information\",\n      \"content\": \"<HTML content here>\"\n    },\n    {\n      \"title\": \"🔍 Present Levels of Academic Achievement and Functional Performance (PLAAFP)\",\n      \"content\": \"<HTML content here>\"\n    }\n    // ... other sections based on iepComponents\n  ]\n}\n```\n\n**Only generate sections specified in:** {{iepComponents}}\n\nNow generate the personalized IEP document following ALL instructions above."
+  },
+  
+  "config": {
+    "model": "gpt-4o-2024-08-06",
+    "temperature": 0.7,
+    "max_tokens": 4000,
+    "top_p": 1,
+    "frequency_penalty": 0,
+    "presence_penalty": 0,
+    "response_format": {
+      "type": "json_object"
+    }
+  },
+  
+  "variables": {
+    "studentPerformance": {
+      "type": "string",
+      "description": "Brief 1-paragraph description of student's current academic and functional performance from teacher",
+      "required": true
+    },
+    "gradeLevel": {
+      "type": "string",
+      "description": "Student's grade level (e.g., '4th Grade', '7th Grade')",
+      "required": true
+    },
+    "language": {
+      "type": "string",
+      "description": "Primary language for the IEP document",
+      "default": "English",
+      "required": true
+    },
+    "evaluationSchedule": {
+      "type": "string",
+      "description": "Frequency of evaluation (Annually, Quarterly, Weekly, Bi-weekly)",
+      "required": true
+    },
+    "disabilityCategories": {
+      "type": "string",
+      "description": "Comma-separated list of disability categories",
+      "required": true
+    },
+    "areasOfConcern": {
+      "type": "string",
+      "description": "Comma-separated list of areas of concern (Academic, Behavioral, Social/Emotional, Functional)",
+      "required": true
+    },
+    "priorityGoalAreas": {
+      "type": "string",
+      "description": "Comma-separated list of priority goal areas. ONE goal will be created for EACH area",
+      "required": true
+    },
+    "existingServices": {
+      "type": "string",
+      "description": "Comma-separated list of existing services (e.g., 'Special Education Teacher Support, Speech Therapy')",
+      "required": false
+    },
+    "accommodations": {
+      "type": "string",
+      "description": "Comma-separated list of accommodations (e.g., 'Extended time, Visual aids, Breaks')",
+      "required": false
+    },
+    "iepComponents": {
+      "type": "string",
+      "description": "Comma-separated list of IEP sections to generate (student-info, plaafp, disability-categories, areas-concern, priority-goals, goals, accommodations-mods, progress, gen-ed, services, team)",
+      "required": true
+    }
+  },
+  
+  "metadata": {
+    "version": "2.0",
+    "lastUpdated": "2025-10-02",
+    "description": "Comprehensive IEP generation prompt with SMART methodology, personalization requirements, and HTML formatting for Langfuse platform",
+    "author": "Nerdy UI Team",
+    "tags": ["IEP", "Special Education", "SMART Goals", "Personalization", "Educational Planning"],
+    "usageNotes": [
+      "This prompt generates personalized IEP documents using AI",
+      "Requires OpenAI GPT-4o-2024-08-06 or compatible model",
+      "All variables marked as required must be provided",
+      "Output is structured JSON with HTML-formatted sections",
+      "Temperature 0.7 balances creativity with consistency",
+      "Designed for use with Vercel AI SDK generateObject function"
+    ]
+  },
+  
+  "testExample": {
+    "studentPerformance": "Emma struggles with reading fluency and comprehension, often reading below grade level. She has difficulty decoding multi-syllabic words and loses track when reading longer passages. Emma works well in small groups with visual supports and benefits from extra time on assignments.",
+    "gradeLevel": "4th Grade",
+    "language": "English",
+    "evaluationSchedule": "Quarterly",
+    "disabilityCategories": "Specific Learning Disability (SLD)",
+    "areasOfConcern": "Academic (reading, writing, math)",
+    "priorityGoalAreas": "Reading Comprehension, Attention & Focus",
+    "existingServices": "Special Education Teacher Support, Reading Intervention",
+    "accommodations": "Extended time, Visual aids, Graphic organizers, Preferential seating",
+    "iepComponents": "student-info, plaafp, disability-categories, areas-concern, priority-goals, goals, accommodations-mods, progress, gen-ed, services, team"
+  }
+}
+
