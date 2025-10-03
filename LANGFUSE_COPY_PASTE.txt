@@ -1,14 +1,19 @@
 ═══════════════════════════════════════════════════════════════════════════════
-LANGFUSE PROMPT - COPY & PASTE FIELDS (v3.0 - Updated 2025-10-03)
+LANGFUSE PROMPT - COPY & PASTE FIELDS (v3.1 - Updated 2025-10-03)
 ═══════════════════════════════════════════════════════════════════════════════
 
-🆕 VERSION 3.0 IMPROVEMENTS:
-✅ IDEA Compliance requirements added
-✅ Mandatory baseline data for all PLAAFP areas
-✅ Auto-detection of functional goals
-✅ Complete coverage validation (PLAAFP ↔ Goals)
-✅ Detailed service delivery models (pull-out/push-in/co-teaching)
-✅ Compliance checklist included
+🆕 VERSION 3.1 CRITICAL FIXES (CONSERVATIVE MODE):
+✅ PLAAFP expands ONLY what teacher explicitly mentions (no inference)
+✅ Accommodations STRICTLY limited to selected list (no additions)
+✅ Goals created ONLY for areas in PLAAFP (no orphan goals)
+✅ Services aligned 1:1 with goals (no extras)
+✅ Sections reference ONLY mentioned areas (no cross-contamination)
+✅ Conservative auto-detection (functional goals only if explicitly stated)
+
+⚠️ KEY BEHAVIOR CHANGES FROM v3.0:
+- If teacher mentions ONLY reading → IEP discusses ONLY reading (no math, writing, attention)
+- Selected accommodations = ALL accommodations (no "helpful additions")
+- Each section strictly reflects teacher's original input
 
 ═══════════════════════════════════════════════════════════════════════════════
 
@@ -22,7 +27,7 @@ IEP/Generator
 ═══════════════════════════════════════════════════════════════════════════════
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ ⚙️ SYSTEM MESSAGE (v3.0 - UPDATED 2025-10-03)                              │
+│ ⚙️ SYSTEM MESSAGE (v3.1 - CONSERVATIVE MODE - UPDATED 2025-10-03)          │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 You are an expert IEP (Individualized Education Program) writer with deep knowledge of special education best practices and IDEA (Individuals with Disabilities Education Act) compliance. Your role is to generate personalized, professional, and comprehensive IEP documents that comply with educational standards.
@@ -39,13 +44,20 @@ IDEA COMPLIANCE REQUIREMENTS:
 - COMPLETE COVERAGE: Every challenge/need mentioned in PLAAFP MUST have a corresponding goal
 - MEASURABLE DATA: PLAAFP must include baseline data for EVERY skill area mentioned
 - COHERENCE: Goals → Services → Accommodations must all align logically
-- FUNCTIONAL SKILLS: If PLAAFP mentions attention/organization/task completion, create functional goals even if not explicitly requested
+- CONSERVATIVE EXPANSION: Only discuss areas EXPLICITLY mentioned in {{studentPerformance}}
+- STRICT ALIGNMENT: Do NOT infer or add challenges not stated by the teacher
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ 👤 USER MESSAGE (v3.0 - Copy entire section below)                          │
+│ 👤 USER MESSAGE (v3.1 CONSERVATIVE - Copy entire section below)             │
 └─────────────────────────────────────────────────────────────────────────────┘
 
-NOTA: Este user message tem ~600 linhas. Copie TUDO desde "Generate a personalized..." 
+NOTA IMPORTANTE v3.1: Este prompt é CONSERVADOR
+- Expande APENAS o que o professor menciona explicitamente
+- USA APENAS as accommodations selecionadas (sem adições)
+- Cria metas APENAS para áreas mencionadas no PLAAFP
+- Se input tem só reading → output terá só reading (sem math, writing, etc)
+
+Este user message tem ~700 linhas. Copie TUDO desde "Generate a personalized..." 
 até "...following ALL instructions above." no final.
 
 ───────────────────────────────────────────────────────────────────────────────
@@ -564,56 +576,94 @@ accommodations = "Extended time, Visual aids/graphic organizers"
 iepComponents = "student-info, plaafp, disability-categories, areas-concern, priority-goals, goals, accommodations-mods, progress, gen-ed, services, team"
 
 ═══════════════════════════════════════════════════════════════════════════════
-🔍 EXPECTED BEHAVIOR v3.0 (Caso Todd):
+🔍 EXPECTED BEHAVIOR v3.1 CONSERVATIVE (Caso Todd):
 ═══════════════════════════════════════════════════════════════════════════════
 
-Com este exemplo, o sistema v3.0 DEVE:
+Com este exemplo, o sistema v3.1 DEVE (MODO CONSERVADOR):
 
-✅ PLAAFP com dados objetivos para TODAS as áreas:
+✅ PLAAFP com dados objetivos APENAS para área mencionada:
    - Reading: "85 WPM, 5 errors, 2nd grade level, 5th percentile"
-   - Writing: "completes X of 5 tasks with coherence, requires prompts Y%"
-   - Math: "solves single-step with X%, multi-step with Y%"
-   - Attention: "on-task for X minutes, requires Y prompts/hour"
+   - Strengths: "responds to visual aids and graphic organizers"
+   - Impact: "affects access to reading-intensive subjects"
+   ❌ SEM Writing (não mencionado no input)
+   ❌ SEM Math (não mencionado no input)
+   ❌ SEM Attention/Focus (não mencionado no input)
 
-✅ AUTO-DETECTAR e criar 4 METAS (não apenas 1):
+✅ Criar APENAS 1 META (conservador):
    1. Reading Comprehension (explícito em priorityGoalAreas)
-   2. Written Expression (auto-detectado do PLAAFP)
-   3. Math Problem Solving (auto-detectado do PLAAFP)
-   4. Attention & Focus (auto-detectado funcional do PLAAFP)
+   ❌ NÃO criar Writing goal (não mencionado)
+   ❌ NÃO criar Math goal (não mencionado)
+   ❌ NÃO criar Attention goal (não mencionado)
 
-✅ SERVIÇOS alinhados 1:1 com as 4 metas:
-   - Reading Comprehension Intervention | 3x/week, 45min | Pull-out (Resource Room)
-   - Writing Support | 2x/week, 30min | Push-in (Gen Ed Classroom)
-   - Math Intervention | 2x/week, 30min | Pull-out (Resource Room)
-   - Executive Function Coaching | 2x/week, 30min | Push-in (Gen Ed Classroom)
+✅ ACCOMMODATIONS usando APENAS lista selecionada:
+   Reading: Visual aids/graphic organizers, Extended time
+   Assessments: Extended time, Visual aids
+   ❌ SEM "Frequent breaks" (não selecionado)
+   ❌ SEM "Modified assessments" (não selecionado)
+   ❌ SEM categoria Writing (reading não mencionado no PLAAFP)
 
-✅ Progress Monitoring para TODAS as 4 metas
+✅ SERVIÇOS alinhados 1:1 com a 1 meta (tabela com 4 colunas):
+   - Reading Comprehension Intervention | 3x/week, 45min | Pull-out (Resource Room) | Sp Ed Teacher
+   ❌ SEM Writing Support
+   ❌ SEM Math Intervention
+   ❌ SEM Executive Function Coaching
 
-✅ Tabela de Serviços com 4 COLUNAS (incluindo Location/Model)
+✅ Progress Monitoring APENAS para Reading
+
+✅ Participation menciona APENAS reading-intensive subjects
+   "requires support in reading-intensive subjects such as language arts and content area reading"
+   ❌ SEM menção a "math" 
+   ❌ SEM menção a "writing"
 
 ═══════════════════════════════════════════════════════════════════════════════
-✅ CHECKLIST FINAL
+✅ CHECKLIST FINAL v3.1
 ═══════════════════════════════════════════════════════════════════════════════
 
 Antes de clicar em "Create prompt" no Langfuse:
 
 [ ] Name = "IEP/Generator"
 [ ] Aba "Chat" selecionada
-[ ] System message v3.0 colada (com IDEA COMPLIANCE)
-[ ] User message v3.0 completa colada (~600 linhas)
+[ ] System message v3.1 colado (com CONSERVATIVE EXPANSION e STRICT ALIGNMENT)
+[ ] User message v3.1 completo colado (~700 linhas - seções PLAAFP, Goals, Accommodations revisadas)
 [ ] Config JSON colado (temperature: 0.7, max_tokens: 4000)
 [ ] 10 variáveis criadas (studentPerformance até iepComponents)
 [ ] Label "production" marcada
-[ ] Commit message: "v3.0 - IDEA compliance, complete coverage, auto-detect functional goals, service delivery models"
-[ ] Testado com caso Todd e validado que gera 4 metas
+[ ] Commit message: "v3.1 - CONSERVATIVE: strict alignment, only explicit areas, no inference, accommodation restrictions"
+[ ] Testado com caso Todd e validado que gera APENAS 1 meta de reading (sem math/writing/attention)
 
 ═══════════════════════════════════════════════════════════════════════════════
 📚 DOCUMENTAÇÃO ADICIONAL
 ═══════════════════════════════════════════════════════════════════════════════
 
 Ver arquivos:
-- IEP_GENERATOR_IMPROVEMENTS_V3.md → Documentação completa das melhorias
-- LANGFUSE_IEP_PROMPT.json → Versão estruturada do prompt (v3.0)
-- IEP_PROMPT_STRUCTURE.json → Estrutura detalhada (pendente atualização para v3.0)
+- IEP_GENERATOR_IMPROVEMENTS_V3.md → Documentação das melhorias v3.0
+- LANGFUSE_IEP_PROMPT.json → Versão estruturada do prompt (v3.1 CONSERVATIVE)
+- IEP_PROMPT_STRUCTURE.json → Estrutura detalhada (pendente atualização)
+
+═══════════════════════════════════════════════════════════════════════════════
+⚖️ DIFERENÇAS v3.0 vs v3.1
+═══════════════════════════════════════════════════════════════════════════════
+
+v3.0 (PROATIVO):
+❌ Inferia problemas não mencionados
+❌ Adicionava accommodations "úteis"
+❌ Criava metas para áreas não citadas
+❌ Mencionava math/writing mesmo sem input
+
+v3.1 (CONSERVADOR):
+✅ Expande APENAS o que foi dito
+✅ Usa APENAS accommodations selecionadas
+✅ Cria metas APENAS para áreas do PLAAFP
+✅ Seções referem APENAS áreas mencionadas
+
+QUANDO USAR:
+- v3.1: Quando input é minimalista (ex: só reading)
+- v3.1: Quando quer controle estrito sobre output
+- v3.1: Quando precisa de IEP focado em 1-2 áreas
+
+EXEMPLO PRÁTICO:
+Input: "Todd reads at 2nd grade level (85 WPM, 5 errors)"
+- v3.0: Cria 4 metas (reading, writing, math, attention) ❌
+- v3.1: Cria 1 meta (reading) ✅
 
 ═══════════════════════════════════════════════════════════════════════════════
