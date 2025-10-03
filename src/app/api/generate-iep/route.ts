@@ -13,19 +13,19 @@ import {
 
 // Schema para validar a requisição
 const RequestSchema = z.object({
-  studentPerformance: z.string(),
-  gradeLevel: z.string(),
-  disabilityCategories: z.array(z.string()),
-  areasOfConcern: z.array(z.string()),
-  priorityGoalAreas: z.array(z.string()),
-  evaluationSchedule: z.string(),
+  student_performance: z.string(),
+  grade_level: z.string(),
+  disability_categories: z.array(z.string()),
+  areas_of_concern: z.array(z.string()),
+  priority_goal_areas: z.array(z.string()),
+  evaluation_schedule: z.string(),
   language: z.string(),
-  iepComponents: z.array(z.string()),
-  existingServices: z.array(z.string()),
+  iep_components: z.array(z.string()),
+  existing_services: z.array(z.string()),
   accommodations: z.array(z.string()),
-  customDisabilityOptions: z.record(z.string(), z.string()).optional(),
-  customServicesOptions: z.record(z.string(), z.string()).optional(),
-  customAccommodationsOptions: z.record(z.string(), z.string()).optional(),
+  custom_disability_options: z.record(z.string(), z.string()).optional(),
+  custom_services_options: z.record(z.string(), z.string()).optional(),
+  custom_accommodations_options: z.record(z.string(), z.string()).optional(),
 });
 
 // Schema para a estrutura do IEP
@@ -62,32 +62,32 @@ function getLabelForValue(options: typeof formOptions.gradeLevels, value: string
 }
 
 function buildPrompt(data: z.infer<typeof RequestSchema>): string {
-  const gradeLevelLabel = getLabelForValue(formOptions.gradeLevels, data.gradeLevel);
+  const gradeLevelLabel = getLabelForValue(formOptions.gradeLevels, data.grade_level);
   const languageLabel = getLabelForValue(formOptions.languages, data.language);
-  const evaluationLabel = getLabelForValue(formOptions.evaluationSchedule, data.evaluationSchedule);
+  const evaluationLabel = getLabelForValue(formOptions.evaluationSchedule, data.evaluation_schedule);
 
-  const disabilityLabels = data.disabilityCategories.map((cat) =>
-    getLabelForValue(formOptions.disabilityCategories, cat, data.customDisabilityOptions)
+  const disabilityLabels = data.disability_categories.map((cat) =>
+    getLabelForValue(formOptions.disabilityCategories, cat, data.custom_disability_options)
   );
 
-  const areasLabels = data.areasOfConcern.map((area) =>
+  const areasLabels = data.areas_of_concern.map((area) =>
     getLabelForValue(formOptions.areasOfConcern, area)
   );
 
-  const goalLabels = data.priorityGoalAreas.map((goal) =>
+  const goalLabels = data.priority_goal_areas.map((goal) =>
     getLabelForValue(formOptions.priorityGoalAreas, goal)
   );
 
-  const servicesLabels = data.existingServices.map((service) =>
-    getLabelForValue(formOptions.existingServices, service, data.customServicesOptions)
+  const servicesLabels = data.existing_services.map((service) =>
+    getLabelForValue(formOptions.existingServices, service, data.custom_services_options)
   );
 
   const accommodationsLabels = data.accommodations.map((acc) =>
-    getLabelForValue(formOptions.accommodations, acc, data.customAccommodationsOptions)
+    getLabelForValue(formOptions.accommodations, acc, data.custom_accommodations_options)
   );
 
   // Determinar quais seções gerar
-  const selectedSections = data.iepComponents.map((comp) => componentSectionMap[comp]).filter(Boolean);
+  const selectedSections = data.iep_components.map((comp) => componentSectionMap[comp]).filter(Boolean);
 
   return `You are an expert IEP (Individualized Education Program) writer with deep knowledge of special education best practices.
 
@@ -117,7 +117,7 @@ This IEP must be PERSONALIZED and SPECIFIC to this individual student. Do NOT ge
 - Evaluation Schedule: ${evaluationLabel}
 
 **Teacher's Brief Description of Student Performance:**
-${data.studentPerformance}
+${data.student_performance}
 
 NOTE: This is a BRIEF teacher note (1 paragraph). You MUST expand this significantly into a comprehensive PLAAFP.
 
@@ -323,42 +323,42 @@ async function buildPromptWithLangfuse(data: z.infer<typeof RequestSchema>): Pro
   const { userMessageTemplate } = await getLangfusePrompt();
 
   // Preparar labels para as variáveis
-  const gradeLevelLabel = getLabelForValue(formOptions.gradeLevels, data.gradeLevel);
+  const gradeLevelLabel = getLabelForValue(formOptions.gradeLevels, data.grade_level);
   const languageLabel = getLabelForValue(formOptions.languages, data.language);
-  const evaluationLabel = getLabelForValue(formOptions.evaluationSchedule, data.evaluationSchedule);
+  const evaluationLabel = getLabelForValue(formOptions.evaluationSchedule, data.evaluation_schedule);
 
-  const disabilityLabels = data.disabilityCategories.map((cat) =>
-    getLabelForValue(formOptions.disabilityCategories, cat, data.customDisabilityOptions)
+  const disabilityLabels = data.disability_categories.map((cat) =>
+    getLabelForValue(formOptions.disabilityCategories, cat, data.custom_disability_options)
   );
 
-  const areasLabels = data.areasOfConcern.map((area) =>
+  const areasLabels = data.areas_of_concern.map((area) =>
     getLabelForValue(formOptions.areasOfConcern, area)
   );
 
-  const goalLabels = data.priorityGoalAreas.map((goal) =>
+  const goalLabels = data.priority_goal_areas.map((goal) =>
     getLabelForValue(formOptions.priorityGoalAreas, goal)
   );
 
-  const servicesLabels = data.existingServices.map((service) =>
-    getLabelForValue(formOptions.existingServices, service, data.customServicesOptions)
+  const servicesLabels = data.existing_services.map((service) =>
+    getLabelForValue(formOptions.existingServices, service, data.custom_services_options)
   );
 
   const accommodationsLabels = data.accommodations.map((acc) =>
-    getLabelForValue(formOptions.accommodations, acc, data.customAccommodationsOptions)
+    getLabelForValue(formOptions.accommodations, acc, data.custom_accommodations_options)
   );
 
   // Preparar variáveis para o template do Langfuse
   const variables = {
-    studentPerformance: data.studentPerformance,
-    gradeLevel: gradeLevelLabel,
+    student_performance: data.student_performance,
+    grade_level: gradeLevelLabel,
     language: languageLabel,
-    evaluationSchedule: evaluationLabel,
-    disabilityCategories: disabilityLabels.map(label => `- ${label}`).join('\n'),
-    areasOfConcern: areasLabels.map(label => `- ${label}`).join('\n'),
-    priorityGoalAreas: goalLabels.map(label => `- ${label}`).join('\n'),
-    existingServices: servicesLabels.map(label => `- ${label}`).join('\n'),
+    evaluation_schedule: evaluationLabel,
+    disability_categories: disabilityLabels.map(label => `- ${label}`).join('\n'),
+    areas_of_concern: areasLabels.map(label => `- ${label}`).join('\n'),
+    priority_goal_areas: goalLabels.map(label => `- ${label}`).join('\n'),
+    existing_services: servicesLabels.map(label => `- ${label}`).join('\n'),
     accommodations: accommodationsLabels.map(label => `- ${label}`).join('\n'),
-    iepComponents: data.iepComponents.map((comp) => componentSectionMap[comp]).filter(Boolean).join(', '),
+    iep_components: data.iep_components.map((comp) => componentSectionMap[comp]).filter(Boolean).join(', '),
   };
 
   // Compilar o template com as variáveis
@@ -407,8 +407,8 @@ export async function POST(request: NextRequest) {
       input: { prompt, data },
       metadata: {
         promptSource,
-        gradeLevel: data.gradeLevel,
-        sectionsRequested: data.iepComponents.length,
+        grade_level: data.grade_level,
+        sectionsRequested: data.iep_components.length,
       },
     });
 

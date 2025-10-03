@@ -1,19 +1,31 @@
 ═══════════════════════════════════════════════════════════════════════════════
-LANGFUSE PROMPT - COPY & PASTE FIELDS (v3.1 - Updated 2025-10-03)
+LANGFUSE PROMPT - COPY & PASTE FIELDS (v3.1.1 - ULTRA-CONSERVATIVE - 2025-10-03)
 ═══════════════════════════════════════════════════════════════════════════════
 
-🆕 VERSION 3.1 CRITICAL FIXES (CONSERVATIVE MODE):
+🔥 VERSION 3.1.1 CRITICAL FIXES (ULTRA-CONSERVATIVE MODE):
+✅ NEVER invents measurable data (no comprehension %, focus time, independence %)
+✅ NO functional paragraph unless trigger words explicitly present
+✅ Areas of Concern = LITERAL copy (no "(e.g., ...)" expansions)
 ✅ PLAAFP expands ONLY what teacher explicitly mentions (no inference)
 ✅ Accommodations STRICTLY limited to selected list (no additions)
 ✅ Goals created ONLY for areas in PLAAFP (no orphan goals)
 ✅ Services aligned 1:1 with goals (no extras)
-✅ Sections reference ONLY mentioned areas (no cross-contamination)
-✅ Conservative auto-detection (functional goals only if explicitly stated)
 
-⚠️ KEY BEHAVIOR CHANGES FROM v3.0:
-- If teacher mentions ONLY reading → IEP discusses ONLY reading (no math, writing, attention)
-- Selected accommodations = ALL accommodations (no "helpful additions")
-- Each section strictly reflects teacher's original input
+🚨 MAJOR FIXES FROM v3.1:
+v3.1 had 3 critical bugs:
+1. ❌ PLAAFP invented data: "50% comprehension", "8-10 min on-task", "40% independence"
+2. ❌ Created functional paragraph without trigger words in input
+3. ❌ Expanded "Academic (reading)" to "Academic (e.g., reading, writing, math)"
+
+v3.1.1 fixes all 3:
+1. ✅ Uses ONLY data provided by teacher - NO inventions
+2. ✅ Functional paragraph ONLY if explicit words: "attention", "focus", "task completion", etc
+3. ✅ Areas of Concern copied EXACTLY (no expansions)
+
+⚠️ KEY RULES:
+- If teacher didn't measure it → don't include it
+- If teacher didn't say "attention" → no functional content
+- If input says "Academic (reading)" → output says "Academic (reading)" (exact)
 
 ═══════════════════════════════════════════════════════════════════════════════
 
@@ -27,7 +39,7 @@ IEP/Generator
 ═══════════════════════════════════════════════════════════════════════════════
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ ⚙️ SYSTEM MESSAGE (v3.1 - CONSERVATIVE MODE - UPDATED 2025-10-03)          │
+│ ⚙️ SYSTEM MESSAGE (v3.1.1 - ULTRA-CONSERVATIVE - UPDATED 2025-10-03)       │
 └─────────────────────────────────────────────────────────────────────────────┘
 
 You are an expert IEP (Individualized Education Program) writer with deep knowledge of special education best practices and IDEA (Individuals with Disabilities Education Act) compliance. Your role is to generate personalized, professional, and comprehensive IEP documents that comply with educational standards.
@@ -48,20 +60,22 @@ IDEA COMPLIANCE REQUIREMENTS:
 - STRICT ALIGNMENT: Do NOT infer or add challenges not stated by the teacher
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ 👤 USER MESSAGE (v3.1 CONSERVATIVE - Copy entire section below)             │
+│ 👤 USER MESSAGE (v3.1.1 ULTRA-CONSERVATIVE - Copy entire section below)     │
 └─────────────────────────────────────────────────────────────────────────────┘
 
-NOTA IMPORTANTE v3.1: Este prompt é CONSERVADOR
-- Expande APENAS o que o professor menciona explicitamente
-- USA APENAS as accommodations selecionadas (sem adições)
-- Cria metas APENAS para áreas mencionadas no PLAAFP
-- Se input tem só reading → output terá só reading (sem math, writing, etc)
+IMPORTANT NOTE v3.1.1: This prompt is ULTRA-CONSERVATIVE
+- Expands ONLY what teacher explicitly mentions
+- Uses ONLY selected accommodations (no additions)
+- Creates goals ONLY for areas mentioned in PLAAFP
+- NO data invention (no comprehension %, focus time, independence % unless provided)
+- NO functional paragraph unless trigger words present
+- If input has only reading → output will have only reading (no math, writing, etc)
 
-Este user message tem ~700 linhas. Copie TUDO desde "Generate a personalized..." 
-até "...following ALL instructions above." no final.
+This user message has ~800 lines. Copy EVERYTHING from "Generate a personalized..." 
+to "...following ALL instructions above." at the end.
 
 ───────────────────────────────────────────────────────────────────────────────
-INÍCIO DO USER MESSAGE - COPIAR TUDO A PARTIR DAQUI:
+START OF USER MESSAGE - COPY EVERYTHING FROM HERE:
 ───────────────────────────────────────────────────────────────────────────────
 
 Generate a personalized IEP document based on the following student information:
@@ -474,7 +488,7 @@ Generate a JSON object with this structure:
 Now generate the personalized IEP document following ALL instructions above.
 
 ───────────────────────────────────────────────────────────────────────────────
-FIM DO USER MESSAGE - COPIAR ATÉ AQUI
+END OF USER MESSAGE - COPY UNTIL HERE
 ───────────────────────────────────────────────────────────────────────────────
 
 ═══════════════════════════════════════════════════════════════════════════════
@@ -502,17 +516,17 @@ FIM DO USER MESSAGE - COPIAR ATÉ AQUI
 ═══════════════════════════════════════════════════════════════════════════════
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ 📝 ADD VARIABLES (criar as 10 variáveis abaixo):                           │
+│ 📝 ADD VARIABLES (create the 10 variables below):                          │
 └─────────────────────────────────────────────────────────────────────────────┘
 
-IMPORTANTE: No Langfuse, adicionar cada variável individualmente clicando em 
-"+ Add variable" 10 vezes (uma para cada variável abaixo).
+IMPORTANT: In Langfuse, add each variable individually by clicking 
+"+ Add variable" 10 times (one for each variable below).
 
-1️⃣ studentPerformance
+1️⃣ student_performance
    Type: string
    Description: Brief 1-paragraph description of student's current academic and functional performance from teacher
 
-2️⃣ gradeLevel
+2️⃣ grade_level
    Type: string
    Description: Student's grade level (e.g., '4th Grade', '7th Grade')
 
@@ -521,23 +535,23 @@ IMPORTANTE: No Langfuse, adicionar cada variável individualmente clicando em
    Description: Primary language for the IEP document
    Default: English
 
-4️⃣ evaluationSchedule
+4️⃣ evaluation_schedule
    Type: string
    Description: Frequency of evaluation (Annually, Quarterly, Weekly, Bi-weekly)
 
-5️⃣ disabilityCategories
+5️⃣ disability_categories
    Type: string
    Description: Comma-separated list of disability categories
 
-6️⃣ areasOfConcern
+6️⃣ areas_of_concern
    Type: string
    Description: Comma-separated list of areas of concern (Academic, Behavioral, Social/Emotional, Functional)
 
-7️⃣ priorityGoalAreas
+7️⃣ priority_goal_areas
    Type: string
-   Description: Comma-separated list of priority goal areas. ONE goal will be created for EACH area, PLUS auto-detected functional goals from PLAAFP
+   Description: Comma-separated list of priority goal areas. Goals will be created for these PLUS any other areas mentioned in PLAAFP
 
-8️⃣ existingServices
+8️⃣ existing_services
    Type: string
    Description: Comma-separated list of existing services (e.g., 'Special Education Teacher Support, Speech Therapy')
 
@@ -545,125 +559,157 @@ IMPORTANTE: No Langfuse, adicionar cada variável individualmente clicando em
    Type: string
    Description: Comma-separated list of accommodations (e.g., 'Extended time, Visual aids, Breaks')
 
-🔟 iepComponents
+🔟 iep_components
    Type: string
    Description: Comma-separated list of IEP sections to generate (student-info, plaafp, disability-categories, areas-concern, priority-goals, goals, accommodations-mods, progress, gen-ed, services, team)
 
 ═══════════════════════════════════════════════════════════════════════════════
-📊 TESTE EXEMPLO (CASO TODD - v3.0)
+📊 TEST EXAMPLE (TODD CASE - v3.1.1)
 ═══════════════════════════════════════════════════════════════════════════════
 
-Após criar o prompt no Langfuse, testar com estes valores:
+After creating the prompt in Langfuse, test with these values:
 
-studentPerformance = "Todd, a fourth grader, currently reads 85 words per minute with 5 errors when given a first semester, second grade-level passage. According to district norms, Todd is reading at the 5th percentile for fourth graders in the fall. He has difficulty organizing his thoughts in writing and struggles with multi-step math problems. Todd requires frequent reminders to stay on task and benefits from visual supports."
+student_performance = "Todd, a fourth grader, currently reads 85 words per minute with 5 errors when given a first semester, second grade-level passage. According to district norms, Todd is reading at the 5th percentile for fourth graders in the fall."
 
-gradeLevel = "4th Grade"
+grade_level = "4th Grade"
 
 language = "English"
 
-evaluationSchedule = "Quarterly"
+evaluation_schedule = "Quarterly"
 
-disabilityCategories = "Specific Learning Disability (SLD)"
+disability_categories = "Specific Learning Disability (SLD)"
 
-areasOfConcern = "Academic (reading, writing, math)"
+areas_of_concern = "Academic (reading)"
 
-priorityGoalAreas = "Reading Comprehension"
+priority_goal_areas = "Reading Comprehension"
 
-existingServices = "Special Education Teacher Support"
+existing_services = "Special Education Teacher Support"
 
 accommodations = "Extended time, Visual aids/graphic organizers"
 
-iepComponents = "student-info, plaafp, disability-categories, areas-concern, priority-goals, goals, accommodations-mods, progress, gen-ed, services, team"
+iep_components = "student-info, plaafp, disability-categories, areas-concern, priority-goals, goals, accommodations-mods, progress, gen-ed, services, team"
 
 ═══════════════════════════════════════════════════════════════════════════════
-🔍 EXPECTED BEHAVIOR v3.1 CONSERVATIVE (Caso Todd):
+🔍 EXPECTED BEHAVIOR v3.1.1 ULTRA-CONSERVATIVE (Todd Case):
 ═══════════════════════════════════════════════════════════════════════════════
 
-Com este exemplo, o sistema v3.1 DEVE (MODO CONSERVADOR):
+With this example, system v3.1.1 MUST (ULTRA-CONSERVATIVE):
 
-✅ PLAAFP com dados objetivos APENAS para área mencionada:
-   - Reading: "85 WPM, 5 errors, 2nd grade level, 5th percentile"
-   - Strengths: "responds to visual aids and graphic organizers"
-   - Impact: "affects access to reading-intensive subjects"
-   ❌ SEM Writing (não mencionado no input)
-   ❌ SEM Math (não mencionado no input)
-   ❌ SEM Attention/Focus (não mencionado no input)
+✅ PLAAFP with ONLY 3 paragraphs (academic, strengths, impact):
+   Paragraph 1: "Todd reads at 85 words per minute with 5 errors, placing him at 
+                 5th percentile. His reading fluency is below grade level."
+   Paragraph 2: "Todd responds well to visual aids and graphic organizers."
+   Paragraph 3: "Reading challenges affect access to reading-intensive subjects."
+   
+   ❌ NO "50% comprehension" (not provided)
+   ❌ NO "8-10 minutes on task" (not mentioned)
+   ❌ NO "40% independence" (not provided)
+   ❌ NO Functional Performance paragraph (no trigger words)
+   ❌ NO Writing (not mentioned in input)
+   ❌ NO Math (not mentioned in input)
 
-✅ Criar APENAS 1 META (conservador):
-   1. Reading Comprehension (explícito em priorityGoalAreas)
-   ❌ NÃO criar Writing goal (não mencionado)
-   ❌ NÃO criar Math goal (não mencionado)
-   ❌ NÃO criar Attention goal (não mencionado)
+✅ Create ONLY 1 GOAL (conservative):
+   1. Reading Comprehension (explicit in priorityGoalAreas)
+   ❌ DO NOT create Writing goal (not mentioned)
+   ❌ DO NOT create Math goal (not mentioned)
+   ❌ DO NOT create Attention goal (not mentioned)
 
-✅ ACCOMMODATIONS usando APENAS lista selecionada:
+✅ AREAS OF CONCERN (LITERAL - v3.1.1):
+   <li>Academic (reading)</li>
+   ❌ NOT "Academic (e.g., reading, writing, math)" (expansion prohibited)
+
+✅ ACCOMMODATIONS using ONLY selected list:
    Reading: Visual aids/graphic organizers, Extended time
    Assessments: Extended time, Visual aids
-   ❌ SEM "Frequent breaks" (não selecionado)
-   ❌ SEM "Modified assessments" (não selecionado)
-   ❌ SEM categoria Writing (reading não mencionado no PLAAFP)
+   ❌ NO "Frequent breaks" (not selected)
+   ❌ NO "Modified assessments" (not selected)
+   ❌ NO Writing category (not mentioned in PLAAFP)
 
-✅ SERVIÇOS alinhados 1:1 com a 1 meta (tabela com 4 colunas):
+✅ SERVICES aligned 1:1 with the 1 goal (table with 4 columns):
    - Reading Comprehension Intervention | 3x/week, 45min | Pull-out (Resource Room) | Sp Ed Teacher
-   ❌ SEM Writing Support
-   ❌ SEM Math Intervention
-   ❌ SEM Executive Function Coaching
+   ❌ NO Writing Support
+   ❌ NO Math Intervention
+   ❌ NO Executive Function Coaching
 
-✅ Progress Monitoring APENAS para Reading
+✅ Progress Monitoring ONLY for Reading
 
-✅ Participation menciona APENAS reading-intensive subjects
+✅ Participation mentions ONLY reading-intensive subjects
    "requires support in reading-intensive subjects such as language arts and content area reading"
-   ❌ SEM menção a "math" 
-   ❌ SEM menção a "writing"
+   ❌ NO mention of "math" 
+   ❌ NO mention of "writing"
 
 ═══════════════════════════════════════════════════════════════════════════════
-✅ CHECKLIST FINAL v3.1
+✅ FINAL CHECKLIST v3.1.1
 ═══════════════════════════════════════════════════════════════════════════════
 
-Antes de clicar em "Create prompt" no Langfuse:
+Before clicking "Create prompt" in Langfuse:
 
 [ ] Name = "IEP/Generator"
-[ ] Aba "Chat" selecionada
-[ ] System message v3.1 colado (com CONSERVATIVE EXPANSION e STRICT ALIGNMENT)
-[ ] User message v3.1 completo colado (~700 linhas - seções PLAAFP, Goals, Accommodations revisadas)
-[ ] Config JSON colado (temperature: 0.7, max_tokens: 4000)
-[ ] 10 variáveis criadas (studentPerformance até iepComponents)
-[ ] Label "production" marcada
-[ ] Commit message: "v3.1 - CONSERVATIVE: strict alignment, only explicit areas, no inference, accommodation restrictions"
-[ ] Testado com caso Todd e validado que gera APENAS 1 meta de reading (sem math/writing/attention)
+[ ] "Chat" tab selected
+[ ] System message v3.1.1 pasted (ULTRA-CONSERVATIVE - NO DATA INVENTION)
+[ ] User message v3.1.1 complete pasted (~800 lines with 3 critical fixes)
+[ ] Config JSON pasted (temperature: 0.7, max_tokens: 4000)
+[ ] 10 variables created (studentPerformance to iepComponents)
+[ ] Label "production" checked
+[ ] Commit message: "v3.1.1 - ULTRA-CONSERVATIVE: no data invention, no functional paragraph without triggers, literal Areas of Concern"
+[ ] Tested with Todd case and validated:
+    [ ] PLAAFP without "50% comprehension", "8-10 min on-task", "40% independence"
+    [ ] PLAAFP without functional paragraph (input had no trigger words)
+    [ ] Areas of Concern = "Academic (reading)" (no expansion)
+    [ ] 1 reading goal (no math/writing/attention)
 
 ═══════════════════════════════════════════════════════════════════════════════
-📚 DOCUMENTAÇÃO ADICIONAL
+📚 ADDITIONAL DOCUMENTATION
 ═══════════════════════════════════════════════════════════════════════════════
 
-Ver arquivos:
-- IEP_GENERATOR_IMPROVEMENTS_V3.md → Documentação das melhorias v3.0
-- LANGFUSE_IEP_PROMPT.json → Versão estruturada do prompt (v3.1 CONSERVATIVE)
-- IEP_PROMPT_STRUCTURE.json → Estrutura detalhada (pendente atualização)
+See files:
+- IEP_GENERATOR_IMPROVEMENTS_V3.md → v3.0 improvements documentation
+- IEP_V3.1.1_CRITICAL_FIXES.md → v3.1.1 critical fixes documentation
+- IEP_VALIDATOR_USAGE.md → How to use validation tools
+- LANGFUSE_IEP_PROMPT.json → Structured prompt version (v3.1.1 ULTRA-CONSERVATIVE)
+- IEP_PROMPT_STRUCTURE.json → Detailed structure (pending update)
+
+Validation Tools:
+- /src/lib/iep-validator.ts → TypeScript validation library
+- /src/app/validate-iep/page.tsx → Web UI for validation (http://localhost:3000/validate-iep)
+- /scripts/validate-iep-v3.1.1.js → CLI validation script
 
 ═══════════════════════════════════════════════════════════════════════════════
-⚖️ DIFERENÇAS v3.0 vs v3.1
+⚖️ DIFFERENCES v3.0 vs v3.1 vs v3.1.1
 ═══════════════════════════════════════════════════════════════════════════════
 
-v3.0 (PROATIVO):
-❌ Inferia problemas não mencionados
-❌ Adicionava accommodations "úteis"
-❌ Criava metas para áreas não citadas
-❌ Mencionava math/writing mesmo sem input
+v3.0 (PROACTIVE - ❌ Bugs):
+❌ Inferred problems not mentioned
+❌ Added "helpful" accommodations
+❌ Created goals for areas not cited
+❌ Mentioned math/writing even without input
 
-v3.1 (CONSERVADOR):
-✅ Expande APENAS o que foi dito
-✅ Usa APENAS accommodations selecionadas
-✅ Cria metas APENAS para áreas do PLAAFP
-✅ Seções referem APENAS áreas mencionadas
+v3.1 (CONSERVATIVE - ⚠️ Still had bugs):
+✅ Expands ONLY what was said
+✅ Uses ONLY selected accommodations
+❌ BUT still invented data (50% comp., 8-10 min focus, 40% indep.)
+❌ BUT still created functional paragraph without trigger words
+❌ BUT still expanded Areas of Concern
 
-QUANDO USAR:
-- v3.1: Quando input é minimalista (ex: só reading)
-- v3.1: Quando quer controle estrito sobre output
-- v3.1: Quando precisa de IEP focado em 1-2 áreas
+v3.1.1 (ULTRA-CONSERVATIVE - ✅ All bugs fixed):
+✅ Expands ONLY what was said
+✅ Uses ONLY selected accommodations
+✅ Uses ONLY provided data (ZERO invention)
+✅ Functional paragraph ONLY with trigger words
+✅ Areas of Concern literal (exact copy)
 
-EXEMPLO PRÁTICO:
-Input: "Todd reads at 2nd grade level (85 WPM, 5 errors)"
-- v3.0: Cria 4 metas (reading, writing, math, attention) ❌
-- v3.1: Cria 1 meta (reading) ✅
+WHEN TO USE:
+- v3.1.1: ALWAYS (most reliable version)
+- v3.1.1: When input is minimalist (e.g. only reading)
+- v3.1.1: When you want strict control over output
+- v3.1.1: When you need IEP focused on 1-2 areas
+
+PRACTICAL EXAMPLE (Todd Case):
+Input: "Todd reads 85 WPM, 5 errors... 5th percentile"
+      + Areas: "Academic (reading)"
+      
+- v3.0: 4 goals + invents data ❌
+- v3.1: 1 goal but invents "50% comp., 8-10min focus" + expands Areas ❌
+- v3.1.1: 1 goal, NO data invention, literal Areas ✅
 
 ═══════════════════════════════════════════════════════════════════════════════

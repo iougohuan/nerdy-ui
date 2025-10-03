@@ -220,25 +220,25 @@ export default function AIToolsPage() {
     setIsGenerating(true);
     
     try {
-      // Preparar dados para enviar à API
+      // Preparar dados para enviar à API (convertendo para snake_case)
       const requestData = {
-        studentPerformance,
-        gradeLevel,
-        disabilityCategories,
-        areasOfConcern,
-        priorityGoalAreas,
-        evaluationSchedule,
+        student_performance: studentPerformance,
+        grade_level: gradeLevel,
+        disability_categories: disabilityCategories,
+        areas_of_concern: areasOfConcern,
+        priority_goal_areas: priorityGoalAreas,
+        evaluation_schedule: evaluationSchedule,
         language,
-        iepComponents,
-        existingServices,
+        iep_components: iepComponents,
+        existing_services: existingServices,
         accommodations,
-        customDisabilityOptions: Object.fromEntries(
+        custom_disability_options: Object.fromEntries(
           customDisabilityOptions.map(opt => [opt.value, opt.label])
         ),
-        customServicesOptions: Object.fromEntries(
+        custom_services_options: Object.fromEntries(
           customServicesOptions.map(opt => [opt.value, opt.label])
         ),
-        customAccommodationsOptions: Object.fromEntries(
+        custom_accommodations_options: Object.fromEntries(
           customAccommodationsOptions.map(opt => [opt.value, opt.label])
         ),
       };
