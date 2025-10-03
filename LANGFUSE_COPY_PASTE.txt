@@ -1,5 +1,15 @@
 ═══════════════════════════════════════════════════════════════════════════════
-LANGFUSE PROMPT - COPY & PASTE FIELDS
+LANGFUSE PROMPT - COPY & PASTE FIELDS (v3.0 - Updated 2025-10-03)
+═══════════════════════════════════════════════════════════════════════════════
+
+🆕 VERSION 3.0 IMPROVEMENTS:
+✅ IDEA Compliance requirements added
+✅ Mandatory baseline data for all PLAAFP areas
+✅ Auto-detection of functional goals
+✅ Complete coverage validation (PLAAFP ↔ Goals)
+✅ Detailed service delivery models (pull-out/push-in/co-teaching)
+✅ Compliance checklist included
+
 ═══════════════════════════════════════════════════════════════════════════════
 
 📝 NAME
@@ -12,10 +22,10 @@ IEP/Generator
 ═══════════════════════════════════════════════════════════════════════════════
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ ⚙️ SYSTEM MESSAGE                                                           │
+│ ⚙️ SYSTEM MESSAGE (v3.0 - UPDATED 2025-10-03)                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 
-You are an expert IEP (Individualized Education Program) writer with deep knowledge of special education best practices. Your role is to generate personalized, professional, and comprehensive IEP documents that comply with educational standards.
+You are an expert IEP (Individualized Education Program) writer with deep knowledge of special education best practices and IDEA (Individuals with Disabilities Education Act) compliance. Your role is to generate personalized, professional, and comprehensive IEP documents that comply with educational standards.
 
 CRITICAL RULES:
 - This IEP must be PERSONALIZED and SPECIFIC to the individual student
@@ -25,13 +35,21 @@ CRITICAL RULES:
 - Use concrete, measurable language based on the student's actual needs
 - Sound like it was written by a team who knows this specific student well
 
+IDEA COMPLIANCE REQUIREMENTS:
+- COMPLETE COVERAGE: Every challenge/need mentioned in PLAAFP MUST have a corresponding goal
+- MEASURABLE DATA: PLAAFP must include baseline data for EVERY skill area mentioned
+- COHERENCE: Goals → Services → Accommodations must all align logically
+- FUNCTIONAL SKILLS: If PLAAFP mentions attention/organization/task completion, create functional goals even if not explicitly requested
+
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│ 👤 USER MESSAGE                                                              │
-│ (Ver arquivo: LANGFUSE_IEP_PROMPT.json -> campo "userMessage")             │
-│ (São ~400 linhas - copiar do JSON)                                          │
+│ 👤 USER MESSAGE (v3.0 - Copy entire section below)                          │
 └─────────────────────────────────────────────────────────────────────────────┘
 
-INÍCIO DO USER MESSAGE:
+NOTA: Este user message tem ~600 linhas. Copie TUDO desde "Generate a personalized..." 
+até "...following ALL instructions above." no final.
+
+───────────────────────────────────────────────────────────────────────────────
+INÍCIO DO USER MESSAGE - COPIAR TUDO A PARTIR DAQUI:
 ───────────────────────────────────────────────────────────────────────────────
 
 Generate a personalized IEP document based on the following student information:
@@ -102,28 +120,73 @@ Generate a personalized IEP document based on the following student information:
   - 📆 Evaluation Schedule: {{evaluationSchedule}}
 
 ### 2. 🔍 PLAAFP (Present Levels)
-**CRITICAL:** EXPAND the brief teacher note into 3-4 comprehensive paragraphs:
+**CRITICAL:** EXPAND the brief teacher note into 3-4 comprehensive paragraphs WITH OBJECTIVE DATA
+
+**MANDATORY REQUIREMENT: Include Baseline Data for EVERY Skill Area Mentioned**
+
+For each academic/functional area discussed in PLAAFP, you MUST include specific measurable baseline data:
+
+**Reading Baseline Data (if mentioned):**
+- Fluency: "X words per minute with Y errors" OR "reads at Z grade level"
+- Comprehension: "answers X% of literal/inferential questions correctly"
+- Percentile/benchmark: "performs at Xth percentile for {{gradeLevel}}"
+- Example: "Todd reads 85 words per minute with 5 errors at 2nd-grade level, placing him at the 5th percentile for 4th graders"
+
+**Writing Baseline Data (if mentioned):**
+- Organization: "completes X out of 5 sentences with coherence"
+- Independence: "requires prompts on X% of writing tasks"
+- Quality: "writes at X grade level" OR "scores Y on 4-point rubric"
+- Example: "completes 2 out of 5 writing tasks with coherent organization, requiring prompts 80% of the time"
+
+**Math Baseline Data (if mentioned):**
+- Computation: "completes X out of 10 problems independently with Y% accuracy"
+- Problem-solving: "solves X-step problems with Y% accuracy"
+- Grade level: "performs at X grade level in math"
+- Example: "solves single-step problems with 70% accuracy but struggles with multi-step problems (30% accuracy)"
+
+**Functional/Behavioral Baseline Data (if attention/focus/organization mentioned):**
+- Attention: "remains on task for X minutes before requiring redirection"
+- Task completion: "completes assignments independently X% of the time"
+- Organization: "organizes materials without prompts in X out of 5 opportunities"
+- Behavior: "requires X prompts per hour to stay on task"
+- Example: "remains on task for 8-10 minutes before needing redirection, requires 4-5 prompts per hour"
+
+**NO VAGUE STATEMENTS ALLOWED:**
+- ❌ BAD: "struggles with organization"
+- ✅ GOOD: "requires prompts in 80% of tasks to organize materials, independently organizes in 1 out of 5 opportunities"
+- ❌ BAD: "has difficulty with writing"
+- ✅ GOOD: "writes at 2nd-grade level (2 grades below), completes 3 of 5 sentences with coherence"
+
+**Paragraph Structure:**
 
 **Paragraph 1 - Academic Performance:**
 - Expand on reading/writing/math abilities with grade-level benchmarks
-- Include measurable data points (e.g., "reads at X grade level", "scores Y% on assessments")
+- MUST include measurable baseline data for EACH area mentioned (see examples above)
 - Reference specific subjects appropriate for {{gradeLevel}}
+- Use concrete numbers, percentages, grade levels, percentiles
+- Compare to grade-level expectations
 
 **Paragraph 2 - Functional Performance:**
 - How challenges manifest daily in the classroom
-- Learning behaviors, attention span, task completion patterns
+- MUST include measurable data: time on task, prompts needed, completion rates
+- Learning behaviors, attention span, task completion patterns with specific metrics
+- Include frequency descriptors ("often", "80% of the time", "4 out of 5 days")
 
 **Paragraph 3 - Strengths & Effective Strategies:**
 - What works for this student
 - Engagement triggers, successful interventions, conditions for success
+- Include specific examples of when student performs best
+- Reference accommodations that are already working
 
 **Paragraph 4 - Impact on General Education:**
 - How disability affects curriculum access
 - Peer interactions, learning opportunities, support needs
+- Specific subjects/activities where impact is most/least significant
+- Level of support needed (independent, minimal, moderate, intensive)
 
 **Language Requirements:**
 - Use professional terms: "demonstrates", "exhibits", "requires", "benefits from"
-- Include measurable data: percentages, grade levels, frequency descriptors
+- Include measurable data: percentages, grade levels, frequency descriptors, WPM, accuracy rates
 - Be specific: Reference actual subjects and activities for the grade level
 - Sound like a special education team who has observed the student for months
 
@@ -142,6 +205,21 @@ Generate a personalized IEP document based on the following student information:
 ### 6. 🏁 {{evaluationSchedule}} Goals
 **CRITICAL:** Use SMART methodology for ALL goals and benchmarks
 
+**MANDATORY COMPLETE COVERAGE RULE:**
+- You MUST create a goal for EVERY academic/functional challenge mentioned in PLAAFP
+- If PLAAFP mentions reading challenges → MUST create reading goal
+- If PLAAFP mentions writing challenges → MUST create writing goal  
+- If PLAAFP mentions math challenges → MUST create math goal
+- If PLAAFP mentions attention/focus/organization → MUST create functional goal
+- Do NOT skip any area of need mentioned in PLAAFP
+
+**AUTO-DETECT FUNCTIONAL NEEDS:**
+Even if not in {{priorityGoalAreas}}, if PLAAFP mentions ANY of these, automatically create a corresponding goal:
+- Attention/focus issues → Create "Attention & Focus" goal
+- Organization problems → Create "Organization & Task Completion" goal
+- Task completion challenges → Create "Task Completion" or "Self-Regulation" goal
+- Behavioral concerns → Create "Self-Regulation & Behavior" goal
+
 **SMART Criteria:**
 - **S**pecific: Clearly defined, addressing EXACT challenges from PLAAFP (NOT vague like "improve reading")
 - **M**easurable: Include concrete metrics (80% accuracy, 4 out of 5 trials, grade level)
@@ -151,6 +229,7 @@ Generate a personalized IEP document based on the following student information:
 
 **Goal Structure:**
 - Create ONE goal for EACH priority goal area in: {{priorityGoalAreas}}
+- PLUS additional goals for any needs mentioned in PLAAFP not covered above
 - Format: "Goal 1: [Goal Area Name]"
 - Each goal must have 3-4 short-term benchmarks
 
@@ -164,13 +243,22 @@ Generate a personalized IEP document based on the following student information:
   - Weekly: Week 1-4 → Week 5-8 → Week 9-12 → Week 13-16
   - Bi-weekly: Weeks 1-2 → Weeks 3-4 → Weeks 5-6 → Weeks 7-8
 
-**Example SMART Goal:**
+**Example SMART Goals:**
+
+*Academic Goal:*
 "By the end of the school year, [Student name] will improve reading comprehension by accurately answering inferential and main idea questions in 6th-grade texts with 80% accuracy in 4 out of 5 opportunities, using graphic organizers."
+
+*Functional Goal (if PLAAFP mentions attention):*
+"By the end of Q4, [Student name] will independently remain on task during independent work for 15 minutes with no more than one prompt, in 4 out of 5 opportunities."
+
+*Writing Goal (if PLAAFP mentions writing):*
+"By the end of the school year, [Student name] will independently organize a 5-sentence paragraph with clear topic sentence, 3 supporting details, and conclusion, scoring 3 or higher on a 4-point rubric in 4 out of 5 writing tasks."
 
 ### 7. 🧰 Accommodations & Supports
 **Format:** HTML table with class='iep-table'
 
 **Structure:**
+```html
 <table class='iep-table'>
   <thead>
     <tr>
@@ -197,6 +285,7 @@ Generate a personalized IEP document based on the following student information:
     </tr>
   </tbody>
 </table>
+```
 
 **Personalization:**
 - Base on specific PLAAFP challenges
@@ -209,18 +298,21 @@ Generate a personalized IEP document based on the following student information:
 **Opening:** "Progress will be monitored {{evaluationSchedule}} through:"
 
 **Requirements:**
-- List SPECIFIC monitoring methods aligned with each goal
+- List SPECIFIC monitoring methods aligned with EACH goal created
 - Include grade-appropriate assessment tools for {{gradeLevel}}
 - Reference specific benchmarks (e.g., "Reading rubrics", "Writing samples on 4-point scale")
 - Mention data collection methods matching accommodations
 - Specify WHO monitors (teacher, aide, specialist)
 - Connect to evaluation schedule: {{evaluationSchedule}}
+- Include methods for ALL goals (academic AND functional)
 
 **Example:**
 - Reading comprehension rubrics focused on inferential questions
 - Writing samples scored on 4-point organization scale
 - Weekly self-regulation check-ins with behavior specialist
-- Data collected by Special Education Teacher and reviewed monthly
+- On-task behavior tracking using 15-minute interval observations
+- Math problem-solving probes administered bi-weekly
+- Data collected by Special Education Teacher and reviewed {{evaluationSchedule}}
 
 ### 9. 🧑‍🏫 Participation in General Education Curriculum
 **Requirements:**
@@ -233,14 +325,16 @@ Generate a personalized IEP document based on the following student information:
 - Be realistic about inclusion opportunities given needs
 
 ### 10. 👥 Special Education Services
-**Format:** HTML table with class='iep-table'
+**Format:** HTML table with class='iep-table' with 4 COLUMNS
 
-**Structure:**
+**UPDATED Structure (4 columns):**
+```html
 <table class='iep-table'>
   <thead>
     <tr>
       <th>Service</th>
       <th>Frequency</th>
+      <th>Location/Model</th>
       <th>Provider</th>
     </tr>
   </thead>
@@ -248,10 +342,12 @@ Generate a personalized IEP document based on the following student information:
     <tr>
       <td>[Service name]</td>
       <td>[Frequency]</td>
+      <td>[Delivery model & location]</td>
       <td>[Provider role]</td>
     </tr>
   </tbody>
 </table>
+```
 
 **CRITICAL RULE:** Each service MUST DIRECTLY support at least one goal
 
@@ -262,13 +358,21 @@ Generate a personalized IEP document based on the following student information:
 - Self-Regulation → Counseling OR Behavioral Support
 - Social Skills → Social Skills Group OR Counseling
 - Communication Development → Speech Therapy
-- Attention & Focus → Behavioral Support OR Study Skills
-- Organization → Executive Function Coaching OR Study Skills
+- Attention & Focus → Behavioral Support OR Study Skills OR Executive Function Coaching
+- Organization & Task Completion → Executive Function Coaching OR Study Skills
+
+**Delivery Models (Location/Model column):**
+- **Pull-out (Resource Room):** Student leaves general education classroom for specialized instruction in resource room
+- **Push-in (General Ed Classroom):** Specialist comes into general education classroom to provide support
+- **Co-Teaching:** Special education teacher co-teaches with general education teacher in classroom
+- **Small Group (Resource Room):** Small group instruction in separate setting
+- **Individual (Resource Room):** One-on-one instruction in separate setting
 
 **Rules:**
-- ONLY include services matching priority goal areas: {{priorityGoalAreas}}
+- ONLY include services matching goals created (including auto-detected functional goals)
 - DO NOT include unrelated services
 - Example: No Speech Therapy if no communication/language goals
+- Each service MUST specify delivery model AND location
 
 **Frequency Levels:**
 - **Intensive** (2+ grade levels behind): 3-5x per week, 30-45 minutes
@@ -276,6 +380,12 @@ Generate a personalized IEP document based on the following student information:
 - **Maintenance** (monitoring/light support): 1x per week OR 2x per month, 30 minutes
 
 **Naming:** Clearly show connection to goals (e.g., "Reading Comprehension Intervention" not "Special Ed Support")
+
+**Example:**
+| Service | Frequency | Location/Model | Provider |
+|---------|-----------|----------------|----------|
+| Reading Comprehension Intervention | 3x per week, 45 min | Pull-out (Resource Room) | Special Education Teacher |
+| Executive Function Coaching | 2x per week, 30 min | Push-in (Gen Ed Classroom) | Special Education Teacher |
 
 ### 11. 🤝 Team Members
 **Format:** Bulleted list with roles
@@ -296,13 +406,23 @@ Generate a personalized IEP document based on the following student information:
 **CRITICAL:** Ensure coherence across ALL sections
 
 **Connections:**
-- **PLAAFP → Goals:** Goals MUST directly address challenges described in PLAAFP
+- **PLAAFP → Goals:** Goals MUST directly address challenges described in PLAAFP. EVERY challenge in PLAAFP needs a goal.
 - **Goals → Accommodations:** Accommodations MUST support the specific goals created
-- **Goals → Services:** Services MUST align with intensity and type of goals
+- **Goals → Services:** Services MUST align with intensity and type of goals (1:1 mapping)
 - **Goals → Monitoring:** Progress monitoring MUST measure specific goal benchmarks
 - **Overall:** Every section should reference and connect to student's documented needs
 
 **Narrative:** The entire IEP should tell a cohesive story about THIS specific student
+
+**COMPLIANCE CHECKLIST (verify before generating):**
+✓ PLAAFP has measurable baseline data for every skill area mentioned
+✓ Every challenge in PLAAFP has a corresponding goal
+✓ All goals follow SMART criteria
+✓ All services directly support at least one goal
+✓ Services specify delivery model (pull-out, push-in, co-teaching) and location
+✓ Progress monitoring methods exist for every goal
+✓ Accommodations support the goals created
+✓ Functional goals created if PLAAFP mentions attention/organization/behavior
 
 ---
 
@@ -321,6 +441,7 @@ Generate a personalized IEP document based on the following student information:
 
 Generate a JSON object with this structure:
 
+```json
 {
   "sections": [
     {
@@ -334,18 +455,23 @@ Generate a JSON object with this structure:
     // ... other sections based on iepComponents
   ]
 }
+```
 
 **Only generate sections specified in:** {{iepComponents}}
 
 Now generate the personalized IEP document following ALL instructions above.
 
 ───────────────────────────────────────────────────────────────────────────────
-FIM DO USER MESSAGE
-═══════════════════════════════════════════════════════════════════════════════
+FIM DO USER MESSAGE - COPIAR ATÉ AQUI
+───────────────────────────────────────────────────────────────────────────────
 
 ═══════════════════════════════════════════════════════════════════════════════
-⚙️ CONFIG
+⚙️ CONFIG - TAB: CONFIG
 ═══════════════════════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 📋 CONFIG (JSON format - copy entire block below)                          │
+└─────────────────────────────────────────────────────────────────────────────┘
 
 {
   "model": "gpt-4o-2024-08-06",
@@ -360,29 +486,64 @@ FIM DO USER MESSAGE
 }
 
 ═══════════════════════════════════════════════════════════════════════════════
-🏷️ LABELS
+🔤 VARIABLES - TAB: VARIABLES
 ═══════════════════════════════════════════════════════════════════════════════
 
-☑️ Set the "production" label
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 📝 ADD VARIABLES (criar as 10 variáveis abaixo):                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+IMPORTANTE: No Langfuse, adicionar cada variável individualmente clicando em 
+"+ Add variable" 10 vezes (uma para cada variável abaixo).
+
+1️⃣ studentPerformance
+   Type: string
+   Description: Brief 1-paragraph description of student's current academic and functional performance from teacher
+
+2️⃣ gradeLevel
+   Type: string
+   Description: Student's grade level (e.g., '4th Grade', '7th Grade')
+
+3️⃣ language
+   Type: string
+   Description: Primary language for the IEP document
+   Default: English
+
+4️⃣ evaluationSchedule
+   Type: string
+   Description: Frequency of evaluation (Annually, Quarterly, Weekly, Bi-weekly)
+
+5️⃣ disabilityCategories
+   Type: string
+   Description: Comma-separated list of disability categories
+
+6️⃣ areasOfConcern
+   Type: string
+   Description: Comma-separated list of areas of concern (Academic, Behavioral, Social/Emotional, Functional)
+
+7️⃣ priorityGoalAreas
+   Type: string
+   Description: Comma-separated list of priority goal areas. ONE goal will be created for EACH area, PLUS auto-detected functional goals from PLAAFP
+
+8️⃣ existingServices
+   Type: string
+   Description: Comma-separated list of existing services (e.g., 'Special Education Teacher Support, Speech Therapy')
+
+9️⃣ accommodations
+   Type: string
+   Description: Comma-separated list of accommodations (e.g., 'Extended time, Visual aids, Breaks')
+
+🔟 iepComponents
+   Type: string
+   Description: Comma-separated list of IEP sections to generate (student-info, plaafp, disability-categories, areas-concern, priority-goals, goals, accommodations-mods, progress, gen-ed, services, team)
 
 ═══════════════════════════════════════════════════════════════════════════════
-💾 COMMIT MESSAGE
+📊 TESTE EXEMPLO (CASO TODD - v3.0)
 ═══════════════════════════════════════════════════════════════════════════════
 
-Initial IEP Generator prompt setup
+Após criar o prompt no Langfuse, testar com estes valores:
 
-- Added SMART methodology for goals and benchmarks
-- Implemented personalization requirements
-- Configured HTML formatting for TipTap editor
-- Added comprehensive section instructions
-- Set up 10 variables for student data input
-- Configured GPT-4o-2024-08-06 with temperature 0.7
-
-═══════════════════════════════════════════════════════════════════════════════
-🧪 TEST VARIABLES
-═══════════════════════════════════════════════════════════════════════════════
-
-studentPerformance = "Emma struggles with reading fluency and comprehension, often reading below grade level. She has difficulty decoding multi-syllabic words and loses track when reading longer passages. Emma works well in small groups with visual supports and benefits from extra time on assignments."
+studentPerformance = "Todd, a fourth grader, currently reads 85 words per minute with 5 errors when given a first semester, second grade-level passage. According to district norms, Todd is reading at the 5th percentile for fourth graders in the fall. He has difficulty organizing his thoughts in writing and struggles with multi-step math problems. Todd requires frequent reminders to stay on task and benefits from visual supports."
 
 gradeLevel = "4th Grade"
 
@@ -394,27 +555,65 @@ disabilityCategories = "Specific Learning Disability (SLD)"
 
 areasOfConcern = "Academic (reading, writing, math)"
 
-priorityGoalAreas = "Reading Comprehension, Attention & Focus"
+priorityGoalAreas = "Reading Comprehension"
 
-existingServices = "Special Education Teacher Support, Reading Intervention"
+existingServices = "Special Education Teacher Support"
 
-accommodations = "Extended time, Visual aids, Graphic organizers, Preferential seating"
+accommodations = "Extended time, Visual aids/graphic organizers"
 
 iepComponents = "student-info, plaafp, disability-categories, areas-concern, priority-goals, goals, accommodations-mods, progress, gen-ed, services, team"
 
 ═══════════════════════════════════════════════════════════════════════════════
-✅ CHECKLIST
+🔍 EXPECTED BEHAVIOR v3.0 (Caso Todd):
 ═══════════════════════════════════════════════════════════════════════════════
 
-Antes de clicar em "Create prompt":
+Com este exemplo, o sistema v3.0 DEVE:
+
+✅ PLAAFP com dados objetivos para TODAS as áreas:
+   - Reading: "85 WPM, 5 errors, 2nd grade level, 5th percentile"
+   - Writing: "completes X of 5 tasks with coherence, requires prompts Y%"
+   - Math: "solves single-step with X%, multi-step with Y%"
+   - Attention: "on-task for X minutes, requires Y prompts/hour"
+
+✅ AUTO-DETECTAR e criar 4 METAS (não apenas 1):
+   1. Reading Comprehension (explícito em priorityGoalAreas)
+   2. Written Expression (auto-detectado do PLAAFP)
+   3. Math Problem Solving (auto-detectado do PLAAFP)
+   4. Attention & Focus (auto-detectado funcional do PLAAFP)
+
+✅ SERVIÇOS alinhados 1:1 com as 4 metas:
+   - Reading Comprehension Intervention | 3x/week, 45min | Pull-out (Resource Room)
+   - Writing Support | 2x/week, 30min | Push-in (Gen Ed Classroom)
+   - Math Intervention | 2x/week, 30min | Pull-out (Resource Room)
+   - Executive Function Coaching | 2x/week, 30min | Push-in (Gen Ed Classroom)
+
+✅ Progress Monitoring para TODAS as 4 metas
+
+✅ Tabela de Serviços com 4 COLUNAS (incluindo Location/Model)
+
+═══════════════════════════════════════════════════════════════════════════════
+✅ CHECKLIST FINAL
+═══════════════════════════════════════════════════════════════════════════════
+
+Antes de clicar em "Create prompt" no Langfuse:
 
 [ ] Name = "IEP/Generator"
 [ ] Aba "Chat" selecionada
-[ ] System message colada
-[ ] User message completa colada (todas as 10 variáveis {{...}})
-[ ] Config JSON colado
+[ ] System message v3.0 colada (com IDEA COMPLIANCE)
+[ ] User message v3.0 completa colada (~600 linhas)
+[ ] Config JSON colado (temperature: 0.7, max_tokens: 4000)
+[ ] 10 variáveis criadas (studentPerformance até iepComponents)
 [ ] Label "production" marcada
-[ ] Commit message preenchida
+[ ] Commit message: "v3.0 - IDEA compliance, complete coverage, auto-detect functional goals, service delivery models"
+[ ] Testado com caso Todd e validado que gera 4 metas
 
 ═══════════════════════════════════════════════════════════════════════════════
+📚 DOCUMENTAÇÃO ADICIONAL
+═══════════════════════════════════════════════════════════════════════════════
 
+Ver arquivos:
+- IEP_GENERATOR_IMPROVEMENTS_V3.md → Documentação completa das melhorias
+- LANGFUSE_IEP_PROMPT.json → Versão estruturada do prompt (v3.0)
+- IEP_PROMPT_STRUCTURE.json → Estrutura detalhada (pendente atualização para v3.0)
+
+═══════════════════════════════════════════════════════════════════════════════
