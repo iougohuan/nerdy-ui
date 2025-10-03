@@ -2,6 +2,12 @@
 LANGFUSE PROMPT - COPY & PASTE FIELDS (v3.1.1 - ULTRA-CONSERVATIVE - 2025-10-03)
 ═══════════════════════════════════════════════════════════════════════════════
 
+📌 FORMAT SPECIFICATION:
+✅ TYPE: "chat" (System Message + User Message)
+✅ OUTPUT: JSON with sections array (HTML content inside)
+✅ VARIABLES: snake_case (student_performance, grade_level, etc.)
+✅ CONFIG: response_format: { "type": "json_object" }
+
 🔥 VERSION 3.1.1 CRITICAL FIXES (ULTRA-CONSERVATIVE MODE):
 ✅ NEVER invents measurable data (no comprehension %, focus time, independence %)
 ✅ NO functional paragraph unless trigger words explicitly present
@@ -56,8 +62,10 @@ IDEA COMPLIANCE REQUIREMENTS:
 - COMPLETE COVERAGE: Every challenge/need mentioned in PLAAFP MUST have a corresponding goal
 - MEASURABLE DATA: PLAAFP must include baseline data for EVERY skill area mentioned
 - COHERENCE: Goals → Services → Accommodations must all align logically
-- CONSERVATIVE EXPANSION: Only discuss areas EXPLICITLY mentioned in {{studentPerformance}}
+- CONSERVATIVE EXPANSION: Only discuss areas EXPLICITLY mentioned in {{student_performance}}
 - STRICT ALIGNMENT: Do NOT infer or add challenges not stated by the teacher
+- NO DATA INVENTION: Do NOT create comprehension %, focus time, independence % not provided
+- LITERAL COPYING: Areas of Concern must match {{areas_of_concern}} exactly (no expansions)
 
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │ 👤 USER MESSAGE (v3.1.1 ULTRA-CONSERVATIVE - Copy entire section below)     │
@@ -82,29 +90,29 @@ Generate a personalized IEP document based on the following student information:
 
 ## STUDENT CONTEXT
 **Student Performance Description:**
-{{studentPerformance}}
+{{student_performance}}
 
-**Grade Level:** {{gradeLevel}}
+**Grade Level:** {{grade_level}}
 **Language:** {{language}}
-**Evaluation Schedule:** {{evaluationSchedule}}
+**Evaluation Schedule:** {{evaluation_schedule}}
 
 **Disability Categories:**
-{{disabilityCategories}}
+{{disability_categories}}
 
 **Areas of Concern:**
-{{areasOfConcern}}
+{{areas_of_concern}}
 
 **Priority Goal Areas:**
-{{priorityGoalAreas}}
+{{priority_goal_areas}}
 
 **Existing Services:**
-{{existingServices}}
+{{existing_services}}
 
 **Accommodations:**
 {{accommodations}}
 
 **IEP Components to Generate:**
-{{iepComponents}}
+{{iep_components}}
 
 ---
 
@@ -126,7 +134,7 @@ Generate a personalized IEP document based on the following student information:
 - 📋 Disability Categories
 - ⚠️ Areas of Concern
 - 🎯 Priority Goal Areas
-- 🏁 {{evaluationSchedule}} Goals (e.g., "🏁 Quarterly Goals")
+- 🏁 {{evaluation_schedule}} Goals (e.g., "🏁 Quarterly Goals")
 - 🧰 Accommodations & Supports
 - 📊 Progress Monitoring
 - 🧑‍🏫 Participation in General Education Curriculum
@@ -141,9 +149,9 @@ Generate a personalized IEP document based on the following student information:
 - Format: List with emojis
 - Include:
   - 👦 Student Name: [Student name]
-  - 🏫 Grade Level: {{gradeLevel}}
+  - 🏫 Grade Level: {{grade_level}}
   - 🗣️ Language: {{language}}
-  - 📆 Evaluation Schedule: {{evaluationSchedule}}
+  - 📆 Evaluation Schedule: {{evaluation_schedule}}
 
 ### 2. 🔍 PLAAFP (Present Levels)
 **CRITICAL:** EXPAND the brief teacher note into 3-4 comprehensive paragraphs WITH OBJECTIVE DATA
@@ -155,7 +163,7 @@ For each academic/functional area discussed in PLAAFP, you MUST include specific
 **Reading Baseline Data (if mentioned):**
 - Fluency: "X words per minute with Y errors" OR "reads at Z grade level"
 - Comprehension: "answers X% of literal/inferential questions correctly"
-- Percentile/benchmark: "performs at Xth percentile for {{gradeLevel}}"
+- Percentile/benchmark: "performs at Xth percentile for {{grade_level}}"
 - Example: "Todd reads 85 words per minute with 5 errors at 2nd-grade level, placing him at the 5th percentile for 4th graders"
 
 **Writing Baseline Data (if mentioned):**
@@ -188,7 +196,7 @@ For each academic/functional area discussed in PLAAFP, you MUST include specific
 **Paragraph 1 - Academic Performance:**
 - Expand on reading/writing/math abilities with grade-level benchmarks
 - MUST include measurable baseline data for EACH area mentioned (see examples above)
-- Reference specific subjects appropriate for {{gradeLevel}}
+- Reference specific subjects appropriate for {{grade_level}}
 - Use concrete numbers, percentages, grade levels, percentiles
 - Compare to grade-level expectations
 
@@ -218,17 +226,17 @@ For each academic/functional area discussed in PLAAFP, you MUST include specific
 
 ### 3. 📋 Disability Categories
 - Simple bulleted list (<ul><li>)
-- List each category from: {{disabilityCategories}}
+- List each category from: {{disability_categories}}
 
 ### 4. ⚠️ Areas of Concern
 - Simple bulleted list (<ul><li>)
-- List each area from: {{areasOfConcern}}
+- List each area from: {{areas_of_concern}}
 
 ### 5. 🎯 Priority Goal Areas
 - Simple bulleted list (<ul><li>)
-- List each area from: {{priorityGoalAreas}}
+- List each area from: {{priority_goal_areas}}
 
-### 6. 🏁 {{evaluationSchedule}} Goals
+### 6. 🏁 {{evaluation_schedule}} Goals
 **CRITICAL:** Use SMART methodology for ALL goals and benchmarks
 
 **MANDATORY COMPLETE COVERAGE RULE:**
@@ -240,7 +248,7 @@ For each academic/functional area discussed in PLAAFP, you MUST include specific
 - Do NOT skip any area of need mentioned in PLAAFP
 
 **AUTO-DETECT FUNCTIONAL NEEDS:**
-Even if not in {{priorityGoalAreas}}, if PLAAFP mentions ANY of these, automatically create a corresponding goal:
+Even if not in {{priority_goal_areas}}, if PLAAFP mentions ANY of these, automatically create a corresponding goal:
 - Attention/focus issues → Create "Attention & Focus" goal
 - Organization problems → Create "Organization & Task Completion" goal
 - Task completion challenges → Create "Task Completion" or "Self-Regulation" goal
@@ -251,10 +259,10 @@ Even if not in {{priorityGoalAreas}}, if PLAAFP mentions ANY of these, automatic
 - **M**easurable: Include concrete metrics (80% accuracy, 4 out of 5 trials, grade level)
 - **A**chievable: Realistic given student's CURRENT level from PLAAFP
 - **R**elevant: Directly addresses documented needs and areas of concern
-- **T**ime-bound: Clear deadline matching {{evaluationSchedule}}
+- **T**ime-bound: Clear deadline matching {{evaluation_schedule}}
 
 **Goal Structure:**
-- Create ONE goal for EACH priority goal area in: {{priorityGoalAreas}}
+- Create ONE goal for EACH priority goal area in: {{priority_goal_areas}}
 - PLUS additional goals for any needs mentioned in PLAAFP not covered above
 - Format: "Goal 1: [Goal Area Name]"
 - Each goal must have 3-4 short-term benchmarks
@@ -263,7 +271,7 @@ Even if not in {{priorityGoalAreas}}, if PLAAFP mentions ANY of these, automatic
 - Each benchmark MUST follow SMART criteria
 - Progressive difficulty: 60% → 70% → 75% → 80-90%
 - Reference accommodations: {{accommodations}}
-- Timeframes aligned with {{evaluationSchedule}}:
+- Timeframes aligned with {{evaluation_schedule}}:
   - Annually: Fall semester → Winter break → Spring semester → End of year
   - Quarterly: Q1 → Q2 → Q3 → Q4
   - Weekly: Week 1-4 → Week 5-8 → Week 9-12 → Week 13-16
@@ -318,18 +326,18 @@ Even if not in {{priorityGoalAreas}}, if PLAAFP mentions ANY of these, automatic
 - Reference selected accommodations: {{accommodations}}
 - Be SPECIFIC and ACTIONABLE (not generic)
 - Connect to student's learning style from performance data
-- Ensure grade-appropriate for {{gradeLevel}}
+- Ensure grade-appropriate for {{grade_level}}
 
 ### 8. 📊 Progress Monitoring
-**Opening:** "Progress will be monitored {{evaluationSchedule}} through:"
+**Opening:** "Progress will be monitored {{evaluation_schedule}} through:"
 
 **Requirements:**
 - List SPECIFIC monitoring methods aligned with EACH goal created
-- Include grade-appropriate assessment tools for {{gradeLevel}}
+- Include grade-appropriate assessment tools for {{grade_level}}
 - Reference specific benchmarks (e.g., "Reading rubrics", "Writing samples on 4-point scale")
 - Mention data collection methods matching accommodations
 - Specify WHO monitors (teacher, aide, specialist)
-- Connect to evaluation schedule: {{evaluationSchedule}}
+- Connect to evaluation schedule: {{evaluation_schedule}}
 - Include methods for ALL goals (academic AND functional)
 
 **Example:**
@@ -338,15 +346,15 @@ Even if not in {{priorityGoalAreas}}, if PLAAFP mentions ANY of these, automatic
 - Weekly self-regulation check-ins with behavior specialist
 - On-task behavior tracking using 15-minute interval observations
 - Math problem-solving probes administered bi-weekly
-- Data collected by Special Education Teacher and reviewed {{evaluationSchedule}}
+- Data collected by Special Education Teacher and reviewed {{evaluation_schedule}}
 
 ### 9. 🧑‍🏫 Participation in General Education Curriculum
 **Requirements:**
-- Describe specifically how THIS student participates in {{gradeLevel}} general education
+- Describe specifically how THIS student participates in {{grade_level}} general education
 - Reference accommodations/modifications needed for success
 - Specify percentage of time (e.g., "70% in gen ed, 30% in resource room")
 - Mention specific subjects where student excels vs. needs support
-- Connect to areas of concern: {{areasOfConcern}}
+- Connect to areas of concern: {{areas_of_concern}}
 - Describe pull-out services aligned with goals
 - Be realistic about inclusion opportunities given needs
 
@@ -483,7 +491,7 @@ Generate a JSON object with this structure:
 }
 ```
 
-**Only generate sections specified in:** {{iepComponents}}
+**Only generate sections specified in:** {{iep_components}}
 
 Now generate the personalized IEP document following ALL instructions above.
 
